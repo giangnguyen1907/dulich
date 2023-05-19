@@ -57,11 +57,7 @@
                   <h5>Thông tin chính <span class="text-danger">*</span></h5>
                 </a>
               </li>
-              <li>
-                <a href="#tab_3" data-toggle="tab">
-                  <h5>@lang('Related Products')</h5>
-                </a>
-              </li>
+              
               <button type="submit" class="btn btn-primary btn-sm pull-right">
                 <i class="fa fa-floppy-o"></i>
                 @lang('Save')
@@ -86,12 +82,19 @@
                             placeholder="@lang('Price')" value="{{ old('gia_ve') }}">
                         </div>
                         <div class="col-xs-6">
-                          <label>@lang('Price Old')</label>
-                          <input type="text" class="form-control" name="json_params[price_old]"
-                            placeholder="@lang('Price Old')" value="{{ old('json_params[price_old]') }}">
+                          <label>@lang('Giá xe')</label>
+                          <input type="text" class="form-control" name="gia_xe"
+                            placeholder="@lang('Price Car')" value="{{ old('gia_xe') }}">
                         </div>
+                        <div class="col-xs-6">
+                          <label>@lang('Giá Hướng dẫn viên')</label>
+                          <input type="text" class="form-control" name="gia_hdvien"
+                            placeholder="@lang('Giá hướng dẫn viên')" value="{{ old('gia_hdvien') }}">
+                        </div>
+
                       </div>
                     </div>
+                  
                     <div class="form-group">
                       <label>@lang('Image')</label>
                       <div class="input-group">
@@ -112,19 +115,7 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label>@lang('Is featured')</label>
-                      <div class="form-control">
-                        <label>
-                          <input type="radio" name="is_featured" value="1">
-                          <small>@lang('true')</small>
-                        </label>
-                        <label>
-                          <input type="radio" name="is_featured" value="0" class="ml-15" checked="">
-                          <small>@lang('false')</small>
-                        </label>
-                      </div>
-                    </div>
+                   
                     <div class="form-group">
                       <label>@lang('Order')</label>
                       <input type="number" class="form-control" name="iorder" placeholder="@lang('Order')"
@@ -162,13 +153,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>@lang('Khuyến mãi - Quà tặng')</label>
-                      <input type="text" class="form-control" name="json_params[promotion]" placeholder="@lang('Khuyến mãi - Quà tặng')"
-                        value="{{ $detail->json_params->promotion ?? '' }}">
-                    </div>
-                  </div>
+                  
                   <div class="col-md-12">
                     <hr style="border-top: dashed 2px #a94442; margin: 10px 0px;">
                   </div>
@@ -188,7 +173,32 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>@lang('Description')</label>
-                      <textarea name="json_params[brief][vi]" class="form-control" rows="5">{{ old('json_params[brief][vi]') }}</textarea>
+                      <textarea name="brief" class="form-control" rows="5">{{ old('brief') }}</textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>@lang('Lịch trình')</label>
+                      <textarea name="lich_trinh" class="form-control" rows="5">{{ old('lich_trinh') }}</textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>@lang('Hành trình')</label>
+                      <textarea name="hanh_trinh" class="form-control" rows="5">{{ old('hanh_trinh') }}</textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>@lang('Giá vé đã bao gồm')</label>
+                      <textarea name="gia_baogom" class="form-control" rows="5">{{ old('gia_baogom') }}</textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>@lang('Giá vé chưa bao gồm')</label>
+                      <textarea name="gia_chuaco" class="form-control" rows="5">{{ old('gia_chuaco') }}</textarea>
                     </div>
                   </div>
 
@@ -196,7 +206,7 @@
                     <div class="form-group">
                       <div class="form-group">
                         <label>@lang('Content')</label>
-                        <textarea name="json_params[content][vi]" class="form-control" id="content_vi">{{ old('json_params[content][vi]') }}</textarea>
+                        <textarea name="content" class="form-control" id="content_vi">{{ old('content') }}</textarea>
                       </div>
                     </div>
                   </div>
@@ -227,95 +237,7 @@
                 </div>
 
               </div>
-              <div class="tab-pane " id="tab_3">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="box" style="border-top: 3px solid #d2d6de;">
-                      <div class="box-header">
-                        <h3 class="box-title">Danh sách liên quan</h3>
-                      </div><!-- /.box-header -->
-                      <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                          <thead>
-                            <tr>
-                              <th class="col-md-1">ID</th>
-                              <th class="col-md-5">Tên</th>
-                              <th class="col-md-2">Danh mục</th>
-                              <th class="col-md-2">Đăng lúc</th>
-                              <th class="col-md-2">Bỏ chọn</th>
-                            </tr>
-                          </thead>
-                          <tbody id="post_related">
-                          </tbody>
-                        </table>
-                      </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="box" style="border-top: 3px solid #d2d6de;">
-                      <div class="box-header">
-                        <h3 class="box-title"></h3>
-                        <div class="box-tools col-md-12">
-                          <div class="col-md-6">
-                            <select class="form-control select2" id="search_taxonomy_id" style="width:100%">
-                              <option value="">- Chọn danh mục -</option>
-                              @foreach ($parents as $item)
-                                @if ($item->parent_id == 0 || $item->parent_id == null)
-                                  <option value="{{ $item->id }}">{{ $item->title }}</option>
-
-                                  @foreach ($parents as $sub)
-                                    @if ($item->id == $sub->parent_id)
-                                      <option value="{{ $sub->id }}">
-                                        - -
-                                        {{ $sub->title }}
-                                      </option>
-
-                                      @foreach ($parents as $sub_child)
-                                        @if ($sub->id == $sub_child->parent_id)
-                                          <option value="{{ $sub_child->id }}">
-                                            - - - -
-                                            {{ $sub_child->title }}
-                                          </option>
-                                        @endif
-                                      @endforeach
-                                    @endif
-                                  @endforeach
-                                @endif
-                              @endforeach
-                            </select>
-                          </div>
-                          <div class="input-group col-md-6">
-                            <input type="text" id="search_title_post" class="form-control pull-right"
-                              placeholder="Tiêu đề..." autocomplete="off">
-                            <div class="input-group-btn">
-                              <button type="button" class="btn btn-default btn_search">
-                                <i class="fa fa-search"></i>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div><!-- /.box-header -->
-                      <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                          <thead>
-                            <tr>
-                              <th class="col-md-1">ID</th>
-                              <th class="col-md-5">Tên</th>
-                              <th class="col-md-2">Danh mục</th>
-                              <th class="col-md-2">Đăng lúc</th>
-                              <th class="col-md-2">Chọn</th>
-                            </tr>
-                          </thead>
-                          <tbody id="post_available">
-
-                          </tbody>
-                        </table>
-                      </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                  </div>
-                </div>
-
-              </div>
+            
             </div><!-- /.tab-content -->
           </div><!-- nav-tabs-custom -->
 
