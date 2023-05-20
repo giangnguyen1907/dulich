@@ -91,6 +91,11 @@
                           <input type="text" class="form-control" name="gia_hdvien"
                             placeholder="@lang('Giá hướng dẫn viên')" value="{{ old('gia_hdvien') }}">
                         </div>
+                        <div class="col-xs-6">
+                          <label>@lang('Lịch trình')</label>
+                          <input type="text" class="form-control" name="lich_trinh"
+                            placeholder="@lang('Số ngày')" value="{{ old('lich_trinh') }}">
+                        </div>
 
                       </div>
                     </div>
@@ -134,24 +139,7 @@
                         </label>
                       </div>
                     </div>
-                    <div class="form-group">
-                      <label>@lang('Image thumb')</label>
-                      <div class="input-group">
-                        <span class="input-group-btn">
-                          <a data-input="image_thumb" data-preview="image_thumb-holder" class="btn btn-primary lfm"
-                            data-type="product">
-                            <i class="fa fa-picture-o"></i> @lang('choose')
-                          </a>
-                        </span>
-                        <input id="image_thumb" class="form-control" type="text" name="image_thumb"
-                          placeholder="@lang('image_link')...">
-                      </div>
-                      <div id="image_thumb-holder" style="margin-top:15px;max-height:100px;">
-                        @if (old('image_thumb') != '')
-                          <img style="height: 5rem;" src="{{ old('image_thumb') }}">
-                        @endif
-                      </div>
-                    </div>
+                   
                   </div>
                   
                   <div class="col-md-12">
@@ -176,12 +164,7 @@
                       <textarea name="brief" class="form-control" rows="5">{{ old('brief') }}</textarea>
                     </div>
                   </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>@lang('Lịch trình')</label>
-                      <textarea name="lich_trinh" class="form-control" rows="5">{{ old('lich_trinh') }}</textarea>
-                    </div>
-                  </div>
+                  
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>@lang('Hành trình')</label>

@@ -58,11 +58,11 @@
                   <h5>Thông tin chính <span class="text-danger">*</span></h5>
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="#tab_3" data-toggle="tab">
                   <h5>@lang('Related Products')</h5>
                 </a>
-              </li>
+              </li> -->
               <button type="submit" class="btn btn-primary btn-sm pull-right">
                 <i class="fa fa-floppy-o"></i>
                 @lang('Save')
@@ -73,35 +73,7 @@
               <div class="tab-pane active" id="tab_1">
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label>@lang('Product category') <small class="text-red">*</small></label>
-                      <select name="taxonomy_id" id="taxonomy_id" class="form-control select2" style="width:100%">
-                        <option value="">@lang('Please select')</option>
-                        @foreach ($parents as $item)
-                          @if ($item->parent_id == 0 || $item->parent_id == null)
-                            <option value="{{ $item->id }}" {{ $detail->taxonomy_id == $item->id ? 'selected' : '' }}>
-                              {{ $item->title }}</option>
-
-                            @foreach ($parents as $sub)
-                              @if ($item->id == $sub->parent_id)
-                                <option value="{{ $sub->id }}"
-                                  {{ $detail->taxonomy_id == $sub->id ? 'selected' : '' }}>- - {{ $sub->title }}
-                                </option>
-
-                                @foreach ($parents as $sub_child)
-                                  @if ($sub->id == $sub_child->parent_id)
-                                    <option value="{{ $sub_child->id }}"
-                                      {{ $detail->taxonomy_id == $sub_child->id ? 'selected' : '' }}>- - - -
-                                      {{ $sub_child->title }}</option>
-                                  @endif
-                                @endforeach
-                              @endif
-                            @endforeach
-                          @endif
-                        @endforeach
-                      </select>
-
-                    </div>
+                    
 
                     <div class="form-group">
                       <label>@lang('Title') <small class="text-red">*</small></label>
@@ -113,18 +85,28 @@
                       <div class="row">
                         <div class="col-xs-6">
                           <label>@lang('Price')</label>
-                          <input type="text" class="form-control" name="json_params[price]"
-                            placeholder="@lang('Price')"
-                            value="{{ $detail->json_params->price ?? old('json_params[price]') }}">
+                          <input type="text" class="form-control" name="gia_ve"
+                            placeholder="@lang('Price')" value="{{ $detail->gia_ve ?? old('gia_ve') }}">
                         </div>
                         <div class="col-xs-6">
-                          <label>@lang('Price Old')</label>
-                          <input type="text" class="form-control" name="json_params[price_old]"
-                            placeholder="@lang('Price Old')"
-                            value="{{ $detail->json_params->price_old ?? old('json_params[price_old]') }}">
+                          <label>@lang('Giá xe')</label>
+                          <input type="text" class="form-control" name="gia_xe"
+                            placeholder="@lang('Price Car')" value="{{ $detail->gia_xe ?? old('gia_xe') }}">
                         </div>
+                        <div class="col-xs-6">
+                          <label>@lang('Giá Hướng dẫn viên')</label>
+                          <input type="text" class="form-control" name="gia_hdvien"
+                            placeholder="@lang('Giá hướng dẫn viên')" value="{{ $detail->gia_hdvien ?? old('gia_hdvien') }}">
+                        </div>
+                        <div class="col-xs-6">
+                          <label>@lang('Lịch trình')</label>
+                          <input type="text" class="form-control" name="lich_trinh"
+                            placeholder="@lang('Số ngày')" value="{{ $detail->lich_trinh ?? old('lich_trinh') }}">
+                        </div>
+
                       </div>
                     </div>
+                    
                     <div class="form-group">
                       <label>@lang('Image')</label>
                       <div class="input-group">
@@ -148,21 +130,7 @@
 
                   <div class="col-md-6">
 
-                    <div class="form-group">
-                      <label>@lang('Is featured')</label>
-                      <div class="form-control">
-                        <label>
-                          <input type="radio" name="is_featured" value="1"
-                            {{ $detail->is_featured == '1' ? 'checked' : '' }}>
-                          <small>@lang('true')</small>
-                        </label>
-                        <label>
-                          <input type="radio" name="is_featured" value="0" class="ml-15"
-                            {{ $detail->is_featured == '0' ? 'checked' : '' }}>
-                          <small>@lang('false')</small>
-                        </label>
-                      </div>
-                    </div>
+                 
 
                     <div class="form-group">
                       <label>@lang('Order')</label>
@@ -185,36 +153,9 @@
                       </div>
                     </div>
 
-                    <div class="form-group">
-                      <label>@lang('Image thumb')</label>
-                      <div class="input-group">
-                        <span class="input-group-btn">
-                          <a data-input="image_thumb" data-preview="image_thumb-holder" class="btn btn-primary lfm"
-                            data-type="product">
-                            <i class="fa fa-picture-o"></i> @lang('choose')
-                          </a>
-                        </span>
-                        <input id="image_thumb" class="form-control" type="text" name="image_thumb"
-                          placeholder="@lang('image_link')..." value="{{ $detail->image_thumb }}">
-                      </div>
-                      <div id="image_thumb-holder" style="margin-top:15px;max-height:100px;">
-                        @if ($detail->image_thumb != '')
-                          <img style="height: 5rem;" src="{{ $detail->image_thumb }}">
-                        @endif
-                      </div>
-                    </div>
+                  </div>
+                  
 
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label>@lang('Khuyến mãi - Quà tặng')</label>
-                      <input type="text" class="form-control" name="json_params[promotion]" placeholder="@lang('Khuyến mãi - Quà tặng')"
-                        value="{{ $detail->json_params->promotion ?? '' }}">
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <hr style="border-top: dashed 2px #a94442; margin: 10px 0px;">
-                  </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>@lang('Video list')</label>
@@ -260,7 +201,27 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>@lang('Description')</label>
-                      <textarea name="json_params[brief][vi]" class="form-control" rows="5">{{ isset($detail->json_params->brief->vi) ? $detail->json_params->brief->vi : old('json_params[brief][vi]') }}</textarea>
+                      <textarea name="brief" class="form-control" rows="5">{{ isset($detail->brief) ?$detail->brief : old('brief') }}</textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>@lang('Hành trình')</label>
+                      <textarea name="hanh_trinh" class="form-control" rows="5">{{  isset($detail->hanh_trinh) ?$detail->hanh_trinh : old('hanh_trinh') }} </textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>@lang('Giá vé đã bao gồm')</label>
+                      <textarea name="gia_baogom" class="form-control" rows="5">{{  isset($detail->gia_baogom) ?$detail->gia_baogom : old('gia_baogom')  }}</textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label>@lang('Giá vé chưa bao gồm')</label>
+                      <textarea name="gia_chuaco" class="form-control" rows="5">{{  isset($detail->gia_chuaco) ?$detail->gia_chuaco : old('gia_chuaco') }} </textarea>
                     </div>
                   </div>
 
@@ -268,7 +229,7 @@
                     <div class="form-group">
                       <div class="form-group">
                         <label>@lang('Content')</label>
-                        <textarea name="json_params[content][vi]" class="form-control" id="content_vi">{{ isset($detail->json_params->content->vi) ? $detail->json_params->content->vi : old('json_params[content][vi]') }}</textarea>
+                        <textarea name="content" class="form-control" id="content_vi">{{ isset($detail->content) ?$detail->content : old('content') }}</textarea>
                       </div>
                     </div>
                   </div>
@@ -299,110 +260,7 @@
                 </div>
 
               </div>
-              <div class="tab-pane " id="tab_3">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="box" style="border-top: 3px solid #d2d6de;">
-                      <div class="box-header">
-                        <h3 class="box-title">Danh sách liên quan</h3>
-                      </div><!-- /.box-header -->
-                      <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                          <thead>
-                            <tr>
-                              <th class="col-md-1">ID</th>
-                              <th class="col-md-5">Tên</th>
-                              <th class="col-md-2">Danh mục</th>
-                              <th class="col-md-2">Đăng lúc</th>
-                              <th class="col-md-2">Bỏ chọn</th>
-                            </tr>
-                          </thead>
-                          <tbody id="post_related">
-                            @isset($relateds)
-                              @foreach ($relateds as $item)
-                                <tr>
-                                  <td>{{ $item->id }}</td>
-                                  <td>{{ $item->title }}</td>
-                                  <td>{{ $item->taxonomy_title }}</td>
-                                  <td>{{ \Carbon\Carbon::parse($item->created_at)->format('d/m/Y') }}</td>
-                                  <td>
-                                    <input name="json_params[related_post][]" type="checkbox"
-                                      value="{{ $item->id }}" class="mr-15 related_post_item cursor"
-                                      autocomplete="off" checked>
-                                  </td>
-                                </tr>
-                              @endforeach
-                            @endisset
-                          </tbody>
-                        </table>
-                      </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="box" style="border-top: 3px solid #d2d6de;">
-                      <div class="box-header">
-                        <h3 class="box-title"></h3>
-                        <div class="box-tools col-md-12">
-                          <div class="col-md-6">
-                            <select class="form-control select2" id="search_taxonomy_id" style="width:100%">
-                              <option value="">- Chọn danh mục -</option>
-                              @foreach ($parents as $item)
-                                @if ($item->parent_id == 0 || $item->parent_id == null)
-                                  <option value="{{ $item->id }}">{{ $item->title }}</option>
-
-                                  @foreach ($parents as $sub)
-                                    @if ($item->id == $sub->parent_id)
-                                      <option value="{{ $sub->id }}">
-                                        - -
-                                        {{ $sub->title }}
-                                      </option>
-
-                                      @foreach ($parents as $sub_child)
-                                        @if ($sub->id == $sub_child->parent_id)
-                                          <option value="{{ $sub_child->id }}">
-                                            - - - -
-                                            {{ $sub_child->title }}
-                                          </option>
-                                        @endif
-                                      @endforeach
-                                    @endif
-                                  @endforeach
-                                @endif
-                              @endforeach
-                            </select>
-                          </div>
-                          <div class="input-group col-md-6">
-                            <input type="text" id="search_title_post" class="form-control pull-right"
-                              placeholder="Tiêu đề..." autocomplete="off">
-                            <div class="input-group-btn">
-                              <button type="button" class="btn btn-default btn_search">
-                                <i class="fa fa-search"></i>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div><!-- /.box-header -->
-                      <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                          <thead>
-                            <tr>
-                              <th class="col-md-1">ID</th>
-                              <th class="col-md-5">Tên</th>
-                              <th class="col-md-2">Danh mục</th>
-                              <th class="col-md-2">Đăng lúc</th>
-                              <th class="col-md-2">Chọn</th>
-                            </tr>
-                          </thead>
-                          <tbody id="post_available">
-
-                          </tbody>
-                        </table>
-                      </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                  </div>
-                </div>
-
-              </div>
+            
             </div><!-- /.tab-content -->
           </div><!-- nav-tabs-custom -->
 

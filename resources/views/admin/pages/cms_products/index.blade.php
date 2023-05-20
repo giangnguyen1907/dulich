@@ -135,7 +135,7 @@
                  
                      
                       <td>
-                        {{ number_format($row->price ?? 0) }}
+                        {{ number_format($row->gia_ve) ?? 0 }}
                        
                       </td>
                       <td>
