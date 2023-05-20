@@ -40,53 +40,20 @@
             </div>
             <div class="col-md-3">
               <div class="form-group">
-                <label>@lang('Department')</label>
-                <select name="department_id" id="department_id" class="form-control select2" style="width: 100%;">
+                <label>@lang('Tour')</label>
+                <select name="tour_id"  class="form-control select2" style="width: 100%;">
                   <option value="">@lang('Please select')</option>
-                  @foreach ($departments as $item)
-                    @if ($item->parent_id == 0 || $item->parent_id == null)
+                  @foreach ($tour as $item)
                       <option value="{{ $item->id }}"
-                        {{ isset($params['department_id']) && $params['department_id'] == $item->id ? 'selected' : '' }}>
+                        {{ isset($params['tour_id']) && $params['tour_id'] == $item->id ? 'selected' : '' }}>
                         {{ $item->title }}</option>
-                      @foreach ($departments as $sub)
-                        @if ($item->id == $sub->parent_id)
-                          <option value="{{ $sub->id }}"
-                            {{ isset($params['department_id']) && $params['department_id'] == $sub->id ? 'selected' : '' }}>
-                            - -
-                            {{ $sub->title }}
-                          </option>
-                          @foreach ($departments as $sub_child)
-                            @if ($sub->id == $sub_child->parent_id)
-                              <option value="{{ $sub_child->id }}"
-                                {{ isset($params['department_id']) && $params['department_id'] == $sub_child->id ? 'selected' : '' }}>
-                                - - - -
-                                {{ $sub_child->title }}</option>
-                            @endif
-                          @endforeach
-                        @endif
-                      @endforeach
-                    @endif
+                  
                   @endforeach
                 </select>
               </div>
             </div>
 
-            <div class="col-md-3 form-group">
-              <label for="doctor_id">
-                @lang('Doctor')
-              </label>
-              <select id="doctor_id" name="doctor_id" class="form-control select2" autocomplete="off">
-                <option value="">@lang('Please select')</option>
-                @isset($doctors)
-                  @foreach ($doctors as $item)
-                    <option value="{{ $item->id }}"
-                      {{ isset($params['doctor_id']) && $params['doctor_id'] == $item->id ? 'selected' : '' }}>
-                      {{ $item->title }}
-                    </option>
-                  @endforeach
-                @endisset
-              </select>
-            </div>
+            
             <div class="col-md-3">
               <div class="form-group">
                 <label>@lang('Status')</label>
@@ -167,10 +134,9 @@
               <tr>
                 <th>@lang('Fullname')</th>
                 <th>@lang('Phone')</th>
-                <th>@lang('Department')</th>
-                <th>@lang('Doctor')</th>
-                <th>@lang('Booking date')</th>
-                <th>@lang('Booking time')</th>
+                <th>@lang('Tour')</th>
+                <th>@lang('Ngày đặt')</th>
+                <th>@lang('Giờ đặt')</th>
                 <th>@lang('Content note')</th>
                 <th>@lang('Admin note')</th>
                 <th>@lang('Created at')</th>
@@ -191,10 +157,7 @@
                       {{ $row->phone }}
                     </td>
                     <td>
-                      {{ $row->department }}
-                    </td>
-                    <td>
-                      {{ $row->doctor }}
+                      {{ $row->tour}}
                     </td>
                     <td>
                       {{ isset($row->booking_date) ? \Carbon\Carbon::parse($row->booking_date)->format('d/m/Y') : '' }}

@@ -135,11 +135,9 @@
                       <td>
                         <strong style="font-size: 14px;"><?php echo e($row->title); ?></strong>
                       </td>
-                    
-                 
-                     
+                        
                       <td>
-                        <?php echo e(number_format($row->price ?? 0)); ?>
+                        <?php echo e(number_format($row->gia_ve) ?? 0); ?>
 
                        
                       </td>

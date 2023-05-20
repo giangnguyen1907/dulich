@@ -62,11 +62,11 @@
                   <h5>Thông tin chính <span class="text-danger">*</span></h5>
                 </a>
               </li>
-              <li>
+              <!-- <li>
                 <a href="#tab_3" data-toggle="tab">
                   <h5><?php echo app('translator')->get('Related Products'); ?></h5>
                 </a>
-              </li>
+              </li> -->
               <button type="submit" class="btn btn-primary btn-sm pull-right">
                 <i class="fa fa-floppy-o"></i>
                 <?php echo app('translator')->get('Save'); ?>
@@ -77,36 +77,7 @@
               <div class="tab-pane active" id="tab_1">
                 <div class="row">
                   <div class="col-md-6">
-                    <div class="form-group">
-                      <label><?php echo app('translator')->get('Product category'); ?> <small class="text-red">*</small></label>
-                      <select name="taxonomy_id" id="taxonomy_id" class="form-control select2" style="width:100%">
-                        <option value=""><?php echo app('translator')->get('Please select'); ?></option>
-                        <?php $__currentLoopData = $parents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                          <?php if($item->parent_id == 0 || $item->parent_id == null): ?>
-                            <option value="<?php echo e($item->id); ?>" <?php echo e($detail->taxonomy_id == $item->id ? 'selected' : ''); ?>>
-                              <?php echo e($item->title); ?></option>
-
-                            <?php $__currentLoopData = $parents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                              <?php if($item->id == $sub->parent_id): ?>
-                                <option value="<?php echo e($sub->id); ?>"
-                                  <?php echo e($detail->taxonomy_id == $sub->id ? 'selected' : ''); ?>>- - <?php echo e($sub->title); ?>
-
-                                </option>
-
-                                <?php $__currentLoopData = $parents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub_child): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                  <?php if($sub->id == $sub_child->parent_id): ?>
-                                    <option value="<?php echo e($sub_child->id); ?>"
-                                      <?php echo e($detail->taxonomy_id == $sub_child->id ? 'selected' : ''); ?>>- - - -
-                                      <?php echo e($sub_child->title); ?></option>
-                                  <?php endif; ?>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                              <?php endif; ?>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                          <?php endif; ?>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      </select>
-
-                    </div>
+                    
 
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Title'); ?> <small class="text-red">*</small></label>
@@ -118,18 +89,28 @@
                       <div class="row">
                         <div class="col-xs-6">
                           <label><?php echo app('translator')->get('Price'); ?></label>
-                          <input type="text" class="form-control" name="json_params[price]"
-                            placeholder="<?php echo app('translator')->get('Price'); ?>"
-                            value="<?php echo e($detail->json_params->price ?? old('json_params[price]')); ?>">
+                          <input type="text" class="form-control" name="gia_ve"
+                            placeholder="<?php echo app('translator')->get('Price'); ?>" value="<?php echo e($detail->gia_ve ?? old('gia_ve')); ?>">
                         </div>
                         <div class="col-xs-6">
-                          <label><?php echo app('translator')->get('Price Old'); ?></label>
-                          <input type="text" class="form-control" name="json_params[price_old]"
-                            placeholder="<?php echo app('translator')->get('Price Old'); ?>"
-                            value="<?php echo e($detail->json_params->price_old ?? old('json_params[price_old]')); ?>">
+                          <label><?php echo app('translator')->get('Giá xe'); ?></label>
+                          <input type="text" class="form-control" name="gia_xe"
+                            placeholder="<?php echo app('translator')->get('Price Car'); ?>" value="<?php echo e($detail->gia_xe ?? old('gia_xe')); ?>">
                         </div>
+                        <div class="col-xs-6">
+                          <label><?php echo app('translator')->get('Giá Hướng dẫn viên'); ?></label>
+                          <input type="text" class="form-control" name="gia_hdvien"
+                            placeholder="<?php echo app('translator')->get('Giá hướng dẫn viên'); ?>" value="<?php echo e($detail->gia_hdvien ?? old('gia_hdvien')); ?>">
+                        </div>
+                        <div class="col-xs-6">
+                          <label><?php echo app('translator')->get('Lịch trình'); ?></label>
+                          <input type="text" class="form-control" name="lich_trinh"
+                            placeholder="<?php echo app('translator')->get('Số ngày'); ?>" value="<?php echo e($detail->lich_trinh ?? old('lich_trinh')); ?>">
+                        </div>
+
                       </div>
                     </div>
+                    
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Image'); ?></label>
                       <div class="input-group">
@@ -153,21 +134,7 @@
 
                   <div class="col-md-6">
 
-                    <div class="form-group">
-                      <label><?php echo app('translator')->get('Is featured'); ?></label>
-                      <div class="form-control">
-                        <label>
-                          <input type="radio" name="is_featured" value="1"
-                            <?php echo e($detail->is_featured == '1' ? 'checked' : ''); ?>>
-                          <small><?php echo app('translator')->get('true'); ?></small>
-                        </label>
-                        <label>
-                          <input type="radio" name="is_featured" value="0" class="ml-15"
-                            <?php echo e($detail->is_featured == '0' ? 'checked' : ''); ?>>
-                          <small><?php echo app('translator')->get('false'); ?></small>
-                        </label>
-                      </div>
-                    </div>
+                 
 
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Order'); ?></label>
@@ -190,36 +157,9 @@
                       </div>
                     </div>
 
-                    <div class="form-group">
-                      <label><?php echo app('translator')->get('Image thumb'); ?></label>
-                      <div class="input-group">
-                        <span class="input-group-btn">
-                          <a data-input="image_thumb" data-preview="image_thumb-holder" class="btn btn-primary lfm"
-                            data-type="product">
-                            <i class="fa fa-picture-o"></i> <?php echo app('translator')->get('choose'); ?>
-                          </a>
-                        </span>
-                        <input id="image_thumb" class="form-control" type="text" name="image_thumb"
-                          placeholder="<?php echo app('translator')->get('image_link'); ?>..." value="<?php echo e($detail->image_thumb); ?>">
-                      </div>
-                      <div id="image_thumb-holder" style="margin-top:15px;max-height:100px;">
-                        <?php if($detail->image_thumb != ''): ?>
-                          <img style="height: 5rem;" src="<?php echo e($detail->image_thumb); ?>">
-                        <?php endif; ?>
-                      </div>
-                    </div>
+                  </div>
+                  
 
-                  </div>
-                  <div class="col-md-12">
-                    <div class="form-group">
-                      <label><?php echo app('translator')->get('Khuyến mãi - Quà tặng'); ?></label>
-                      <input type="text" class="form-control" name="json_params[promotion]" placeholder="<?php echo app('translator')->get('Khuyến mãi - Quà tặng'); ?>"
-                        value="<?php echo e($detail->json_params->promotion ?? ''); ?>">
-                    </div>
-                  </div>
-                  <div class="col-md-12">
-                    <hr style="border-top: dashed 2px #a94442; margin: 10px 0px;">
-                  </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Video list'); ?></label>
@@ -265,7 +205,27 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Description'); ?></label>
-                      <textarea name="json_params[brief][vi]" class="form-control" rows="5"><?php echo e(isset($detail->json_params->brief->vi) ? $detail->json_params->brief->vi : old('json_params[brief][vi]')); ?></textarea>
+                      <textarea name="brief" class="form-control" rows="5"><?php echo e(isset($detail->brief) ?$detail->brief : old('brief')); ?></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label><?php echo app('translator')->get('Hành trình'); ?></label>
+                      <textarea name="hanh_trinh" class="form-control" rows="5"><?php echo e(isset($detail->hanh_trinh) ?$detail->hanh_trinh : old('hanh_trinh')); ?> </textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label><?php echo app('translator')->get('Giá vé đã bao gồm'); ?></label>
+                      <textarea name="gia_baogom" class="form-control" rows="5"><?php echo e(isset($detail->gia_baogom) ?$detail->gia_baogom : old('gia_baogom')); ?></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label><?php echo app('translator')->get('Giá vé chưa bao gồm'); ?></label>
+                      <textarea name="gia_chuaco" class="form-control" rows="5"><?php echo e(isset($detail->gia_chuaco) ?$detail->gia_chuaco : old('gia_chuaco')); ?> </textarea>
                     </div>
                   </div>
 
@@ -273,7 +233,7 @@
                     <div class="form-group">
                       <div class="form-group">
                         <label><?php echo app('translator')->get('Content'); ?></label>
-                        <textarea name="json_params[content][vi]" class="form-control" id="content_vi"><?php echo e(isset($detail->json_params->content->vi) ? $detail->json_params->content->vi : old('json_params[content][vi]')); ?></textarea>
+                        <textarea name="content" class="form-control" id="content_vi"><?php echo e(isset($detail->content) ?$detail->content : old('content')); ?></textarea>
                       </div>
                     </div>
                   </div>
@@ -304,112 +264,7 @@
                 </div>
 
               </div>
-              <div class="tab-pane " id="tab_3">
-                <div class="row">
-                  <div class="col-xs-6">
-                    <div class="box" style="border-top: 3px solid #d2d6de;">
-                      <div class="box-header">
-                        <h3 class="box-title">Danh sách liên quan</h3>
-                      </div><!-- /.box-header -->
-                      <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                          <thead>
-                            <tr>
-                              <th class="col-md-1">ID</th>
-                              <th class="col-md-5">Tên</th>
-                              <th class="col-md-2">Danh mục</th>
-                              <th class="col-md-2">Đăng lúc</th>
-                              <th class="col-md-2">Bỏ chọn</th>
-                            </tr>
-                          </thead>
-                          <tbody id="post_related">
-                            <?php if(isset($relateds)): ?>
-                              <?php $__currentLoopData = $relateds; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <tr>
-                                  <td><?php echo e($item->id); ?></td>
-                                  <td><?php echo e($item->title); ?></td>
-                                  <td><?php echo e($item->taxonomy_title); ?></td>
-                                  <td><?php echo e(\Carbon\Carbon::parse($item->created_at)->format('d/m/Y')); ?></td>
-                                  <td>
-                                    <input name="json_params[related_post][]" type="checkbox"
-                                      value="<?php echo e($item->id); ?>" class="mr-15 related_post_item cursor"
-                                      autocomplete="off" checked>
-                                  </td>
-                                </tr>
-                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            <?php endif; ?>
-                          </tbody>
-                        </table>
-                      </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                  </div>
-                  <div class="col-xs-6">
-                    <div class="box" style="border-top: 3px solid #d2d6de;">
-                      <div class="box-header">
-                        <h3 class="box-title"></h3>
-                        <div class="box-tools col-md-12">
-                          <div class="col-md-6">
-                            <select class="form-control select2" id="search_taxonomy_id" style="width:100%">
-                              <option value="">- Chọn danh mục -</option>
-                              <?php $__currentLoopData = $parents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <?php if($item->parent_id == 0 || $item->parent_id == null): ?>
-                                  <option value="<?php echo e($item->id); ?>"><?php echo e($item->title); ?></option>
-
-                                  <?php $__currentLoopData = $parents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <?php if($item->id == $sub->parent_id): ?>
-                                      <option value="<?php echo e($sub->id); ?>">
-                                        - -
-                                        <?php echo e($sub->title); ?>
-
-                                      </option>
-
-                                      <?php $__currentLoopData = $parents; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $sub_child): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                        <?php if($sub->id == $sub_child->parent_id): ?>
-                                          <option value="<?php echo e($sub_child->id); ?>">
-                                            - - - -
-                                            <?php echo e($sub_child->title); ?>
-
-                                          </option>
-                                        <?php endif; ?>
-                                      <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    <?php endif; ?>
-                                  <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                <?php endif; ?>
-                              <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                          </div>
-                          <div class="input-group col-md-6">
-                            <input type="text" id="search_title_post" class="form-control pull-right"
-                              placeholder="Tiêu đề..." autocomplete="off">
-                            <div class="input-group-btn">
-                              <button type="button" class="btn btn-default btn_search">
-                                <i class="fa fa-search"></i>
-                              </button>
-                            </div>
-                          </div>
-                        </div>
-                      </div><!-- /.box-header -->
-                      <div class="box-body table-responsive no-padding">
-                        <table class="table table-hover">
-                          <thead>
-                            <tr>
-                              <th class="col-md-1">ID</th>
-                              <th class="col-md-5">Tên</th>
-                              <th class="col-md-2">Danh mục</th>
-                              <th class="col-md-2">Đăng lúc</th>
-                              <th class="col-md-2">Chọn</th>
-                            </tr>
-                          </thead>
-                          <tbody id="post_available">
-
-                          </tbody>
-                        </table>
-                      </div><!-- /.box-body -->
-                    </div><!-- /.box -->
-                  </div>
-                </div>
-
-              </div>
+            
             </div><!-- /.tab-content -->
           </div><!-- nav-tabs-custom -->
 

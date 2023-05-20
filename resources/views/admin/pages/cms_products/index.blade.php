@@ -131,9 +131,7 @@
                       <td>
                         <strong style="font-size: 14px;">{{ $row->title }}</strong>
                       </td>
-                    
-                 
-                     
+                        
                       <td>
                         {{ number_format($row->gia_ve) ?? 0 }}
                        

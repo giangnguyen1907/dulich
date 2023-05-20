@@ -38,9 +38,13 @@ Route::namespace('FrontEnd')->group(function () {
 
   Route::get('danh-muc-san-pham/{alias?}', 'CmsController@productCategory')->name('frontend.cms.product');
   Route::get('san-pham/{alias?}', 'CmsController@detail')->name('frontend.cms.product.detail');
+
+  //tour du lich
+  Route::get('tour', 'BookingController@index')->name('frontend.tour');
+  Route::post('booking', 'BookingController@store')->name('frontend.booking.store');
   // Tags
   // Route::get('tags/{alias?}', 'CmsController@tags')->name('frontend.cms.tags');
-
+ 
   // Contact
   Route::get('lien-he', 'ContactController@index')->name('frontend.contact');
   Route::post('contact', 'ContactController@store')->name('frontend.contact.store');

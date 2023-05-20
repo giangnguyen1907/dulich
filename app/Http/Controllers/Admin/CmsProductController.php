@@ -87,15 +87,9 @@ class CmsProductController extends Controller
      */
     public function edit(CmsProduct $cmsProduct)
     {
-        $paramTaxonomys['status'] = Consts::TAXONOMY_STATUS['active'];
-        $paramTaxonomys['taxonomy'] = Consts::TAXONOMY['product'];
-        $this->responseData['parents'] = ContentService::getCmsTaxonomy($paramTaxonomys)->get();
+        
         $this->responseData['detail'] = $cmsProduct;
 
-        $this->responseData['relateds'] = ContentService::getCmsPost([
-            'related_post' => $cmsProduct->json_params->related_post ?? [""],
-            'order_by' => 'id'
-        ])->get();
 
         return $this->responseView($this->viewPart . '.edit');
     }
@@ -111,7 +105,6 @@ class CmsProductController extends Controller
     {
         $request->validate([
             'title' => 'required|max:255',
-            'taxonomy_id' => 'required|max:255',
         ]);
 
         $params = $request->all();
