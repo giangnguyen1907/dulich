@@ -1,14 +1,14 @@
-@extends('frontend.layouts.default')
 
-@php
+
+<?php
 $page_title = $taxonomy->title ?? ($page->title ?? ($page->name ?? ''));
 $image_background = $taxonomy->json_params->image_background ?? ($web_information->image->background_breadcrumbs ?? '');
 
 $params['status'] = App\Consts::POST_STATUS['active'];
 $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
-@endphp
+?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <div class="slider-wrapper relative" id="slider-1114344935">
 	<div class="slider slider-nav-circle slider-nav-large slider-nav-light slider-style-normal" data-flickity-options='{
             "cellAlign": "center",
@@ -30,16 +30,16 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
             "parallax" : 0,
             "friction": 0.6        }'>
 
-		@if ($rows)
-		@foreach ($rows as $item)
-		@php
+		<?php if($rows): ?>
+		<?php $__currentLoopData = $rows; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+		<?php
 		$title = $item->json_params->title->{$locale} ?? $item->title;
 		$brief = $item->json_params->brief->{$locale} ?? $item->brief;
 		$image = $item->image_thumb != '' ? $item->image_thumb : ($item->image != '' ? $item->image : null);
 		$date = date('d/m/Y', strtotime($item->created_at));
 		// Viet ham xu ly lay slug
 		$alias = 'tour/'.$title ;
-		@endphp
+		?>
 		<div class="row row-collapse row-full-width" id="row-329997347">
 
 
@@ -67,7 +67,7 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 											<div id="text-164661807" class="text">
 
 
-												<h1>Đặt vé tour {{ $title }}</h1>
+												<h1>Đặt vé tour <?php echo e($title); ?></h1>
 
 												<style>
 													#text-164661807 {
@@ -80,11 +80,11 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 												</style>
 											</div>
 
-											<p> {{ $brief }}</p>
+											<p> <?php echo e($brief); ?></p>
 											<p></p>
 											<div class="frm_forms  with_frm_style frm_style_formidable-style" id="frm_form_1_container">
-												<form enctype="multipart/form-data" action="{{ route('frontend.booking.store') }}" method="post" class="frm-show-form " id="form_contact-form">
-													@csrf
+												<form enctype="multipart/form-data" action="<?php echo e(route('frontend.booking.store')); ?>" method="post" class="frm-show-form " id="form_contact-form">
+													<?php echo csrf_field(); ?>
 													<div class="frm_form_fields ">
 														<fieldset>
 															<legend class="frm_screen_reader">Contact Us</legend>
@@ -121,7 +121,7 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 																	</label>
 
 
-																	<input type="text" id="field_29yf4d" name="tour_id" value="{{ $title }}" disabled />
+																	<input type="text" id="field_29yf4d" name="tour_id" value="<?php echo e($title); ?>" disabled />
 
 																	</select>
 
@@ -195,7 +195,7 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 
 											<div class="img has-hover x md-x lg-x y md-y lg-y" id="image_1242212942">
 												<div class="img-inner dark">
-													<img width="536" height="700" src=" {{ $image }}" class="attachment-large size-large" alt="" decoding="async" loading="lazy" />
+													<img width="536" height="700" src=" <?php echo e($image); ?>" class="attachment-large size-large" alt="" decoding="async" loading="lazy" />
 												</div>
 
 												<style>
@@ -231,28 +231,28 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 
 
 
-											<h2><span style="color: #02913f;">{{ $title }}</span></h2>
-											<p>{{ $brief }}</p>
+											<h2><span style="color: #02913f;"><?php echo e($title); ?></span></h2>
+											<p><?php echo e($brief); ?></p>
 											<div class="is-divider divider clearfix" style="margin-top:0.3em;margin-bottom:0.3em;max-width:100%;background-color:rgb(160, 201, 229);"></div>
 
 											<p>Thông tin tour :</p>
 											<ul>
-												<li><span style="color: #ec3237;">Lịch trình:</span> {{ $item->lich_trinh }} Ngày</li>
+												<li><span style="color: #ec3237;">Lịch trình:</span> <?php echo e($item->lich_trinh); ?> Ngày</li>
 											</ul>
 											<ul>
-												<li><span style="color: #ec3237;">Giá tour bao gồm:</span> {{ $item->gia_baogom }}</li>
+												<li><span style="color: #ec3237;">Giá tour bao gồm:</span> <?php echo e($item->gia_baogom); ?></li>
 											</ul>
 											<ul>
-												<li><span style="color: #ec3237;">Giá tour chưa bao gồm:</span> {{ $item->gia_chuaco }}</li>
+												<li><span style="color: #ec3237;">Giá tour chưa bao gồm:</span> <?php echo e($item->gia_chuaco); ?></li>
 											</ul>
 											<ul>
-												<li><span style="color: #ec3237;">Hành trình:</span>{{ $item->hanh_trinh }}</li>
+												<li><span style="color: #ec3237;">Hành trình:</span><?php echo e($item->hanh_trinh); ?></li>
 											</ul>
 											<ul>
-												<li><span style="color: #ec3237;">Giá xe đi lại:</span> {{ number_format($item->gia_xe, 0, ',', '.') }} VNĐ/người </li>
+												<li><span style="color: #ec3237;">Giá xe đi lại:</span> <?php echo e(number_format($item->gia_xe, 0, ',', '.')); ?> VNĐ/người </li>
 											</ul>
 											<ul>
-												<li><span style="color: #ec3237;">Hướng dẫn viên du lịch:</span> {{ number_format($item->gia_hdvien, 0, ',', '.') }} VNĐ/ngày</li>
+												<li><span style="color: #ec3237;">Hướng dẫn viên du lịch:</span> <?php echo e(number_format($item->gia_hdvien, 0, ',', '.')); ?> VNĐ/ngày</li>
 											</ul>
 
 										</div>
@@ -341,11 +341,12 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 
 
 		</div>
-		@endforeach
-		@endif
+		<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+		<?php endif; ?>
 	</div>
 
 	<div class="loading-spin dark large centered"></div>
 
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\xampp74\htdocs\dulich\resources\views/frontend/pages/tour/index.blade.php ENDPATH**/ ?>
