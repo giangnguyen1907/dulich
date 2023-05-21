@@ -1,11 +1,11 @@
 
 <link rel='dns-prefetch' href='//cdn.jsdelivr.net' />
 <link rel='dns-prefetch' href='//use.fontawesome.com' />
-<link rel="prefetch" href="{{ asset('themes/frontend/assets/js/chunk.countup.fe2c1016.js') }}" />
-<link rel="prefetch" href="{{ asset('themes/frontend/assets/js/chunk.sticky-sidebar.a58a6557.js') }}" />
-<link rel="prefetch" href="{{ asset('themes/frontend/assets/js/chunk.tooltips.29144c1c.js') }}" />
-<link rel="prefetch" href="{{ asset('themes/frontend/assets/js/chunk.vendors-popups.947eca5c.js') }}" />
-<link rel="prefetch" href="{{ asset('themes/frontend/assets/js/chunk.vendors-slider.c7f2bd49.js') }}" />
+<link rel="prefetch" href="<?php echo e(asset('themes/frontend/assets/js/chunk.countup.fe2c1016.js')); ?>" />
+<link rel="prefetch" href="<?php echo e(asset('themes/frontend/assets/js/chunk.sticky-sidebar.a58a6557.js')); ?>" />
+<link rel="prefetch" href="<?php echo e(asset('themes/frontend/assets/js/chunk.tooltips.29144c1c.js')); ?>" />
+<link rel="prefetch" href="<?php echo e(asset('themes/frontend/assets/js/chunk.vendors-popups.947eca5c.js')); ?>" />
+<link rel="prefetch" href="<?php echo e(asset('themes/frontend/assets/js/chunk.vendors-slider.c7f2bd49.js')); ?>" />
 <script type="text/javascript">
     window._wpemojiSettings = {
         "baseUrl": "https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/72x72\/",
@@ -13,7 +13,7 @@
         "svgUrl": "https:\/\/s.w.org\/images\/core\/emoji\/14.0.0\/svg\/",
         "svgExt": ".svg",
         "source": {
-            "concatemoji": "{{ asset('themes/frontend/assets/js/wp-emoji-release.min.js') }}"
+            "concatemoji": "<?php echo e(asset('themes/frontend/assets/js/wp-emoji-release.min.js')); ?>"
         }
     };
     /*! This file is auto-generated */
@@ -66,7 +66,7 @@
         padding: 0 !important;
     }
 </style>
-<link rel='stylesheet' id='formidable-css' href='{{ asset('themes/frontend/assets/css/formidableforms.css ') }}' type='text/css' media='all' />
+<link rel='stylesheet' id='formidable-css' href='<?php echo e(asset('themes/frontend/assets/css/formidableforms.css ')); ?>' type='text/css' media='all' />
 <style id='wp-block-library-inline-css' type='text/css'>
      :root {
         --wp-admin-theme-color: #007cba;
@@ -277,34 +277,34 @@
         --wp-admin--admin-bar--position-offset: var(--wp-admin--admin-bar--height, 0px)
     }
     
-    @media screen and (max-width:600px) {
+    @media  screen and (max-width:600px) {
         html :where(.is-position-sticky) {
             --wp-admin--admin-bar--position-offset: 0px
         }
     }
 </style>
-<link rel='stylesheet' id='classic-theme-styles-css' href='{{ asset('themes/frontend/assets/css/classic-themes.min.css ') }}' type='text/css' media='all' />
-<link rel='stylesheet' id='wpcf7-redirect-script-frontend-css' href='{{ asset('themes/frontend/assets/css/wpcf7-redirect-frontend.min.css ') }}' type='text/css' media='all' />
+<link rel='stylesheet' id='classic-theme-styles-css' href='<?php echo e(asset('themes/frontend/assets/css/classic-themes.min.css ')); ?>' type='text/css' media='all' />
+<link rel='stylesheet' id='wpcf7-redirect-script-frontend-css' href='<?php echo e(asset('themes/frontend/assets/css/wpcf7-redirect-frontend.min.css ')); ?>' type='text/css' media='all' />
 
-<link rel='stylesheet' id='contact-form-7-css' href='{{ asset('themes/frontend/assets/css/styles.css ') }}' type='text/css' media='all' />
-<link rel="stylesheet" id="bfa-font-awesome-css" href="{{ asset('themes/frontend/assets/css/all.css ') }}" type="text/css" media="all">
+<link rel='stylesheet' id='contact-form-7-css' href='<?php echo e(asset('themes/frontend/assets/css/styles.css ')); ?>' type='text/css' media='all' />
+<link rel="stylesheet" id="bfa-font-awesome-css" href="<?php echo e(asset('themes/frontend/assets/css/all.css ')); ?>" type="text/css" media="all">
 <!--
 <link rel="stylesheet" id="bfa-font-awesome-css" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" type="text/css" media="all">-->
-<link rel='stylesheet' id='flatsome-main-css' href='{{ asset('themes/frontend/assets/css/flatsome.css ') }}' type='text/css' media='all' />
+<link rel='stylesheet' id='flatsome-main-css' href='<?php echo e(asset('themes/frontend/assets/css/flatsome.css ')); ?>' type='text/css' media='all' />
 <style id='flatsome-main-inline-css' type='text/css'>
     @font-face {
         font-family: "fl-icons";
         font-display: block;
         src: url(/icons/fl-icons.eot);
-        src: url({{ asset('themes/frontend/assets/css/icons/fl-icons.eot#iefix') }}) format("embedded-opentype"), url({{ asset('themes/frontend/assets/css/icons/fl-icons.woff2?v=3.15.7') }}) format("woff2"), url({{ asset('themes/frontend/assets/css/icons/fl-icons.ttf?v=3.15.7') }}) format("truetype"), url({{ asset('themes/frontend/assets/css/icons/fl-icons.woff?v=3.15.7') }}) format("woff"), url({{ asset('themes/frontend/assets/css/icons/fl-icons.svg?v=3.15.7#fl-icons') }}) format("svg");
+        src: url(<?php echo e(asset('themes/frontend/assets/css/icons/fl-icons.eot#iefix')); ?>) format("embedded-opentype"), url(<?php echo e(asset('themes/frontend/assets/css/icons/fl-icons.woff2?v=3.15.7')); ?>) format("woff2"), url(<?php echo e(asset('themes/frontend/assets/css/icons/fl-icons.ttf?v=3.15.7')); ?>) format("truetype"), url(<?php echo e(asset('themes/frontend/assets/css/icons/fl-icons.woff?v=3.15.7')); ?>) format("woff"), url(<?php echo e(asset('themes/frontend/assets/css/icons/fl-icons.svg?v=3.15.7#fl-icons')); ?>) format("svg");
     }
 </style>
 
-<script type='text/javascript' src='{{ asset('themes/frontend/assets/js/jquery.min.js ') }}' id='jquery-core-js'></script>
-<script type='text/javascript' src='{{ asset('themes/frontend/assets/js/jquery-migrate.min.js ') }}' id='jquery-migrate-js'></script>
-<script type='text/javascript' src='{{ asset('themes/frontend/assets/js/cf7-styles-public.js ') }}' id='cf7-styles-js'></script>
+<script type='text/javascript' src='<?php echo e(asset('themes/frontend/assets/js/jquery.min.js ')); ?>' id='jquery-core-js'></script>
+<script type='text/javascript' src='<?php echo e(asset('themes/frontend/assets/js/jquery-migrate.min.js ')); ?>' id='jquery-migrate-js'></script>
+<script type='text/javascript' src='<?php echo e(asset('themes/frontend/assets/js/cf7-styles-public.js ')); ?>' id='cf7-styles-js'></script>
 
-<link rel='shortlink' href='{{ Request::fullUrl() }}' />
+<link rel='shortlink' href='<?php echo e(Request::fullUrl()); ?>' />
 <style>
     .bg {
         opacity: 0;
@@ -740,7 +740,7 @@
         flex-wrap: nowrap;
     }
     
-    @media only screen and (min-width: 550px) {
+    @media  only screen and (min-width: 550px) {
         .baotons .baoton .col.small-12.large-12 {
             width: 90%!important;
             max-width: 90%!important;
@@ -790,4 +790,4 @@
     .slider-style-focus .flickity-slider>*:not(.is-selected) {
         opacity: 1;
     }
-</style>
+</style><?php /**PATH E:\xampp74\htdocs\dulich\resources\views/frontend/panels/styles.blade.php ENDPATH**/ ?>

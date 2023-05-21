@@ -27,6 +27,7 @@
   @include('frontend.panels.styles')
   {{-- Styles custom each page --}}
   @stack('style')
+  
 </head>
 
 <body class="page header-fixed no-sidebar site-layout-full-width header-style-4">
