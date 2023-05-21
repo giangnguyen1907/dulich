@@ -107,7 +107,7 @@ $seo_image = $image ?? ($image_thumb ?? null);
 
 
 
-      <div id="respond" class="comment-respond">
+      <!-- <div id="respond" class="comment-respond">
         <h3 id="reply-title" class="comment-reply-title">Trả lời <small><a rel="nofollow" id="cancel-comment-reply-link" href="/luu-tru/1662#respond" style="display:none;">Hủy</a></small></h3>
         <form action="https://hoanglienpark.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
           <p class="comment-notes"><span id="email-notes">Email của bạn sẽ không được hiển thị công khai.</span> <span class="required-field-message">Các trường bắt buộc được đánh dấu <span class="required">*</span></span></p>
@@ -120,7 +120,7 @@ $seo_image = $image ?? ($image_thumb ?? null);
             <input type='hidden' name='comment_parent' id='comment_parent' value='0' />
           </p>
         </form>
-      </div><!-- #respond -->
+      </div> -->
 
     </div>
   </div>
@@ -130,11 +130,11 @@ $seo_image = $image ?? ($image_thumb ?? null);
         <div class="is-divider small"></div>
         <div class="textwidget">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</div>
       </aside> -->
-      <?php if(isset($relatedPosts) && count($relatedPosts) > 0): ?>
+      <?php if(isset($latestPosts) && count($latestPosts) > 0): ?>
       <aside id="flatsome_recent_posts-17" class="widget flatsome_recent_posts"> <span class="widget-title "><span>Latest Posts</span></span>
         <div class="is-divider small"></div>
         <ul>
-          <?php $__currentLoopData = $relatedPosts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <?php $__currentLoopData = $latestPosts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
           <?php
           $title = $item->json_params->title->{$locale} ?? $item->title;
           $brief = $item->json_params->brief->{$locale} ?? $item->brief;

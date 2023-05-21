@@ -93,7 +93,7 @@ class CmsController extends Controller
                 $params['id'] = null;
                 $params['different_id'] = $detail->id;
                 $params['order_by'] = 'id';
-                // $this->responseData['latestPosts'] = ContentService::getCmsPost($params)->limit(Consts::DEFAULT_SIDEBAR_LIMIT)->get();
+                $this->responseData['latestPosts'] = ContentService::getCmsPost($params)->limit(Consts::DEFAULT_SIDEBAR_LIMIT)->get();
                 // Tags of this post
                 // if (isset($detail->json_params->tags)) {
                 //     $this->responseData['tags'] = CmsTaxonomy::where('status', Consts::TAXONOMY_STATUS['active'])
