@@ -241,6 +241,8 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 											<div class="is-divider divider clearfix" style="margin-top:0.3em;margin-bottom:0.3em;max-width:100%;background-color:rgb(160, 201, 229);"></div>
 
 											<p>Thông tin tour :</p>
+											<p><strong><?php echo e(number_format($item->gia_ve, 0, ',', '.')); ?> VNĐ/người lớn</strong></p>
+											<p><strong><?php echo e(number_format($item->gia_tre_em, 0, ',', '.')); ?> VNĐ/trẻ em</strong></p>
 											<ul>
 												<li><span style="color: #ec3237;">Lịch trình:</span> <?php echo e($item->lich_trinh); ?> Ngày</li>
 											</ul>

@@ -138,7 +138,8 @@ $k=0;
                 </style>
               </div>
 
-              <p><strong><?php echo e(number_format($item->gia_ve, 0, ',', '.')); ?> VNĐ/người</strong></p>
+              <p><strong><?php echo e(number_format($item->gia_ve, 0, ',', '.')); ?> VNĐ/người lớn</strong></p>
+              <p><strong><?php echo e(number_format($item->gia_tre_em, 0, ',', '.')); ?> VNĐ/trẻ em</strong></p>
               <p><?php echo e($brief); ?></p>
               </p>
 
@@ -181,7 +182,8 @@ $k=0;
                           </label>
 
 
-                          <input type="text" id="field_29yf4d" name="tour_id" value="<?php echo e($title); ?>" disabled />
+                          <input type="text" id="field_29yf4d" name="tour" value="<?php echo e($title); ?>" disabled />
+                          <input type="hidden" id="field_29yf4d" name="tour_id" value="<?php echo e($item->id); ?>" />
 
                           </select>
 
@@ -207,10 +209,18 @@ $k=0;
 
                         </div>
                         <div id="frm_field_17_container" class="frm_form_field form-field  frm_top_container frm6 frm_first">
-                          <label for="field_1pbe7" id="field_1pbe7_label" class="frm_primary_label">Số lượng
+                          <label for="field_1pbe7" id="field_1pbe7_label" class="frm_primary_label">Người lớn
                             <span class="frm_required" aria-hidden="true"></span>
                           </label>
                           <input type="number" id="field_1pbe7" name="soluong" value="" placeholder="số vé" min="0" max="9999999" step="any" />
+                        </div>
+                        <div id="frm_field_18_container" class="frm_form_field form-field  frm_top_container frm6">
+                          <label for="field_escis" id="field_escis_label" class="frm_primary_label">Trẻ em
+                            <span class="frm_required" aria-hidden="true"></span>
+                          </label>
+                          <input type="number" id="field_escis" name="soluong_tre" value="" placeholder="số vé" data-invmsg="Number is invalid" aria-invalid="false" min="0" max="9999999" step="any" />
+
+
                         </div>
                         <!-- <div id="frm_field_18_container" class="frm_form_field form-field  frm_top_container frm6">
                           <label for="field_escis" id="field_escis_label" class="frm_primary_label">Trẻ em
