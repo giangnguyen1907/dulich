@@ -19,37 +19,37 @@
 
             <!-- Left Elements -->
             <div class="flex-col hide-for-medium flex-left flex-grow">
-              
-                @isset($menu)
-                @php
-                $footer_menu = $menu->filter(function ($item, $key) {
-                return $item->menu_type == 'header' && ($item->parent_id == null || $item->parent_id == 0);
-                });
 
-                $content = '';
-                foreach ($footer_menu as $main_menu) {
-                $url = $title = '';
-                $title = isset($main_menu->json_params->title->{$locale}) && $main_menu->json_params->title->{$locale} != '' ? $main_menu->json_params->title->{$locale} : $main_menu->name;
-                $content .= '';
-                $content .= '<ul class="header-nav header-nav-main nav nav-left  nav-size-large nav-spacing-large">';
-                  foreach ($menu as $item) {
-                  if ($item->parent_id == $main_menu->id) {
-                  $title = isset($item->json_params->title->{$locale}) && $item->json_params->title->{$locale} != '' ? $item->json_params->title->{$locale} : $item->name;
-                  $url = $item->url_link;
+              @isset($menu)
+              @php
+              $footer_menu = $menu->filter(function ($item, $key) {
+              return $item->menu_type == 'header' && ($item->parent_id == null || $item->parent_id == 0);
+              });
 
-                  $active = $url == url()->current() ? 'active' : '';
+              $content = '';
+              foreach ($footer_menu as $main_menu) {
+              $url = $title = '';
+              $title = isset($main_menu->json_params->title->{$locale}) && $main_menu->json_params->title->{$locale} != '' ? $main_menu->json_params->title->{$locale} : $main_menu->name;
+              $content .= '';
+              $content .= '<ul class="header-nav header-nav-main nav nav-left  nav-size-large nav-spacing-large">';
+                foreach ($menu as $item) {
+                if ($item->parent_id == $main_menu->id) {
+                $title = isset($item->json_params->title->{$locale}) && $item->json_params->title->{$locale} != '' ? $item->json_params->title->{$locale} : $item->name;
+                $url = $item->url_link;
 
-                  $content .= '<li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110 menu-item-design-default"><a href="' . $url . '" class="nav-top-link">' . $title . '</a>';
-                    $content .= '</li>';
-                  }
-                  }
-                  $content .= '</ul>';
-                $content .= '';
+                $active = $url == url()->current() ? 'active' : '';
+
+                $content .= '<li id="menu-item-110" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110 menu-item-design-default"><a href="' . $url . '" class="nav-top-link">' . $title . '</a>';
+                  $content .= '</li>';
                 }
-                echo $content;
-                @endphp
-                @endisset
-               
+                }
+                $content .= '</ul>';
+              $content .= '';
+              }
+              echo $content;
+              @endphp
+              @endisset
+
             </div>
 
             <!-- Right Elements -->
@@ -115,3 +115,43 @@
       </div>
     </header>
 
+
+    <div id="main-menu" class="mobile-sidebar no-scrollbar mfp-hide">
+
+
+      <div class="sidebar-menu no-scrollbar ">
+
+        @isset($menu)
+        @php
+        $footer_menu = $menu->filter(function ($item, $key) {
+        return $item->menu_type == 'header' && ($item->parent_id == null || $item->parent_id == 0);
+        });
+
+        $content = '';
+        foreach ($footer_menu as $main_menu) {
+        $url = $title = '';
+        $title = isset($main_menu->json_params->title->{$locale}) && $main_menu->json_params->title->{$locale} != '' ? $main_menu->json_params->title->{$locale} : $main_menu->name;
+        $content .= '';
+        $content .= '<ul class="nav nav-sidebar nav-vertical nav-uppercase">';
+          foreach ($menu as $item) {
+          if ($item->parent_id == $main_menu->id) {
+          $title = isset($item->json_params->title->{$locale}) && $item->json_params->title->{$locale} != '' ? $item->json_params->title->{$locale} : $item->name;
+          $url = $item->url_link;
+
+          $active = $url == url()->current() ? 'active' : '';
+
+          $content .= '<li  class="menu-item menu-item-type-post_type menu-item-object-page menu-item-110"><a href="' . $url . '" class="nav-top-link">' . $title . '</a>';
+            $content .= '</li>';
+          }
+          }
+          $content .= '</ul>';
+        $content .= '';
+        }
+        echo $content;
+        @endphp
+        @endisset
+
+      </div>
+
+
+    </div>

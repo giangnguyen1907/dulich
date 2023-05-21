@@ -12,6 +12,12 @@ $params['status'] = App\Consts::POST_STATUS['active'];
 $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 
 @endphp
+@if (session('successMessage'))
+
+<script>
+  alert(" {{ session('successMessage') }}");
+</script>
+@endif
 <section class="section" id="section_1672644687">
   <div class="bg section-bg fill bg-fill  bg-loaded">
 
@@ -43,7 +49,7 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 "parallax" : 0,
 "friction": 0.6        }'>
 
-
+  
         @if ($rows)
         @foreach ($rows as $item)
         @php
@@ -107,8 +113,10 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
               <p><strong>{{ number_format($item->gia_ve, 0, ',', '.') }} VNĐ/người</strong></p>
               <p>{{ $brief }}</p>
               </p>
+             
               <div class="frm_forms  with_frm_style frm_style_formidable-style" id="frm_form_1_container">
                 <form enctype="multipart/form-data" action="{{ route('frontend.booking.store') }}" method="post" class="frm-show-form " id="form_contact-form">
+                  @csrf
                   <div class="frm_form_fields ">
                     <fieldset>
                       <legend class="frm_screen_reader">Contact Us</legend>
@@ -143,17 +151,17 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
                           <label for="field_zk44t" id="field_zk44t_label" class="frm_primary_label">Địa điểm
                             <span class="frm_required" aria-hidden="true"></span>
                           </label>
-                         
-                  
-                          <input type="text" id="field_29yf4d" name="tour_id" value="{{ $title }}"  disabled />
-                           
+
+
+                          <input type="text" id="field_29yf4d" name="tour_id" value="{{ $title }}" disabled />
+
                           </select>
 
 
 
                         </div>
-                     
-                    
+
+
                         <div id="frm_field_14_container" class="frm_form_field form-field  frm_top_container frm3">
                           <label for="field_8ho5o" id="field_8ho5o_label" class="frm_primary_label">Date
                             <span class="frm_required" aria-hidden="true"></span>
@@ -188,15 +196,15 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
                           <label for="field_bg3xc" id="field_bg3xc_label" class="frm_primary_label">Ghi chú
                             <span class="frm_required" aria-hidden="true"></span>
                           </label>
-                          <textarea name="content" rows="6" cols="30" ></textarea>
+                          <textarea name="customer_note" rows="6" cols="30"></textarea>
 
 
                         </div>
-                    
-                        
+
+
                         <div class="frm_submit">
 
-                          <button class="frm_button_submit" type="submit" >Đặt vé</button>
+                          <button class="frm_button_submit" type="submit">Đặt vé</button>
 
 
                         </div>

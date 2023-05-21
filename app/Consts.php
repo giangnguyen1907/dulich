@@ -200,16 +200,16 @@ class Consts
             ],
             "show_route" => true
         ],
-        // [
-        //     "title" => "Tags Page",
-        //     "name" => "frontend.cms.tags",
-        //     "template" => [
-        //         [
-        //             "title" => "Default",
-        //             "name" => "tags.default"
-        //         ]
-        //     ]
-        // ],
+        [
+            "title" => "Tour du lịch",
+            "name" => "frontend.tour",
+            "template" => [
+                [
+                    "title" => "Default",
+                    "name" => "tour.default"
+                ]
+            ]
+        ],
         [
             "title" => "Tìm kiếm",
             "name" => "frontend.search",

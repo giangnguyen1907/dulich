@@ -25,14 +25,15 @@ class BookingController extends Controller
     
     public function store(Request $request)
     {   
-        echo "AAAAAAAAAAAA";die;
+        
         
         try {
             $request->validate([
                 'name' => 'required',
                 'phone' => 'required',
-              
-                'booking_date' => 'required'
+                // 'department_id' => 'required',
+                // 'doctor_id' => 'required',
+                // 'booking_date' => 'required'
             ]);
             
             $params = $request->all();
@@ -56,11 +57,11 @@ class BookingController extends Controller
             $messageResult = '';
             $messageResult = $this->web_information->information->notice_advise ?? __('Booking successfull!');
 
-            return $this->sendResponse($booking, $messageResult);
+            return redirect()->back()->with('successMessage', __('Đặt vé thành công'));
         } catch (Exception $ex) {
-          
-            throw $ex;
+            // throw $ex;
+            abort(422, __($ex->getMessage()));
         }
-        return redirect()->back()->with('successMessage', __('Gửi liên hệ thành công'));
+        //return redirect()->back()->with('successMessage', __('Gửi liên hệ thành công'));
     }
 }
