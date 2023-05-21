@@ -15,9 +15,7 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
   alert(" <?php echo e(session('successMessage')); ?>");
 </script>
 <?php endif; ?>
-<div class="row row-main">
-  <div class="large-12 col">
-    <div class="col-inner">
+
 
 
 
@@ -174,8 +172,6 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
 
 
 
-    </div>
-  </div>
-</div>
+ 
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('frontend.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\dulich\resources\views/frontend/pages/contact/index.blade.php ENDPATH**/ ?>

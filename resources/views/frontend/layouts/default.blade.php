@@ -5,7 +5,7 @@
 
   <meta charset="UTF-8" />
   <link rel="profile" href="https://gmpg.org/xfn/11" />
-  
+
   <script>
     (function(html) {
       html.className = html.className.replace(/\bno-js\b/, 'js')
@@ -37,7 +37,7 @@
   {{-- Styles custom each page --}}
   @stack('style')
 </head>
-{{-- bcrypt(123456) --}}
+
 <body class="home page-template page-template-page-transparent-header-light page-template-page-transparent-header-light-php page page-id-35 lightbox nav-dropdown-has-arrow nav-dropdown-has-shadow nav-dropdown-has-border">
 
   {{-- Include svg for app --}}
@@ -52,26 +52,28 @@
 
 
       <div id="content" role="main">
+        <div class="row row-main">
+          <div class="large-12 col">
+            <div class="col-inner">
 
-        
-        {{-- Foreach and print block content by current page --}}
-        @if (isset($blocks_selected))
-        @foreach ($blocks_selected as $block)
-        @if (\View::exists('frontend.blocks.' . $block->block_code . '.index'))
-        @include('frontend.blocks.' . $block->block_code . '.index')
-        @else
-        {{ 'View: frontend.blocks.' . $block->block_code . '.index do not exists!' }}
-        @endif
-        @endforeach
-        @endif
+              {{-- Foreach and print block content by current page --}}
+              @if (isset($blocks_selected))
+              @foreach ($blocks_selected as $block)
+              @if (\View::exists('frontend.blocks.' . $block->block_code . '.index'))
+              @include('frontend.blocks.' . $block->block_code . '.index')
+              @else
+              {{ 'View: frontend.blocks.' . $block->block_code . '.index do not exists!' }}
+              @endif
+              @endforeach
+              @endif
 
 
-      
 
 
-       
 
-        <!-- <section class="section" id="section_1173408859">
+
+
+              <!-- <section class="section" id="section_1173408859">
           <div class="bg section-bg fill bg-fill  bg-loaded">
 
 
@@ -564,11 +566,15 @@
           </style>
         </section> -->
 
- 
+
+           
+            </div>
+            </div>
+
+            </div>
 
 
-
-      </div>
+            </div>
 
 
 

@@ -15,9 +15,7 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
   alert(" {{ session('successMessage') }}");
 </script>
 @endif
-<div class="row row-main">
-  <div class="large-12 col">
-    <div class="col-inner">
+
 
 
 
@@ -174,7 +172,5 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
 
 
 
-    </div>
-  </div>
-</div>
+ 
 @endsection

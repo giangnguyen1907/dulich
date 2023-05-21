@@ -53,9 +53,9 @@
 
 
       <div id="content" role="main">
-        <div class="row row-main">
+        <!-- <div class="row row-main">
           <div class="large-12 col">
-            <div class="col-inner">
+            <div class="col-inner"> -->
 
               
               <?php if(isset($blocks_selected)): ?>
@@ -570,10 +570,6 @@
 
 
            
-            </div>
-            </div>
-
-            </div>
 
 
             </div>
@@ -592,4 +588,4 @@
 
 </body>
 
-</html><?php /**PATH D:\xampp\htdocs\dulich\resources\views/frontend/layouts/default.blade.php ENDPATH**/ ?>
+</html><?php /**PATH D:\xampp\htdocs\dulich\resources\views/frontend/layouts/home.blade.php ENDPATH**/ ?>

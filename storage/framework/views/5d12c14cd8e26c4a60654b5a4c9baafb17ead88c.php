@@ -1,12 +1,12 @@
-@extends('frontend.layouts.default')
-@php
+
+<?php
 $page_title = $taxonomy->title ?? ($page->title ?? ($page->name ?? ''));
 $page_brief = $taxonomy->description ?? ($page->description);
 $image_background = $taxonomy->json_params->image_background ?? ($web_information->image->background_breadcrumbs ?? '');
 
 
-@endphp
-@section('content')
+?>
+<?php $__env->startSection('content'); ?>
 <section class="section" id="section_1400165350">
     <div class="bg section-bg fill bg-fill  bg-loaded">
 
@@ -32,8 +32,8 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
                     <div id="text-3114378784" class="text">
 
 
-                        <h1 class="uppercase" style="text-align: center;"><span style="color: #02913f;">{{ $page_title }}</span></h1>
-                        <p>{{ $page_brief }}</p>
+                        <h1 class="uppercase" style="text-align: center;"><span style="color: #02913f;"><?php echo e($page_title); ?></span></h1>
+                        <p><?php echo e($page_brief); ?></p>
 
                         <style>
                             #text-3114378784 {
@@ -53,19 +53,19 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
 
         <div class="row row-full-width align-center" id="row-1163051556">
 
-            @php
+            <?php
             $params['status'] = App\Consts::POST_STATUS['active'];
             $params['taxonomy_id'] = 32;
             $rows = App\Http\Services\ContentService::getCmsPost($params)->get();
-            @endphp
+            ?>
 
             <div id="col-926111171" class="col medium-6 small-12 large-6">
                 <div class="col-inner">
 
 
-                    @if ($rows)
-                    @foreach ($rows as $item)
-                    @php
+                    <?php if($rows): ?>
+                    <?php $__currentLoopData = $rows; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php
                     $title = $item->json_params->title->{$locale} ?? $item->title;
                     $brief = $item->json_params->content->{$locale} ?? $item->content;
                     $image = $item->image_thumb != '' ? $item->image_thumb : ($item->image != '' ? $item->image : null);
@@ -73,14 +73,14 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
                     $date = date('d/m/Y', strtotime($item->created_at));
                     // Viet ham xu ly lay slug
                     $alias = 'tour/'.$title ;
-                    @endphp
-                    @if($d%2 == 0)
-                    <h1 style="text-align: right;"><span style="color: #ed1c24;">{{ $title }} </span></h1>
-                    <p style="text-align: right;">{{ $brief }} </p>
-                    @if($image!='')
+                    ?>
+                    <?php if($d%2 == 0): ?>
+                    <h1 style="text-align: right;"><span style="color: #ed1c24;"><?php echo e($title); ?> </span></h1>
+                    <p style="text-align: right;"><?php echo e($brief); ?> </p>
+                    <?php if($image!=''): ?>
                     <div class="img has-hover x md-x lg-x y md-y lg-y" id="image_1246657921">
                         <div class="img-inner dark">
-                            <img width="648" height="200" src="{{ $image }}" class="attachment-large size-large" alt="" decoding="async" loading="lazy" />
+                            <img width="648" height="200" src="<?php echo e($image); ?>" class="attachment-large size-large" alt="" decoding="async" loading="lazy" />
                         </div>
 
                         <style>
@@ -89,10 +89,10 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
                             }
                         </style>
                     </div>
-                    @endif
-                    @endif
-                    @endforeach
-                    @endif
+                    <?php endif; ?>
+                    <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
 
 
 
@@ -107,9 +107,9 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
             <div id="col-61095835" class="col medium-6 small-12 large-6">
                 <div class="col-inner">
 
-                    @if ($rows)
-                    @foreach ($rows as $item)
-                    @php
+                    <?php if($rows): ?>
+                    <?php $__currentLoopData = $rows; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php
                     $title = $item->json_params->title->{$locale} ?? $item->title;
                     $brief = $item->json_params->content->{$locale} ?? $item->content;
                     $image = $item->image_thumb != '' ? $item->image_thumb : ($item->image != '' ? $item->image : null);
@@ -117,12 +117,12 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
                     $date = date('d/m/Y', strtotime($item->created_at));
                     // Viet ham xu ly lay slug
                     $alias = 'tour/'.$title ;
-                    @endphp
-                    @if($d%2 != 0)
-                    @if($image!='')
+                    ?>
+                    <?php if($d%2 != 0): ?>
+                    <?php if($image!=''): ?>
                     <div class="img has-hover x md-x lg-x y md-y lg-y" id="image_1246657921">
                         <div class="img-inner dark">
-                            <img width="648" height="200" src="{{ $image }}" class="attachment-large size-large" alt="" decoding="async" loading="lazy" />
+                            <img width="648" height="200" src="<?php echo e($image); ?>" class="attachment-large size-large" alt="" decoding="async" loading="lazy" />
                         </div>
 
                         <style>
@@ -131,12 +131,12 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
                             }
                         </style>
                     </div>
-                    @endif
-                    <h1 style="text-align: left;"><span style="color: #ed1c24;">{{ $title }}</span></h1>
-                    <p style="text-align: left;">{{ $brief }}</p>
-                    @endif
-                    @endforeach
-                    @endif
+                    <?php endif; ?>
+                    <h1 style="text-align: left;"><span style="color: #ed1c24;"><?php echo e($title); ?></span></h1>
+                    <p style="text-align: left;"><?php echo e($brief); ?></p>
+                    <?php endif; ?>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                    <?php endif; ?>
 
 
 
@@ -322,19 +322,19 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
         </div>
 
         <div class="row" id="row-179170632">
-            @php
+            <?php
             $params1['status'] = App\Consts::POST_STATUS['active'];
             $params1['is_type'] = 'service';
             $rows1 = App\Http\Services\ContentService::getCmsPost($params1)->limit(6)->get();
-            @endphp
-            @if ($rows1)
-            @foreach ($rows1 as $item1)
-            @php
+            ?>
+            <?php if($rows1): ?>
+            <?php $__currentLoopData = $rows1; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item1): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+            <?php
             $title = $item1->json_params->title->{$locale} ?? $item1->title;
             $image = $item1->image_thumb != '' ? $item1->image_thumb : ($item1->image != '' ? $item1->image : null);
             $date = date('d/m/Y', strtotime($item1->created_at));
             
-            @endphp
+            ?>
             <div id="col-2022991642" class="col medium-4 small-12 large-4">
                 <div class="col-inner">
 
@@ -344,7 +344,7 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
 
                         <div class="box-image">
                             <div class="">
-                                <img width="448" height="252" src="{{ $image }}" class="attachment- size-" alt="" decoding="async" loading="lazy" />
+                                <img width="448" height="252" src="<?php echo e($image); ?>" class="attachment- size-" alt="" decoding="async" loading="lazy" />
                                 <div class="overlay" style="background-color:1"></div>
                             </div>
                         </div>
@@ -353,7 +353,7 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
                             <div class="box-text-inner">
 
 
-                                <p>{{ $title }}</p>
+                                <p><?php echo e($title); ?></p>
 
 
                             </div>
@@ -364,8 +364,8 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
                 </div>
             </div>
 
-            @endforeach
-            @endif
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            <?php endif; ?>
 
 
 
@@ -393,4 +393,5 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
         }
     </style>
 </section>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\dulich\resources\views/frontend/pages/custom/index.blade.php ENDPATH**/ ?>

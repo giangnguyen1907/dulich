@@ -214,6 +214,16 @@ class Consts
             ]
         ],
         [
+            "title" => "Về chúng tôi",
+            "name" => "frontend.custom",
+            "template" => [
+                [
+                    "title" => "Default",
+                    "name" => "custom.default"
+                ]
+            ]
+        ],
+        [
             "title" => "Tìm kiếm",
             "name" => "frontend.search",
             "template" => [

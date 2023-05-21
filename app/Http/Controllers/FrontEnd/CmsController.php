@@ -12,6 +12,12 @@ use Illuminate\Support\Facades\View;
 
 class CmsController extends Controller
 {
+    
+    public function about()
+    {
+        $params['status'] = 'active';
+        return $this->responseView('frontend.pages.custom.index');
+    }
 
     public function postCategory($alias = null, Request $request)
     {
