@@ -9,6 +9,7 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 @endphp
 
 @section('content')
+
 <div class="slider-wrapper relative" id="slider-1114344935">
 	<div class="slider slider-nav-circle slider-nav-large slider-nav-light slider-style-normal" data-flickity-options='{
             "cellAlign": "center",

@@ -8,9 +8,7 @@ $url_link_title = $block->json_params->url_link_title->{$locale} ?? $block->url_
 
 $params['status'] = App\Consts::POST_STATUS['active'];
 $params['is_featured'] = true;
-$params['is_type'] = App\Consts::POST_TYPE['post'];
-$params['taxonomy_id'] = 37;
-
+$params['is_type'] = App\Consts::POST_TYPE['disan'];
 $rows = App\Http\Services\ContentService::getCmsPost($params)->get();
 @endphp
 
@@ -130,7 +128,7 @@ $rows = App\Http\Services\ContentService::getCmsPost($params)->get();
                   <div class="box-text-inner">
 
 
-                    <p><strong><?php echo $brief; ?></strong></p>
+                    <p><strong>{{ $title }}</strong></p>
 
                   </div>
                 </div>
@@ -147,7 +145,7 @@ $rows = App\Http\Services\ContentService::getCmsPost($params)->get();
                     <div id="text-1489665022" class="text">
 
 
-                      <p>{{ $brief }}</p>
+                      <p><?php echo $brief; ?></p>
 
                       <style>
                         #text-1489665022 {

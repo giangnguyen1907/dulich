@@ -14,7 +14,7 @@ class CmsResourceController extends Controller
     {
         $this->routeDefault  = 'cms_resources';
         $this->viewPart = 'admin.pages.cms_resources';
-        $this->responseData['module_name'] = __('Resources Management');
+        $this->responseData['module_name'] = __('Quản lý tài nguyên - di sản văn hóa');
     }
 
     /**
@@ -25,11 +25,11 @@ class CmsResourceController extends Controller
     public function index(Request $request)
     {
         $params = $request->all();
-        $params['is_type'] = Consts::POST_TYPE['resource'];
+        $params['is_type'] = 'disan';
         // Get list post with filter params
         $rows = ContentService::getCmsPost($params)->paginate(Consts::DEFAULT_PAGINATE_LIMIT);
         $paramTaxonomys['status'] = Consts::TAXONOMY_STATUS['active'];
-        $paramTaxonomys['taxonomy'] = Consts::TAXONOMY['resource'];
+        $paramTaxonomys['taxonomy'] = 'disan';
         $this->responseData['parents'] = ContentService::getCmsTaxonomy($paramTaxonomys)->get();
 
         $this->responseData['rows'] =  $rows;
@@ -46,10 +46,12 @@ class CmsResourceController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
+    {   
+    
         $paramTaxonomys['status'] = Consts::TAXONOMY_STATUS['active'];
-        $paramTaxonomys['taxonomy'] = Consts::TAXONOMY['resource'];
+        $paramTaxonomys['taxonomy'] = 'disan';
         $this->responseData['parents'] = ContentService::getCmsTaxonomy($paramTaxonomys)->get();
+       // dd(ContentService::getCmsTaxonomy($paramTaxonomys)->get());
 
         return $this->responseView($this->viewPart . '.create');
     }
@@ -68,7 +70,7 @@ class CmsResourceController extends Controller
         ]);
 
         $params = $request->all();
-        $params['is_type'] = Consts::POST_TYPE['resource'];
+        $params['is_type'] = 'disan';
         $params['admin_created_id'] = Auth::guard('admin')->user()->id;
         $params['admin_updated_id'] = Auth::guard('admin')->user()->id;
 
@@ -98,7 +100,7 @@ class CmsResourceController extends Controller
     public function edit(CmsResource $cmsResource)
     {
         $paramTaxonomys['status'] = Consts::TAXONOMY_STATUS['active'];
-        $paramTaxonomys['taxonomy'] = Consts::TAXONOMY['resource'];
+        $paramTaxonomys['taxonomy'] = 'disan';
         $this->responseData['parents'] = ContentService::getCmsTaxonomy($paramTaxonomys)->get();
         $this->responseData['detail'] = $cmsResource;
 
@@ -143,7 +145,7 @@ class CmsResourceController extends Controller
     public function destroy(CmsResource $cmsResource)
     {
         // check is type post
-        if ($cmsResource->is_type != Consts::POST_TYPE['resource']) {
+        if ($cmsResource->is_type != 'disan') {
             return redirect()->back()->with('errorMessage', __('Permission denied!'));
         }
 

@@ -1,20 +1,20 @@
 
-@extends('frontend.layouts.default')
 
-@php
+
+<?php
 $page_title = $taxonomy->title ?? ($page->title ?? ($page->name ?? ''));
 $image_background = $taxonomy->json_params->image_background ?? ($web_information->image->background_breadcrumbs ?? '');
-@endphp
+?>
 
-@section('content')
-{{-- Print all content by [module - route - page] without blocks content at here --}}
+<?php $__env->startSection('content'); ?>
 
-@if (session('successMessage'))
+
+<?php if(session('successMessage')): ?>
 
 <script>
-  alert(" {{ session('successMessage') }}");
+  alert(" <?php echo e(session('successMessage')); ?>");
 </script>
-@endif
+<?php endif; ?>
 <div class="row row-main">
   <div class="large-12 col">
     <div class="col-inner">
@@ -105,9 +105,9 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
                 <p role="status" aria-live="polite" aria-atomic="true"></p>
                 <ul></ul>
               </div>
-              <form action="{{ route('frontend.contact.store') }}" method="post" class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
+              <form action="<?php echo e(route('frontend.contact.store')); ?>" method="post" class="wpcf7-form init" aria-label="Contact form" novalidate="novalidate" data-status="init">
                 
-                @csrf 
+                <?php echo csrf_field(); ?> 
                 <p><span class="wpcf7-form-control-wrap" data-name="Hvtn"><input size="40" class="wpcf7-form-control wpcf7-text wpcf7-validates-as-required hvt" aria-required="true" aria-invalid="false" placeholder="Họ và tên" value="" type="text" name="name" /></span>
                 </p>
                 <p><span class="wpcf7-form-control-wrap" data-name="tel-954"><input size="40" class="wpcf7-form-control wpcf7-text wpcf7-tel wpcf7-validates-as-required wpcf7-validates-as-tel std" aria-required="true" aria-invalid="false" placeholder="Số điện thoại" value="" type="tel" name="phone" /></span>
@@ -139,7 +139,7 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
             <div id="text-2359834341" class="text">
 
 
-              <h1>{!! $web_information->information->site_name ?? '' !!}</h1>
+              <h1><?php echo $web_information->information->site_name ?? ''; ?></h1>
 
               <style>
                 #text-2359834341 {
@@ -153,9 +153,9 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
             </div>
 
             <p>Được thành lập theo quyết định số 272/QĐ – UBND, trực thuộc Vườn Quốc gia Hoàng Liên, có chức năng tham mưu và thực hiện việc quản lý, tổ chức và phát triển các hoạt động du lịch sinh thái và giáo dục môi trường trong Vườn Quốc gia Hoàng Liên.</p>
-            <p>&nbsp;ĐỊA CHỈ: {!! $web_information->information->address ?? '' !!}.</p>
-            <p>&nbsp;SỐ ĐIỆN THOẠI: {!! $web_information->information->phone ?? '' !!}.</p>
-            <p>&nbsp;EMAIL: {!! $web_information->information->email ?? '' !!}.</p>
+            <p>&nbsp;ĐỊA CHỈ: <?php echo $web_information->information->address ?? ''; ?>.</p>
+            <p>&nbsp;SỐ ĐIỆN THOẠI: <?php echo $web_information->information->phone ?? ''; ?>.</p>
+            <p>&nbsp;EMAIL: <?php echo $web_information->information->email ?? ''; ?>.</p>
             
            
 
@@ -177,4 +177,5 @@ $image_background = $taxonomy->json_params->image_background ?? ($web_informatio
     </div>
   </div>
 </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\dulich\resources\views/frontend/pages/contact/index.blade.php ENDPATH**/ ?>

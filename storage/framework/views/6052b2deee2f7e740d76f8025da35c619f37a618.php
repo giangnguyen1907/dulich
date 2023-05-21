@@ -10,7 +10,7 @@ $url_link_title = $block->json_params->url_link_title->{$locale} ?? $block->url_
 
 $params['status'] = App\Consts::POST_STATUS['active'];
 $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
-
+$k=0;
 ?>
 <?php if(session('successMessage')): ?>
 
@@ -49,7 +49,7 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 "parallax" : 0,
 "friction": 0.6        }'>
 
-  
+
         <?php if($rows): ?>
         <?php $__currentLoopData = $rows; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
         <?php
@@ -57,16 +57,44 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
         $brief = $item->json_params->brief->{$locale} ?? $item->brief;
         $image = $item->image_thumb != '' ? $item->image_thumb : ($item->image != '' ? $item->image : null);
         $date = date('d/m/Y', strtotime($item->created_at));
+        $k++;
         // Viet ham xu ly lay slug
         ?>
 
         <div class="row row-full-width align-middle" id="row-1398400038">
 
 
+          <div id="col-1482593696" class="col medium-1 small-12 large-1">
+            <div class="col-inner">
 
+
+
+              <div id="text-1989939176" class="text">
+
+
+                <h1><?php echo e($k); ?></h1>
+
+                <style>
+                  #text-1989939176 {
+                    color: rgb(2, 145, 63);
+                  }
+
+                  #text-1989939176>* {
+                    color: rgb(2, 145, 63);
+                  }
+                </style>
+              </div>
+
+              <div class="is-divider divider clearfix" style="margin-top:0.3em;margin-bottom:0.3em;background-color:rgb(160, 201, 229);"></div>
+
+
+            </div>
+          </div>
 
           <div id="col-1972579741" class="col medium-5 small-12 large-5">
             <div class="col-inner">
+
+
 
 
 
@@ -113,7 +141,7 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
               <p><strong><?php echo e(number_format($item->gia_ve, 0, ',', '.')); ?> VNĐ/người</strong></p>
               <p><?php echo e($brief); ?></p>
               </p>
-             
+
               <div class="frm_forms  with_frm_style frm_style_formidable-style" id="frm_form_1_container">
                 <form enctype="multipart/form-data" action="<?php echo e(route('frontend.booking.store')); ?>" method="post" class="frm-show-form " id="form_contact-form">
                   <?php echo csrf_field(); ?>

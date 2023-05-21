@@ -9,6 +9,10 @@ $url_link_title = $block->json_params->url_link_title->{$locale} ?? $block->url_
 $params['status'] = App\Consts::POST_STATUS['active'];
 $rows = App\Http\Services\ContentService::getCmsTour($params)->limit(4)->get();
 ?>
+<div class="row row-main"> 
+    <div class="large-12 col">
+        <div class="col-inner"> 
+        
 <div class="row row-collapse row-full-width align-middle align-center" id="row-997777990">
 
 
@@ -125,5 +129,9 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->limit(4)->get();
             padding-top: 45px;
         }
     </style>
+</div>
+
+</div>
+</div>
 </div>
 <?php endif; ?><?php /**PATH D:\xampp\htdocs\dulich\resources\views/frontend/blocks/custom/styles/tour.blade.php ENDPATH**/ ?>

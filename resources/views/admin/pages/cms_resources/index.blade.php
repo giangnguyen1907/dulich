@@ -42,7 +42,7 @@
 
             <div class="col-md-3">
               <div class="form-group">
-                <label>@lang('Resource category')</label>
+                <label>@lang('Danh sách di sản')</label>
                 <select name="taxonomy_id" id="taxonomy_id" class="form-control select2" style="width: 100%;">
                   <option value="">@lang('Please select')</option>
                   @foreach ($parents as $item)
@@ -121,7 +121,7 @@
 
     <div class="box">
       <div class="box-header">
-        <h3 class="box-title">@lang('Resources list')</h3>
+        <h3 class="box-title">@lang('Danh sách di sản')</h3>
       </div>
       <div class="box-body table-responsive">
         @if (session('errorMessage'))
@@ -177,7 +177,7 @@
                         <strong style="font-size: 14px;">{{ $row->title }}</strong>
                       </td>
                       @php
-                        $url_mapping = App\Helpers::generateRoute(App\Consts::TAXONOMY['resource'], $row->title, $row->id, 'detail');
+                        $url_mapping = App\Helpers::generateRoute(App\Consts::TAXONOMY['disan'], $row->title, $row->id, 'detail');
                       @endphp
                       <td>
                         <a target="_new" href="{{ $url_mapping }}" data-toggle="tooltip" title="@lang('Link')"
