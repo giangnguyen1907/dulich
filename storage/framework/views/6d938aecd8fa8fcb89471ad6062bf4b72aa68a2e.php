@@ -125,7 +125,8 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 																	</label>
 
 
-																	<input type="text" id="field_29yf4d" name="tour_id" value="<?php echo e($title); ?>" disabled />
+																	<input type="text" id="field_29yf4d" name="tour" value="<?php echo e($title); ?>" disabled />
+																	<input type="hidden" id="field_29yf4d" name="tour_id" value="<?php echo e($item->id); ?>"/>
 
 																	</select>
 
@@ -151,19 +152,19 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 
 																</div>
 																<div id="frm_field_17_container" class="frm_form_field form-field  frm_top_container frm6 frm_first">
-																	<label for="field_1pbe7" id="field_1pbe7_label" class="frm_primary_label">Số lượng
+																	<label for="field_1pbe7" id="field_1pbe7_label" class="frm_primary_label">Người lớn
 																		<span class="frm_required" aria-hidden="true"></span>
 																	</label>
 																	<input type="number" id="field_1pbe7" name="soluong" value="" placeholder="số vé" min="0" max="9999999" step="any" />
 																</div>
-																<!-- <div id="frm_field_18_container" class="frm_form_field form-field  frm_top_container frm6">
-                          <label for="field_escis" id="field_escis_label" class="frm_primary_label">Trẻ em
-                            <span class="frm_required" aria-hidden="true"></span>
-                          </label>
-                          <input type="number" id="field_escis" name="item_meta[18]" value="" data-invmsg="Number is invalid" aria-invalid="false" min="0" max="9999999" step="any" />
+																<div id="frm_field_18_container" class="frm_form_field form-field  frm_top_container frm6">
+																	<label for="field_escis" id="field_escis_label" class="frm_primary_label">Trẻ em
+																		<span class="frm_required" aria-hidden="true"></span>
+																	</label>
+																	<input type="number" id="field_escis" name="soluong_tre" value="" placeholder="số vé" data-invmsg="Number is invalid" aria-invalid="false" min="0" max="9999999" step="any" />
 
 
-                        </div> -->
+																</div>
 																<div id="frm_field_20_container" class="frm_form_field form-field  frm_top_container">
 																	<label for="field_bg3xc" id="field_bg3xc_label" class="frm_primary_label">Ghi chú
 																		<span class="frm_required" aria-hidden="true"></span>
@@ -295,7 +296,7 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 
 											<div class="row row-small row-full-width align-middle" id="row-2059723945">
 
-<!-- 
+												<!-- 
 												<div id="col-1328897423" class="col medium-6 small-12 large-6">
 													<div class="col-inner">
 
@@ -318,7 +319,7 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 													</div>
 												</div> -->
 
-                            
+
 
 
 

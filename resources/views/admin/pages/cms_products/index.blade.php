@@ -114,7 +114,8 @@
             <thead>
               <tr>
                 <th>@lang('Title')</th>
-                <th>@lang('Price')</th>
+                <th>@lang('Giá vé người lớn')</th>
+                <th>@lang('Giá vé trẻ em')</th>
                 <th>@lang('Order')</th>
                 <th>@lang('Updated at')</th>
                 <th>@lang('Status')</th>
@@ -134,6 +135,10 @@
                         
                       <td>
                         {{ number_format($row->gia_ve) ?? 0 }}
+                       
+                      </td>
+                      <td>
+                        {{ number_format($row->gia_tre_em) ?? 0 }}
                        
                       </td>
                       <td>

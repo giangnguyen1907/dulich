@@ -46,13 +46,12 @@
 
     <div class="box box-primary">
       <div class="box-header with-border">
-        <h3 class="box-title"><?php echo app('translator')->get('Update form'); ?></h3>
+        <h3 class="box-title"><?php echo app('translator')->get('Create form'); ?></h3>
       </div>
       <!-- /.box-header -->
       <!-- form start -->
-      <form role="form" action="<?php echo e(route(Request::segment(2) . '.update', $detail->id)); ?>" method="POST">
+      <form role="form" action="<?php echo e(route(Request::segment(2) . '.store')); ?>" method="POST">
         <?php echo csrf_field(); ?>
-        <?php echo method_field('PUT'); ?>
         <div class="box-body">
           <!-- Custom Tabs -->
           <div class="nav-tabs-custom">
@@ -62,11 +61,7 @@
                   <h5>Thông tin chính <span class="text-danger">*</span></h5>
                 </a>
               </li>
-              <!-- <li>
-                <a href="#tab_3" data-toggle="tab">
-                  <h5><?php echo app('translator')->get('Related Products'); ?></h5>
-                </a>
-              </li> -->
+              
               <button type="submit" class="btn btn-primary btn-sm pull-right">
                 <i class="fa fa-floppy-o"></i>
                 <?php echo app('translator')->get('Save'); ?>
@@ -77,45 +72,39 @@
               <div class="tab-pane active" id="tab_1">
                 <div class="row">
                   <div class="col-md-6">
-                    
-
+                  
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Title'); ?> <small class="text-red">*</small></label>
                       <input type="text" class="form-control" name="title" placeholder="<?php echo app('translator')->get('Title'); ?>"
-                        value="<?php echo e($detail->title); ?>" required>
+                        value="<?php echo e(old('title')); ?>" required>
                     </div>
-
                     <div class="form-group">
                       <div class="row">
                         <div class="col-xs-6">
                           <label><?php echo app('translator')->get('Giá vé người lớn'); ?></label>
                           <input type="text" class="form-control" name="gia_ve"
-                            placeholder="<?php echo app('translator')->get('VNĐ'); ?>" value="<?php echo e($detail->gia_ve ?? old('gia_ve')); ?>">
+                            placeholder="<?php echo app('translator')->get('VNĐ'); ?>" value="<?php echo e(old('gia_ve')); ?>">
                         </div>
                         <div class="col-xs-6">
                           <label><?php echo app('translator')->get('Giá vé trẻ em'); ?></label>
                           <input type="text" class="form-control" name="gia_tre_em"
-                            placeholder="<?php echo app('translator')->get('VNĐ'); ?>" value="<?php echo e($detail->gia_tre_em ?? old('gia_tre_em')); ?>">
+                            placeholder="<?php echo app('translator')->get('VNĐ'); ?>" value="<?php echo e(old('gia_tre_em')); ?>">
                         </div>
                         <div class="col-xs-6">
                           <label><?php echo app('translator')->get('Giá xe'); ?></label>
                           <input type="text" class="form-control" name="gia_xe"
-                            placeholder="<?php echo app('translator')->get('VNĐ'); ?>" value="<?php echo e($detail->gia_xe ?? old('gia_xe')); ?>">
+                            placeholder="<?php echo app('translator')->get('VNĐ'); ?>" value="<?php echo e(old('gia_xe')); ?>">
                         </div>
                         <div class="col-xs-6">
                           <label><?php echo app('translator')->get('Giá Hướng dẫn viên'); ?></label>
                           <input type="text" class="form-control" name="gia_hdvien"
-                            placeholder="<?php echo app('translator')->get('VNĐ'); ?>" value="<?php echo e($detail->gia_hdvien ?? old('gia_hdvien')); ?>">
+                            placeholder="<?php echo app('translator')->get('VNĐ'); ?>" value="<?php echo e(old('gia_hdvien')); ?>">
                         </div>
-                        <div class="col-xs-6">
-                          <label><?php echo app('translator')->get('Lịch trình'); ?></label>
-                          <input type="text" class="form-control" name="lich_trinh"
-                            placeholder="<?php echo app('translator')->get('Số ngày'); ?>" value="<?php echo e($detail->lich_trinh ?? old('lich_trinh')); ?>">
-                        </div>
+                        
 
                       </div>
                     </div>
-                    
+                  
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Image'); ?></label>
                       <div class="input-group">
@@ -126,45 +115,48 @@
                           </a>
                         </span>
                         <input id="image" class="form-control" type="text" name="image"
-                          placeholder="<?php echo app('translator')->get('image_link'); ?>..." value="<?php echo e($detail->image); ?>">
+                          placeholder="<?php echo app('translator')->get('image_link'); ?>...">
                       </div>
                       <div id="image-holder" style="margin-top:15px;max-height:100px;">
-                        <?php if($detail->image != ''): ?>
-                          <img style="height: 5rem;" src="<?php echo e($detail->image); ?>">
+                        <?php if(old('image') != ''): ?>
+                          <img style="height: 5rem;" src="<?php echo e(old('image')); ?>">
                         <?php endif; ?>
                       </div>
                     </div>
-
                   </div>
-
                   <div class="col-md-6">
-
-                 
-
+                   
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Order'); ?></label>
                       <input type="number" class="form-control" name="iorder" placeholder="<?php echo app('translator')->get('Order'); ?>"
-                        value="<?php echo e($detail->iorder); ?>">
+                        value="<?php echo e(old('iorder')); ?>">
                     </div>
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Status'); ?></label>
                       <div class="form-control">
                         <label>
-                          <input type="radio" name="status" value="active"
-                            <?php echo e($detail->status == 'active' ? 'checked' : ''); ?>>
+                          <input type="radio" name="status" value="active" checked="">
                           <small><?php echo app('translator')->get('active'); ?></small>
                         </label>
                         <label>
-                          <input type="radio" name="status" value="deactive"
-                            <?php echo e($detail->status == 'deactive' ? 'checked' : ''); ?> class="ml-15">
+                          <input type="radio" name="status" value="deactive" class="ml-15">
                           <small><?php echo app('translator')->get('deactive'); ?></small>
                         </label>
                       </div>
                     </div>
-
+                     <div class="form-group">
+                        <div class="col-xs-6">
+                          <label><?php echo app('translator')->get('Lịch trình'); ?></label>
+                          <input type="text" class="form-control" name="lich_trinh"
+                            placeholder="<?php echo app('translator')->get('Số ngày'); ?>" value="<?php echo e(old('lich_trinh')); ?>">
+                        </div>
+                     </div>
+                   
                   </div>
                   
-
+                  <div class="col-md-12">
+                    <hr style="border-top: dashed 2px #a94442; margin: 10px 0px;">
+                  </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Video list'); ?></label>
@@ -172,35 +164,6 @@
                         title="Nhấn để chọn thêm video" type="button" value="Thêm video" />
                     </div>
                     <div class="list-gallery-video">
-                      <?php if(isset($detail->json_params->gallery_video)): ?>
-                        <?php $__currentLoopData = $detail->json_params->gallery_video; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                          <div class="row gallery-video border-bottom">
-                            <div class="col-md-6 col-xs-12 py-2 ">
-                              <input type="text" name="json_params[gallery_video][<?php echo e($key); ?>][title]"
-                                class="form-control" id="gallery_video_title_<?php echo e($key); ?>"
-                                placeholder="Tiêu đề, giới thiệu ngắn..." value="<?php echo e($item->title ?? ''); ?>">
-                            </div>
-                            <div class="col-md-5 col-xs-10 py-2 ">
-                              <div class="input-group">
-                                <span class="input-group-btn">
-                                  <a data-input="gallery_video_source_<?php echo e($key); ?>" class="btn btn-primary video">
-                                    <i class="fa fa-file-video-o"></i> <?php echo app('translator')->get('choose'); ?>
-                                  </a>
-                                </span>
-                                <input id="gallery_video_source_<?php echo e($key); ?>" class="form-control" type="text"
-                                  name="json_params[gallery_video][<?php echo e($key); ?>][source]"
-                                  placeholder="Link video..." value="<?php echo e($item->source ?? ''); ?>" required>
-                              </div>
-                            </div>
-                            <div class="col-md-1 col-xs-2 py-2 ">
-                              <span class="btn btn-sm btn-danger btn-remove" data-toggle="tooltip"
-                                title="<?php echo app('translator')->get('delete'); ?>">
-                                <i class="fa fa-trash"></i>
-                              </span>
-                            </div>
-                          </div>
-                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                      <?php endif; ?>
                     </div>
                   </div>
                   <div class="col-md-12">
@@ -210,27 +173,27 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Description'); ?></label>
-                      <textarea name="brief" class="form-control" rows="5"><?php echo e(isset($detail->brief) ?$detail->brief : old('brief')); ?></textarea>
+                      <textarea name="brief" class="form-control" rows="5"><?php echo e(old('brief')); ?></textarea>
                     </div>
                   </div>
-
+                  
                   <div class="col-md-12">
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Hành trình'); ?></label>
-                      <textarea name="hanh_trinh" class="form-control" rows="5"><?php echo e(isset($detail->hanh_trinh) ?$detail->hanh_trinh : old('hanh_trinh')); ?> </textarea>
+                      <textarea name="hanh_trinh" class="form-control" rows="5"><?php echo e(old('hanh_trinh')); ?></textarea>
                     </div>
                   </div>
 
                   <div class="col-md-12">
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Giá vé đã bao gồm'); ?></label>
-                      <textarea name="gia_baogom" class="form-control" rows="5"><?php echo e(isset($detail->gia_baogom) ?$detail->gia_baogom : old('gia_baogom')); ?></textarea>
+                      <textarea name="gia_baogom" class="form-control" rows="5"><?php echo e(old('gia_baogom')); ?></textarea>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label><?php echo app('translator')->get('Giá vé chưa bao gồm'); ?></label>
-                      <textarea name="gia_chuaco" class="form-control" rows="5"><?php echo e(isset($detail->gia_chuaco) ?$detail->gia_chuaco : old('gia_chuaco')); ?> </textarea>
+                      <textarea name="gia_chuaco" class="form-control" rows="5"><?php echo e(old('gia_chuaco')); ?></textarea>
                     </div>
                   </div>
 
@@ -238,7 +201,7 @@
                     <div class="form-group">
                       <div class="form-group">
                         <label><?php echo app('translator')->get('Content'); ?></label>
-                        <textarea name="content" class="form-control" id="content_vi"><?php echo e(isset($detail->content) ?$detail->content : old('content')); ?></textarea>
+                        <textarea name="content" class="form-control" id="content_vi"><?php echo e(old('content')); ?></textarea>
                       </div>
                     </div>
                   </div>
@@ -249,21 +212,21 @@
                     <div class="form-group">
                       <label><?php echo app('translator')->get('seo_title'); ?></label>
                       <input name="json_params[seo_title]" class="form-control"
-                        value="<?php echo e($detail->json_params->seo_title ?? old('json_params[seo_title]')); ?>">
+                        value="<?php echo e(old('json_params[seo_title]')); ?>">
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label><?php echo app('translator')->get('seo_keyword'); ?></label>
                       <input name="json_params[seo_keyword]" class="form-control"
-                        value="<?php echo e($detail->json_params->seo_keyword ?? old('json_params[seo_keyword]')); ?>">
+                        value="<?php echo e(old('json_params[seo_keyword]')); ?>">
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label><?php echo app('translator')->get('seo_description'); ?></label>
                       <input name="json_params[seo_description]" class="form-control"
-                        value="<?php echo e($detail->json_params->seo_description ?? old('json_params[seo_description]')); ?>">
+                        value="<?php echo e(old('json_params[seo_description]')); ?>">
                     </div>
                   </div>
                 </div>
@@ -286,6 +249,7 @@
       </form>
     </div>
   </section>
+
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startSection('script'); ?>
@@ -313,7 +277,6 @@
             keyword: keyword,
             taxonomy_id: taxonomy_id,
             other_list: checked_post,
-            different_id: <?php echo e($detail->id); ?>,
             is_type: "<?php echo e(App\Consts::POST_TYPE['product']); ?>"
           },
           success: function(response) {
@@ -448,9 +411,9 @@
         let _root = $(this).closest('.gallery-video');
         _root.remove();
       });
-      
+
     });
   </script>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\dulich\resources\views/admin/pages/cms_products/edit.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\dulich\resources\views/admin/pages/cms_products/create.blade.php ENDPATH**/ ?>
