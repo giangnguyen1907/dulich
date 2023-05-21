@@ -391,7 +391,7 @@
             keyword: keyword,
             taxonomy_id: taxonomy_id,
             other_list: checked_post,
-            is_type: "{{ App\Consts::POST_TYPE['resource'] }}"
+            is_type: "{{ App\Consts::POST_TYPE['disan'] }}"
           },
           success: function(response) {
             if (response.message == 'success') {

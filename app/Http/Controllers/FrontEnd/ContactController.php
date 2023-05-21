@@ -67,7 +67,7 @@ class ContactController extends Controller
                     ]
                 );
 
-                return $this->sendResponse($contact, $messageResult);
+                return redirect()->back()->with('successMessage', __('Gửi liên hệ thành công'));
             } else {
                 $contact = Contact::create($params);
                 // if ($params['is_type'] == Consts::CONTACT_TYPE['advise'] || $params['is_type'] == Consts::CONTACT_TYPE['contact']) {
@@ -80,7 +80,7 @@ class ContactController extends Controller
                 //     }
                 // }
 
-                return $this->sendResponse($contact, $messageResult);
+                return redirect()->back()->with('successMessage', __('Gửi liên hệ thành công'));
             }
         } catch (Exception $ex) {
             // throw $ex;

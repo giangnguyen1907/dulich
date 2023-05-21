@@ -77,25 +77,26 @@
                     <div class="form-group">
                       <div class="row">
                         <div class="col-xs-6">
-                          <label>@lang('Price')</label>
+                          <label>@lang('Giá vé người lớn')</label>
                           <input type="text" class="form-control" name="gia_ve"
-                            placeholder="@lang('Price')" value="{{ old('gia_ve') }}">
+                            placeholder="@lang('VNĐ')" value="{{ old('gia_ve') }}">
+                        </div>
+                        <div class="col-xs-6">
+                          <label>@lang('Giá vé trẻ em')</label>
+                          <input type="text" class="form-control" name="gia_tre_em"
+                            placeholder="@lang('VNĐ')" value="{{ old('gia_tre_em') }}">
                         </div>
                         <div class="col-xs-6">
                           <label>@lang('Giá xe')</label>
                           <input type="text" class="form-control" name="gia_xe"
-                            placeholder="@lang('Price Car')" value="{{ old('gia_xe') }}">
+                            placeholder="@lang('VNĐ')" value="{{ old('gia_xe') }}">
                         </div>
                         <div class="col-xs-6">
                           <label>@lang('Giá Hướng dẫn viên')</label>
                           <input type="text" class="form-control" name="gia_hdvien"
-                            placeholder="@lang('Giá hướng dẫn viên')" value="{{ old('gia_hdvien') }}">
+                            placeholder="@lang('VNĐ')" value="{{ old('gia_hdvien') }}">
                         </div>
-                        <div class="col-xs-6">
-                          <label>@lang('Lịch trình')</label>
-                          <input type="text" class="form-control" name="lich_trinh"
-                            placeholder="@lang('Số ngày')" value="{{ old('lich_trinh') }}">
-                        </div>
+                        
 
                       </div>
                     </div>
@@ -139,6 +140,13 @@
                         </label>
                       </div>
                     </div>
+                     <div class="form-group">
+                        <div class="col-xs-6">
+                          <label>@lang('Lịch trình')</label>
+                          <input type="text" class="form-control" name="lich_trinh"
+                            placeholder="@lang('Số ngày')" value="{{ old('lich_trinh') }}">
+                        </div>
+                     </div>
                    
                   </div>
                   

@@ -10,7 +10,7 @@ $url_link_title = $block->json_params->url_link_title->{$locale} ?? $block->url_
 
 $params['status'] = App\Consts::POST_STATUS['active'];
 $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
-
+$k=0;
 @endphp
 @if (session('successMessage'))
 
@@ -49,7 +49,7 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 "parallax" : 0,
 "friction": 0.6        }'>
 
-  
+
         @if ($rows)
         @foreach ($rows as $key=> $item)
         @php
@@ -58,12 +58,11 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
         $brief = $item->json_params->brief->{$locale} ?? $item->brief;
         $image = $item->image_thumb != '' ? $item->image_thumb : ($item->image != '' ? $item->image : null);
         $date = date('d/m/Y', strtotime($item->created_at));
+        $k++;
         // Viet ham xu ly lay slug
         @endphp
 
         <div class="row row-full-width align-middle" id="row-1398400038">
-
-
           <div id="col-28666092" class="col medium-1 small-12 large-1">
             <div class="col-inner">
               <div id="text-2426876569" class="text">
@@ -80,11 +79,9 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
               <div class="is-divider divider clearfix" style="margin-top:0.3em;margin-bottom:0.3em;background-color:rgb(160, 201, 229);"></div>
             </div>
           </div>
-
+          
           <div id="col-1972579741" class="col medium-5 small-12 large-5">
             <div class="col-inner">
-
-
 
               <div class="img has-hover x md-x lg-x y md-y lg-y" id="image_241075376">
                 <div class="img-inner dark">
@@ -126,10 +123,11 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
                 </style>
               </div>
 
-              <p><strong>{{ number_format($item->gia_ve, 0, ',', '.') }} VNĐ/người</strong></p>
+              <p><strong>{{ number_format($item->gia_ve, 0, ',', '.') }} VNĐ/người lớn</strong></p>
+              <p><strong>{{ number_format($item->gia_tre_em, 0, ',', '.') }} VNĐ/trẻ em</strong></p>
               <p>{{ $brief }}</p>
               </p>
-             
+
               <div class="frm_forms  with_frm_style frm_style_formidable-style" id="frm_form_1_container">
                 <form enctype="multipart/form-data" action="{{ route('frontend.booking.store') }}" method="post" class="frm-show-form " id="form_contact-form">
                   @csrf
@@ -169,7 +167,8 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
                           </label>
 
 
-                          <input type="text" id="field_29yf4d" name="tour_id" value="{{ $title }}" disabled />
+                          <input type="text" id="field_29yf4d" name="tour" value="{{ $title }}" disabled />
+                          <input type="hidden" id="field_29yf4d" name="tour_id" value="{{ $item->id }}" />
 
                           </select>
 
@@ -195,10 +194,18 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 
                         </div>
                         <div id="frm_field_17_container" class="frm_form_field form-field  frm_top_container frm6 frm_first">
-                          <label for="field_1pbe7" id="field_1pbe7_label" class="frm_primary_label">Số lượng
+                          <label for="field_1pbe7" id="field_1pbe7_label" class="frm_primary_label">Người lớn
                             <span class="frm_required" aria-hidden="true"></span>
                           </label>
                           <input type="number" id="field_1pbe7" name="soluong" value="" placeholder="số vé" min="0" max="9999999" step="any" />
+                        </div>
+                        <div id="frm_field_18_container" class="frm_form_field form-field  frm_top_container frm6">
+                          <label for="field_escis" id="field_escis_label" class="frm_primary_label">Trẻ em
+                            <span class="frm_required" aria-hidden="true"></span>
+                          </label>
+                          <input type="number" id="field_escis" name="soluong_tre" value="" placeholder="số vé" data-invmsg="Number is invalid" aria-invalid="false" min="0" max="9999999" step="any" />
+
+
                         </div>
                         <!-- <div id="frm_field_18_container" class="frm_form_field form-field  frm_top_container frm6">
                           <label for="field_escis" id="field_escis_label" class="frm_primary_label">Trẻ em

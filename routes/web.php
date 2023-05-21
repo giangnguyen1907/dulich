@@ -42,6 +42,9 @@ Route::namespace('FrontEnd')->group(function () {
   //tour du lich
   Route::get('tour', 'BookingController@index')->name('frontend.tour');
   Route::post('booking', 'BookingController@store')->name('frontend.booking.store');
+
+  //vechungtoi 
+  Route::get('about-us', 'CmsController@about')->name('frontend.custom');
   // Tags
   // Route::get('tags/{alias?}', 'CmsController@tags')->name('frontend.cms.tags');
  

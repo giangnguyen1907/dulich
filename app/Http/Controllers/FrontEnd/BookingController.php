@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\FrontEnd;
 
 use App\Models\Booking;
+use App\Http\Services\ContentService;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
@@ -38,9 +39,7 @@ class BookingController extends Controller
             
             $params = $request->all();
             $params['status'] = 'new';
-
-         
-            
+            //dd($params['tour_id']);
 
             $params['booking_date'] = ($request->get('booking_date')) ? Carbon::createFromFormat('d-m-Y', $request->get('booking_date')) : null;
 

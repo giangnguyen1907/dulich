@@ -30,7 +30,8 @@ class Consts
     const TAXONOMY = [
         'post' => 'post',
         'service' => 'service',
-        'product' => 'product',
+        'intro' => 'giới thiệu',
+        'disan' => 'di sản',
         // 'resource' => 'resource',
         // 'tags' => 'tags'
     ];
@@ -39,6 +40,8 @@ class Consts
         'post' => 'post',
         'product' => 'product',
         'service' => 'service',
+        'intro' => 'intro',
+        'disan' => 'disan',
         // 'resource' => 'resource'
     ];
     // Mảng lưu trạng thái bài viết
@@ -207,6 +210,16 @@ class Consts
                 [
                     "title" => "Default",
                     "name" => "tour.default"
+                ]
+            ]
+        ],
+        [
+            "title" => "Về chúng tôi",
+            "name" => "frontend.custom",
+            "template" => [
+                [
+                    "title" => "Default",
+                    "name" => "custom.default"
                 ]
             ]
         ],

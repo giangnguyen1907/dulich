@@ -12,31 +12,46 @@ $seo_description = $taxonomy->json_params->seo_description ?? null;
 $seo_image = $image ?? null;
 @endphp
 @push('style')
-  <style>
+<style>
 
-  </style>
+</style>
 @endpush
 @section('content')
-  {{-- Print all content by [module - route - page] without blocks content at here --}}
-  <section id="page-title">
+{{-- Print all content by [module - route - page] without blocks content at here --}}
+<div class="row row-collapse row-full-width align-center" id="row-1839331453">
 
-    <div class="container clearfix">
-      <h1>{{ $page_title }}</h1>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ route('frontend.home') }}">@lang('Home')</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('frontend.cms.post') }}">{{ $page->name ?? '' }}</a></li>
-      </ol>
+
+  <div id="col-1449939549" class="col medium-9 small-12 large-9">
+    <div class="col-inner">
+
+
+
+      <div id="text-3956594320" class="text">
+
+
+        <h1 style="text-align: center;"><span style="color: #02913f;">{{ $page_title }}</span></h1>
+        <p> {{ $page->description }} </p>
+
+        <style>
+          #text-3956594320 {
+            text-align: center;
+          }
+        </style>
+      </div>
+
+
     </div>
+  </div>
 
-  </section>
 
-  <section id="content">
 
-    <div class="content-wrap">
-      <div class="container ">
+</div>
 
-        <div class="row clearfix">
-          @foreach ($posts as $item)
+
+
+<div class="row large-columns-3 medium-columns-1 small-columns-1">
+  
+@foreach ($posts as $item)
             @php
               $title = $item->json_params->title->{$locale} ?? $item->title;
               $brief = $item->json_params->brief->{$locale} ?? $item->brief;
@@ -49,43 +64,35 @@ $seo_image = $image ?? null;
               $alias_category = App\Helpers::generateRoute(App\Consts::TAXONOMY['post'], $item->taxonomy_title, $item->taxonomy_id);
               $alias = App\Helpers::generateRoute(App\Consts::TAXONOMY['post'], $title, $item->id, 'detail');
             @endphp
-            <div class="col-md-4">
-              <article class="entry">
-                <div class="entry-image mb-3">
-                  <a href="{{ $alias }}"><img src="{{ $image }}" alt="{{ $title }}"></a>
-                  <div class="bg-overlay">
-                    <div class="bg-overlay-content dark" data-hover-animate="fadeIn" data-hover-speed="500">
-                      <a href="{{ $alias }}" class="overlay-trigger-icon bg-light text-dark"
-                        data-hover-animate="fadeIn" data-hover-speed="500"><i class="icon-line-ellipsis"></i></a>
-                    </div>
-                    <div class="bg-overlay-bg dark" data-hover-animate="fadeIn" data-hover-speed="500"></div>
-                  </div>
-                </div>
-                <div class="entry-title">
-                  <h3><a href="{{ $alias }}">{{ $title }}</a></h3>
-                </div>
-                <div class="entry-meta">
-                  <ul>
-                    <li><i class="icon-line2-folder"></i><a href="{{ $alias_category }}">
-                        {{ $item->taxonomy_title }}</a>
-                    </li>
-                    <li><i class="icon-calendar-times1"></i> {{ $date }} {{ $month }}
-                      {{ $year }}
-                    </li>
-                  </ul>
-                </div>
-                <div class="entry-content clearfix">
-                  <p>{{ Str::limit($brief, 100) }}</p>
-                </div>
-              </article>
+<div class="col post-item">
+    <div class="col-inner">
+      <a href="{{ $alias }}" class="plain">
+        <div class="box box-normal box-text-bottom box-blog-post has-hover">
+          <div class="box-image">
+            <div class="image-cover" style="padding-top:56.25%;">
+              <img width="300" height="400" src="{{ $image }}" class="attachment-medium size-medium wp-post-image" alt="" decoding="async"  />
             </div>
-          @endforeach
+          </div>
+          <div class="box-text text-center">
+            <div class="box-text-inner blog-post-inner">
+
+
+              <h5 class="post-title is-large ">{{ $title }}</h5>
+              <div class="is-divider"></div>
+              <p class="from_the_blog_excerpt ">{{ Str::limit($brief, 100) }}</p>
+
+
+
+            </div>
+          </div>
         </div>
-
-        {{ $posts->withQueryString()->links('frontend.pagination.default') }}
-
-      </div>
+      </a>
     </div>
-  </section>
-  {{-- End content --}}
+  </div>
+  @endforeach
+  {{ $posts->withQueryString()->links('frontend.pagination.default') }}
+
+</div>
+
+{{-- End content --}}
 @endsection

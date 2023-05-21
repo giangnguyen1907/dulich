@@ -1,249 +1,199 @@
 @extends('frontend.layouts.default')
 
 @php
-  $title = $detail->json_params->title->{$locale} ?? $detail->title;
-  $brief = $detail->json_params->brief->{$locale} ?? null;
-  $content = $detail->json_params->content->{$locale} ?? null;
-  $image = $detail->image != '' ? $detail->image : null;
-  $image_thumb = $detail->image_thumb != '' ? $detail->image_thumb : null;
-  $date = date('H:i d/m/Y', strtotime($detail->created_at));
-  
-  // For taxonomy
-  $taxonomy_json_params = json_decode($detail->taxonomy_json_params);
-  $taxonomy_title = $taxonomy_json_params->title->{$locale} ?? $detail->taxonomy_title;
-  $image_background = $taxonomy_json_params->image_background ?? ($web_information->image->background_breadcrumbs ?? null);
-  $taxonomy_alias = Str::slug($taxonomy_title);
-  $alias_category = App\Helpers::generateRoute(App\Consts::TAXONOMY['post'], $taxonomy_alias, $detail->taxonomy_id);
-  
-  $seo_title = $detail->json_params->seo_title ?? $title;
-  $seo_keyword = $detail->json_params->seo_keyword ?? null;
-  $seo_description = $detail->json_params->seo_description ?? $brief;
-  $seo_image = $image ?? ($image_thumb ?? null);
-  
+$title = $detail->json_params->title->{$locale} ?? $detail->title;
+$brief = $detail->json_params->brief->{$locale} ?? null;
+$content = $detail->json_params->content->{$locale} ?? null;
+$image = $detail->image != '' ? $detail->image : null;
+$image_thumb = $detail->image_thumb != '' ? $detail->image_thumb : null;
+$date = date('H:i d/m/Y', strtotime($detail->created_at));
+
+// For taxonomy
+$taxonomy_json_params = json_decode($detail->taxonomy_json_params);
+$taxonomy_title = $taxonomy_json_params->title->{$locale} ?? $detail->taxonomy_title;
+$image_background = $taxonomy_json_params->image_background ?? ($web_information->image->background_breadcrumbs ?? null);
+$taxonomy_alias = Str::slug($taxonomy_title);
+$alias_category = App\Helpers::generateRoute(App\Consts::TAXONOMY['post'], $taxonomy_alias, $detail->taxonomy_id);
+
+$seo_title = $detail->json_params->seo_title ?? $title;
+$seo_keyword = $detail->json_params->seo_keyword ?? null;
+$seo_description = $detail->json_params->seo_description ?? $brief;
+$seo_image = $image ?? ($image_thumb ?? null);
+
 @endphp
 
-@push('style')
-  <style>
-    #content-detail {
-      text-align: justify;
-    }
 
-    #content-detail h2 {
-      font-size: 30px;
-    }
-
-    #content-detail h3 {
-      font-size: 24px;
-    }
-
-    #content-detail h4 {
-      font-size: 18px;
-    }
-
-    #content-detail h5,
-    #content-detail h6 {
-      font-size: 16px;
-    }
-
-    #content-detail p {
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-
-    #content-detail h1,
-    #content-detail h2,
-    #content-detail h3,
-    #content-detail h4,
-    #content-detail h5,
-    #content-detail h6 {
-      margin-top: 0;
-      margin-bottom: .5rem;
-    }
-
-    #content-detail p+h2,
-    #content-detail p+.h2 {
-      margin-top: 1rem;
-    }
-
-    #content-detail h2+p,
-    #content-detail .h2+p {
-      margin-top: 1rem;
-    }
-
-    #content-detail p+h3,
-    #content-detail p+.h3 {
-      margin-top: 0.5rem;
-    }
-
-    #content-detail h3+p,
-    #content-detail .h3+p {
-      margin-top: 0.5rem;
-    }
-
-    #content-detail ul,
-    #content-detail ol {
-      list-style: inherit;
-      padding: 0 0 0 50px;
-
-    }
-
-    #content-detail ul li {
-      display: list-item;
-      list-style: initial;
-    }
-
-    #content-detail ol li {
-      display: list-item;
-      list-style: decimal;
-    }
-
-    .posts-sm .entry-image {
-      width: 75px;
-    }
-
-    #content-detail img {
-      max-width: 100%;
-      width: auto !important;
-    }
-
-    body.light #content-detail p {
-      color: #000 !important;
-      font-weight: 400 !important;
-    }
-  </style>
-@endpush
 
 @section('content')
-  {{-- Print all content by [module - route - page] without blocks content at here --}}
-  <section id="page-title">
+{{-- Print all content by [module - route - page] without blocks content at here --}}
+<div class="row row-large row-divided " style="
+    padding-top: 20px;
+">
 
-    <div class="container clearfix">
-      <h1>{{ $title }}</h1>
-      <ol class="breadcrumb">
-        <li class="breadcrumb-item"><a href="{{ route('frontend.home') }}">@lang('Home')</a></li>
-        <li class="breadcrumb-item"><a href="{{ $alias_category }}">{{ $taxonomy_title ?? '' }}</a></li>
-      </ol>
-    </div>
-
-  </section>
-
-  <section id="content">
-
-    <div class="content-wrap">
-      <div class="container clearfix">
-
-        <div class="single-post mb-0">
-
-          <!-- Single Post
-                    ============================================= -->
-          <div class="entry clearfix">
+  <div class="large-9 col">
 
 
-            <!-- Entry Content
-                      ============================================= -->
-            <div class="entry-content mt-0" id="content-detail">
 
-              {!! $content ?? '' !!}
-              <!-- Post Single - Content End -->
+    <article id="post-1662" class="post-1662 post type-post status-publish format-standard has-post-thumbnail hentry category-tin-tuc">
+      <div class="article-inner ">
+        <header class="entry-header">
+          <div class="entry-header-text entry-header-text-top text-center">
+            <h6 class="entry-category is-xsmall">
+              <a href="{{ $alias_category }}" rel="category tag">{{ $taxonomy_title ?? '' }}</a>
+            </h6>
 
-              @isset($detail->json_params->gallery_video)
-                @foreach ($detail->json_params->gallery_video as $key => $item)
-                  @if ($item->source != '')
-                    @if (Str::contains($item->source, 'youtu.be') || Str::contains($item->source, 'youtube.com'))
-                      @php
-                        if (Str::contains($item->source, 'youtu.be')) {
-                            $video_code = 'https://www.youtube.com/embed/' . Str::afterLast($item->source, '/');
-                        } else {
-                            $video_code = 'https://www.youtube.com/embed/' . Str::before(Str::afterLast($item->source, 'v='), '&');
-                        }
-                      @endphp
-                      <p class="pt-3">
-                        <iframe title="{{ $item->title ?? '' }}" width="100%" height="50" src="{{ $video_code }}"
-                          frameborder="0"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowfullscreen>
-                        </iframe>
-                      </p>
-                      <p class="pt-3 text-center"><strong>{{ $item->title ?? '' }}</strong></p>
-                    @else
-                      <p class="pt-3 center" title="{{ $item->title ?? '' }}">
-                        <video preload="auto" controls style="display: block; width: 100%;">
-                          <source src='{{ $item->source ?? '' }}' />
-                        </video>
-                      </p>
-                      <p class="pt-3 text-center"><strong>{{ $item->title ?? '' }}</strong></p>
-                    @endif
-                  @endif
-                @endforeach
-              @endisset
+            <h1 class="entry-title">{{ $title }}</h1>
+            <div class="entry-divider is-divider small"></div>
 
-              <div class="clear"></div>
-
-              <!-- Post Single - Share
-                        ============================================= -->
-              <div class="si-share border-0 d-flex justify-content-between align-items-center">
-                <span>@lang('Share this post'):</span>
-                <div>
-                  <a href="http://www.facebook.com/sharer/sharer.php?u={{ Request::fullUrl() }}"
-                    class="social-icon si-borderless si-facebook">
-                    <i class="icon-facebook"></i>
-                    <i class="icon-facebook"></i>
-                  </a>
-                  <a href="https://twitter.com/intent/tweet?url={{ Request::fullUrl() }}"
-                    class="social-icon si-borderless si-twitter">
-                    <i class="icon-twitter"></i>
-                    <i class="icon-twitter"></i>
-                  </a>
-                  <a href="https://www.instagram.com/cws/share?url={{ Request::fullUrl() }}"
-                    class="social-icon si-borderless si-instagram">
-                    <i class="icon-instagram"></i>
-                    <i class="icon-instagram"></i>
-                  </a>
-                </div>
-              </div><!-- Post Single - Share End -->
-
+            <div class="entry-meta uppercase is-xsmall">
+              <span class="posted-on">Posted on <a href="#" rel="bookmark"><time class="entry-date published" datetime="2023-04-26T07:56:46+00:00">{{ $date }}</time><time class="updated" datetime="2023-04-26T08:00:21+00:00">{{ $date }}</time></a></span><span class="byline"></span>
             </div>
-          </div><!-- .entry end -->
-
-          @if (isset($relatedPosts) && count($relatedPosts) > 0)
-            <h4 class="title-widget text-uppercase">@lang('Related Posts')</h4>
-            <div class="related-posts row posts-md col-mb-30">
-              @foreach ($relatedPosts as $item)
-                @php
-                  $title = $item->json_params->title->{$locale} ?? $item->title;
-                  $brief = $item->json_params->brief->{$locale} ?? $item->brief;
-                  $image = $item->image_thumb != '' ? $item->image_thumb : ($item->image != '' ? $item->image : null);
-                  $date = date('d/m/Y', strtotime($item->created_at));
-                  // Viet ham xu ly lay slug
-                  $alias_category = App\Helpers::generateRoute(App\Consts::TAXONOMY['post'], $item->taxonomy_title, $item->taxonomy_id);
-                  $alias = App\Helpers::generateRoute(App\Consts::TAXONOMY['post'], $title, $item->id, 'detail');
-                @endphp
-                <div class="entry col-12 col-md-6">
-                  <div class="grid-inner row align-items-center gutter-20">
-                    <div class="col-4 col-xl-5">
-                      <div class="entry-image">
-                        <a href="{{ $alias }}"><img src="{{ $image }}" alt="Blog Single"></a>
-                      </div>
-                    </div>
-                    <div class="col-8 col-xl-7">
-                      <div class="entry-title title-xs nott">
-                        <h3><a href="{{ $alias }}">{{ Str::limit($title, 70) }}</a></h3>
-                      </div>
-                      <div class="entry-content d-none d-xl-block">
-                        {{ Str::limit($brief, 100) }}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              @endforeach
+          </div>
+          <div class="entry-image relative">
+            <a href="https://hoanglienpark.com/luu-tru/1662">
+              <img src="{!! $image ?? '' !!}" class="attachment-large size-large wp-post-image" alt="" decoding="async" /></a>
+            <div class="badge absolute top post-date badge-outline">
+              <!-- <div class="badge-inner">
+                <span class="post-date-day">26</span><br>
+                <span class="post-date-month is-small">Th4</span>
+              </div> -->
             </div>
-          @endif
+          </div>
+        </header>
+        <div class="entry-content single-page">
 
+
+          {!! $content ?? '' !!}
         </div>
 
-      </div>
-    </div>
-  </section>
 
-  {{-- End content --}}
+        <!-- 
+        <div class="entry-author author-box">
+          <div class="flex-row align-top">
+            <div class="flex-col mr circle">
+              <div class="blog-author-image">
+                <img alt='' src='https://secure.gravatar.com/avatar/75d23af433e0cea4c0e45a56dba18b30?s=90&#038;d=mm&#038;r=g' srcset='https://secure.gravatar.com/avatar/75d23af433e0cea4c0e45a56dba18b30?s=180&#038;d=mm&#038;r=g 2x' class='avatar avatar-90 photo' height='90' width='90' loading='lazy' decoding='async' />
+              </div>
+            </div>
+            <div class="flex-col flex-grow">
+              <h5 class="author-name uppercase pt-half">
+                admin </h5>
+              <p class="author-desc small"></p>
+            </div>
+          </div>
+        </div>
+
+        <nav role="navigation" id="nav-below" class="navigation-post">
+          <div class="flex-row next-prev-nav bt bb">
+            <div class="flex-col flex-grow nav-prev text-left">
+              <div class="nav-previous"><a href="https://hoanglienpark.com/luu-tru/1650" rel="prev"><span class="hide-for-small"><i class="icon-angle-left"></i></span> Những “bóng hồng” giữa đại ngàn</a></div>
+            </div>
+            <div class="flex-col flex-grow nav-next text-right">
+              <div class="nav-next"><a href="https://hoanglienpark.com/luu-tru/1672" rel="next">Ghi nhận loài chim quý, hiếm ngoài tự nhiên ở Vườn quốc gia Hoàng Liên <span class="hide-for-small"><i class="icon-angle-right"></i></span></a></div>
+            </div>
+          </div>
+
+        </nav> -->
+
+      </div>
+    </article>
+
+
+
+
+    <div id="comments" class="comments-area">
+
+
+
+
+      <!-- <div id="respond" class="comment-respond">
+        <h3 id="reply-title" class="comment-reply-title">Trả lời <small><a rel="nofollow" id="cancel-comment-reply-link" href="/luu-tru/1662#respond" style="display:none;">Hủy</a></small></h3>
+        <form action="https://hoanglienpark.com/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
+          <p class="comment-notes"><span id="email-notes">Email của bạn sẽ không được hiển thị công khai.</span> <span class="required-field-message">Các trường bắt buộc được đánh dấu <span class="required">*</span></span></p>
+          <p class="comment-form-comment"><label for="comment">Bình luận <span class="required">*</span></label> <textarea id="comment" name="comment" cols="45" rows="8" maxlength="65525" required></textarea></p>
+          <p class="comment-form-author"><label for="author">Tên <span class="required">*</span></label> <input id="author" name="author" type="text" value="" size="30" maxlength="245" autocomplete="name" required /></p>
+          <p class="comment-form-email"><label for="email">Email <span class="required">*</span></label> <input id="email" name="email" type="email" value="" size="30" maxlength="100" aria-describedby="email-notes" autocomplete="email" required /></p>
+          <p class="comment-form-url"><label for="url">Trang web</label> <input id="url" name="url" type="url" value="" size="30" maxlength="200" autocomplete="url" /></p>
+          <p class="comment-form-cookies-consent"><input id="wp-comment-cookies-consent" name="wp-comment-cookies-consent" type="checkbox" value="yes" /> <label for="wp-comment-cookies-consent">Lưu tên của tôi, email, và trang web trong trình duyệt này cho lần bình luận kế tiếp của tôi.</label></p>
+          <p class="form-submit"><input name="submit" type="submit" id="submit" class="submit" value="Phản hồi" /> <input type='hidden' name='comment_post_ID' value='1662' id='comment_post_ID' />
+            <input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+          </p>
+        </form>
+      </div> -->
+
+    </div>
+  </div>
+  <div class="post-sidebar large-3 col">
+    <div id="secondary" class="widget-area " role="complementary">
+      <!-- <aside id="text-13" class="widget widget_text"><span class="widget-title "><span>About</span></span>
+        <div class="is-divider small"></div>
+        <div class="textwidget">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</div>
+      </aside> -->
+      @if (isset($latestPosts) && count($latestPosts) > 0)
+      <aside id="flatsome_recent_posts-17" class="widget flatsome_recent_posts"> <span class="widget-title "><span>Latest Posts</span></span>
+        <div class="is-divider small"></div>
+        <ul>
+          @foreach ($latestPosts as $item)
+          @php
+          $title = $item->json_params->title->{$locale} ?? $item->title;
+          $brief = $item->json_params->brief->{$locale} ?? $item->brief;
+          $image = $item->image_thumb != '' ? $item->image_thumb : ($item->image != '' ? $item->image : null);
+          $date = date('d/m/Y', strtotime($item->created_at));
+          // Viet ham xu ly lay slug
+          $alias_category = App\Helpers::generateRoute(App\Consts::TAXONOMY['post'], $item->taxonomy_title, $item->taxonomy_id);
+          $alias = App\Helpers::generateRoute(App\Consts::TAXONOMY['post'], $title, $item->id, 'detail');
+          @endphp
+          <li class="recent-blog-posts-li">
+            <div class="flex-row recent-blog-posts align-top pt-half pb-half">
+              <div class="flex-col mr-half">
+                <div class="badge post-date badge-small badge-outline">
+                  <div class="badge-inner bg-fill">
+                    <!-- <span class="post-date-day">26</span><br>
+                    <span class="post-date-month is-xsmall">Th4</span> -->
+                    <a href="{{ $alias }}"><img src="{{ $image }}" ></a>
+                  </div>
+                </div>
+              </div>
+              <div class="flex-col flex-grow">
+                <a href="{{ $alias }}" title="{{ Str::limit($title, 70) }}">{{ Str::limit($title, 70) }}</a>
+                <span class="post_comments op-7 block is-xsmall"><a href="{{ $alias }}"></a></span>
+              </div>
+            </div>
+          </li>
+          @endforeach
+
+
+
+        </ul>
+      </aside>
+      @endif
+
+      <!-- <aside id="recent-comments-5" class="widget widget_recent_comments"><span class="widget-title "><span>Recent Comments</span></span>
+        <div class="is-divider small"></div>
+        <ul id="recentcomments"></ul>
+      </aside> -->
+      <!-- <aside id="categories-14" class="widget widget_categories"><span class="widget-title "><span>Chuyên mục</span></span>
+        <div class="is-divider small"></div>
+        <ul>
+          <li class="cat-item cat-item-33"><a href="https://hoanglienpark.com/luu-tru/category/tin-tuc">Cẩm nang du lịch</a> (18)
+          </li>
+          <li class="cat-item cat-item-1"><a href="https://hoanglienpark.com/luu-tru/category/khong-phan-loai">Chưa phân loại</a> (14)
+          </li>
+        </ul>
+
+      </aside> -->
+      <!-- <aside id="archives-7" class="widget widget_archive"><span class="widget-title "><span>Lưu trữ</span></span>
+        <div class="is-divider small"></div>
+        <ul>
+          <li><a href='https://hoanglienpark.com/luu-tru/date/2023/04'>Tháng Tư 2023</a>&nbsp;(30)</li>
+          <li><a href='https://hoanglienpark.com/luu-tru/date/2022/03'>Tháng Ba 2022</a>&nbsp;(1)</li>
+        </ul>
+
+      </aside> -->
+    </div>
+  </div>
+</div>
+
+
+{{-- End content --}}
 @endsection

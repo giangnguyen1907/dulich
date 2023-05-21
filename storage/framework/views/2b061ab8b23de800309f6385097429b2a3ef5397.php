@@ -1,4 +1,4 @@
-    <header id="header" class="header transparent has-transparent has-sticky sticky-shrink">
+    <header id="header" class="header has-sticky sticky-shrink">
       <div class="header-wrapper">
         <div id="masthead" class="header-main nav-dark toggle-nav-dark">
           <div class="header-inner flex-row container logo-left medium-logo-center" role="navigation">
