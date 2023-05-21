@@ -13,6 +13,7 @@ use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\Page;
 use App\Models\CmsProduct;
+use App\Models\Feedback;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
@@ -336,6 +337,43 @@ class ContentService
             }
         } else {
             $query->orderByRaw('tb_bookings.id DESC');
+        }
+
+        return $query;
+    }
+
+    public static function getFeedback($params)
+    {
+        $query = Feedback::select('tb_feedback.*')
+            ->selectRaw('tb_tour.title AS tour')
+            ->leftJoin('tb_tour', 'tb_tour.id', '=', 'tb_feedback.tour_id')
+
+            ->when(!empty($params['keyword']), function ($query) use ($params) {
+                $keyword = $params['keyword'];
+                return $query->where(function ($where) use ($keyword) {
+                    return $where->where('tb_feedback.name', 'like', '%' . $keyword . '%')
+                        ->orWhere('tb_feedback.email', 'like', '%' . $keyword . '%')
+                        ->orWhere('tb_feedback.phone', 'like', '%' . $keyword . '%');
+                });
+            })
+            ->when(!empty($params['tour_id']), function ($query) use ($params) {
+                $query->where('tb_feedback.tour_id', '=', $params['tour_id']);
+            })
+       
+            ->when(!empty($params['status']), function ($query) use ($params) {
+                return $query->where('tb_feedback.status', $params['status']);
+            });
+
+        if (!empty($params['order_by'])) {
+            if (is_array($params['order_by'])) {
+                foreach ($params['order_by'] as $key => $value) {
+                    $query->orderBy('tb_feedback.' . $key, $value);
+                }
+            } else {
+                $query->orderByRaw('tb_feedback.' . $params['order_by'] . ' desc');
+            }
+        } else {
+            $query->orderByRaw('tb_feedback.id DESC');
         }
 
         return $query;

@@ -148,7 +148,7 @@ class ContactController extends Controller
 
     public function showCallRequest(Contact $contact)
     {
-        $this->responseData['module_name'] = __('Call request Management');
+        $this->responseData['module_name'] = __('Call request Management'); 
         $this->responseData['detail'] = $contact;
 
         return $this->responseView($this->viewPart . '.call_request_show');

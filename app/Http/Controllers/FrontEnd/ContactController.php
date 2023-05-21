@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontEnd;
 use App\Consts;
 use App\Http\Services\ContentService;
 use App\Models\Contact;
+use App\Models\Feedback;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -87,4 +88,40 @@ class ContactController extends Controller
             abort(422, __($ex->getMessage()));
         }
     }
+
+    public function feedback(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required',
+                'phone' => 'required',
+                'tour_id' => 'required',
+                
+            ]);
+            
+            $params = $request->all();
+            $params['status'] = 'new';
+
+           
+
+            $feedback = Feedback::create($params);
+
+            // if (isset($this->web_information->information->email)) {
+            //     $email = $this->web_information->information->email;
+            //     Mail::send('emails.contact', ['contact' => $contact], function ($message) use ($email) {
+            //         $message->to($email);
+            //         $message->subject(__('You received a new appointment from the system'));
+            //     });
+            // }
+
+            $messageResult = '';
+            $messageResult = $this->web_information->information->notice_advise ?? __('Feedback successfull!');
+
+            return redirect()->back()->with('successMessage', __('Gửi phản hồi thành công'));
+        } catch (Exception $ex) {
+            // throw $ex;
+            abort(422, __($ex->getMessage()));
+        }
+    }
+
 }

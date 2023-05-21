@@ -70,10 +70,11 @@ Route::group(['namespace' => 'Admin'], function () {
                 'cms_products' => 'CmsProductController',
                 'contacts' => 'ContactController',
                 'bookings' => 'BookingController',
-                'popups' => 'PopupController',
+                'popups' => 'PopupController', 
                 'users' => 'UserController',
                 'affiliate_payments' => 'AffiliatePaymentController',
                 'affiliate_historys' => 'AffiliateHistoryController',
+                'feedbacks' => 'FeedbackController',
             ]);
             // Order services
             Route::get('order_services', 'OrderController@listOrderService')->name('order_services.index');
