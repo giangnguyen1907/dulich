@@ -16,19 +16,32 @@ class BookingController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+
+    public function index()
     {
+        $params['status'] = 'active';
+        return $this->responseView('frontend.pages.tour.index');
+    }
+    
+    public function store(Request $request)
+    {   
+        echo "AAAAAAAAAAAA";die;
+        
         try {
             $request->validate([
                 'name' => 'required',
                 'phone' => 'required',
-                // 'department_id' => 'required',
-                // 'doctor_id' => 'required',
-                // 'booking_date' => 'required'
+              
+                'booking_date' => 'required'
             ]);
+            
             $params = $request->all();
+            $params['status'] = 'new';
 
-            // $params['booking_date'] = ($request->get('booking_date')) ? Carbon::createFromFormat('d-m-Y', $request->get('booking_date')) : null;
+         
+            
+
+            $params['booking_date'] = ($request->get('booking_date')) ? Carbon::createFromFormat('d-m-Y', $request->get('booking_date')) : null;
 
             $booking = Booking::create($params);
 
@@ -45,8 +58,9 @@ class BookingController extends Controller
 
             return $this->sendResponse($booking, $messageResult);
         } catch (Exception $ex) {
-            // throw $ex;
-            abort(422, __($ex->getMessage()));
+          
+            throw $ex;
         }
+        return redirect()->back()->with('successMessage', __('Gửi liên hệ thành công'));
     }
 }

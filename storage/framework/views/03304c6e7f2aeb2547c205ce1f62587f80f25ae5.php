@@ -60,7 +60,7 @@ $rows = App\Http\Services\ContentService::getCmsPost($params)->get();
 
                 <div class="is-divider divider clearfix" style="margin-top:0.4em;margin-bottom:0.4em;max-width:20%;height:4px;background-color:rgb(160, 201, 229);"></div>
 
-                <p>Vườn quốc gia Hoàng Liên</p>
+                <p><?php echo $brief; ?></p>
 
               </div>
             </div>

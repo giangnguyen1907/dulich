@@ -7,6 +7,7 @@ use App\Helpers;
 use App\Http\Services\ContentService;
 use App\Models\CmsTaxonomy;
 use Illuminate\Http\Request;
+use Exception;
 use Illuminate\Support\Facades\View;
 
 class CmsController extends Controller
@@ -180,6 +181,8 @@ class CmsController extends Controller
 
         return $this->responseView('frontend.pages.product.default');
     }
+
+   
 
     public function resourceCategory($alias = null, Request $request)
     {

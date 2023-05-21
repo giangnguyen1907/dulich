@@ -27,20 +27,15 @@ class BookingController extends Controller
     {
         $params = $request->all();
         $this->responseData['params'] = $params;
-        $params['is_type'] = Consts::CONTACT_TYPE['contact'];
         if (isset($params['created_at_from'])) {
             $params['created_at_from'] = Carbon::createFromFormat('d/m/Y', $params['created_at_from'])->format('Y-m-d');
         }
         if (isset($params['created_at_to'])) {
             $params['created_at_to'] = Carbon::createFromFormat('d/m/Y', $params['created_at_to'])->format('Y-m-d');
         }
-        $paramTaxonomys['status'] = Consts::TAXONOMY_STATUS['active'];
-        $paramTaxonomys['taxonomy'] = Consts::TAXONOMY['department'];
-        $this->responseData['departments'] = ContentService::getCmsTaxonomy($paramTaxonomys)->get();
-        $params_doctor['status'] = Consts::POST_STATUS['active'];
-        $params_doctor['is_type'] = Consts::POST_TYPE['doctor'];
-        $doctors = ContentService::getCmsPost($params_doctor)->get();
-        $this->responseData['doctors'] =  $doctors;
+        $params_tour['status'] = Consts::POST_STATUS['active'];
+        $tour = ContentService::getCmsTour($params_tour)->get();
+        $this->responseData['tour'] =  $tour;
         // Get list with filter params
         $rows = ContentService::getBooking($params)->paginate(Consts::DEFAULT_PAGINATE_LIMIT);
         $this->responseData['rows'] =  $rows;
@@ -91,13 +86,10 @@ class BookingController extends Controller
      */
     public function edit(Booking $booking)
     {
-        $paramTaxonomys['status'] = Consts::TAXONOMY_STATUS['active'];
-        $paramTaxonomys['taxonomy'] = Consts::TAXONOMY['department'];
-        $this->responseData['departments'] = ContentService::getCmsTaxonomy($paramTaxonomys)->get();
-        $params_doctor['status'] = Consts::POST_STATUS['active'];
-        $params_doctor['is_type'] = Consts::POST_TYPE['doctor'];
-        $doctors = ContentService::getCmsPost($params_doctor)->get();
-        $this->responseData['doctors'] =  $doctors;
+        
+        $params_tour['status'] = Consts::POST_STATUS['active'];
+        $tour = ContentService::getCmsTour($params_tour)->get();
+        $this->responseData['tour'] =  $tour;
         $this->responseData['detail'] = $booking;
 
         return $this->responseView($this->viewPart . '.edit');
@@ -115,8 +107,7 @@ class BookingController extends Controller
         $request->validate([
             'name' => 'required',
             'phone' => 'required',
-            'department_id' => 'required',
-            'doctor_id' => 'required',
+            'tour_id' => 'required',
             'booking_date' => 'required'
         ]);
         $params = $request->all();

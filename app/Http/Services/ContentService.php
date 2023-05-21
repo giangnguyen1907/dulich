@@ -301,10 +301,8 @@ class ContentService
     public static function getBooking($params)
     {
         $query = Booking::select('tb_bookings.*')
-            ->selectRaw('tb_cms_taxonomys.title AS department')
-            ->selectRaw('tb_cms_posts.title AS doctor')
-            ->leftJoin('tb_cms_taxonomys', 'tb_cms_taxonomys.id', '=', 'tb_bookings.department_id')
-            ->leftJoin('tb_cms_posts', 'tb_cms_posts.id', '=', 'tb_bookings.doctor_id')
+            ->selectRaw('tb_tour.title AS tour')
+            ->leftJoin('tb_tour', 'tb_tour.id', '=', 'tb_bookings.tour_id')
 
             ->when(!empty($params['keyword']), function ($query) use ($params) {
                 $keyword = $params['keyword'];
@@ -314,12 +312,10 @@ class ContentService
                         ->orWhere('tb_bookings.phone', 'like', '%' . $keyword . '%');
                 });
             })
-            ->when(!empty($params['department_id']), function ($query) use ($params) {
-                $query->where('tb_bookings.department_id', '=', $params['department_id']);
+            ->when(!empty($params['tour_id']), function ($query) use ($params) {
+                $query->where('tb_bookings.tour_id', '=', $params['tour_id']);
             })
-            ->when(!empty($params['doctor_id']), function ($query) use ($params) {
-                return $query->where('tb_bookings.doctor_id', $params['doctor_id']);
-            })
+       
             ->when(!empty($params['status']), function ($query) use ($params) {
                 return $query->where('tb_bookings.status', $params['status']);
             })

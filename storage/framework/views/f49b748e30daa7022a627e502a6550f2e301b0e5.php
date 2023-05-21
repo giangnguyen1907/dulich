@@ -190,4 +190,4 @@
   </section>
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\phanlong\resources\views/admin/pages/cms_products/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('admin.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\xampp74\htdocs\dulich\resources\views/admin/pages/cms_products/index.blade.php ENDPATH**/ ?>

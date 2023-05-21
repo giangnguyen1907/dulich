@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2023 at 08:37 PM
+-- Generation Time: May 20, 2023 at 09:54 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -180,7 +180,8 @@ INSERT INTO `tb_admin_menus` (`id`, `parent_id`, `name`, `icon`, `url_link`, `io
 (71, 13, 'Cấu hình Website', 'fa fa-object-group', '#', 2, 'active', NULL, 1, 1, '2022-08-06 08:29:55', '2022-08-06 08:31:10'),
 (72, NULL, 'Quản lý khách hàng', 'fa fa-opencart', '#', 1, 'active', NULL, 1, 1, '2022-08-06 08:32:30', '2022-08-06 08:34:15'),
 (73, 72, 'Quản lý đăng ký tư vấn', NULL, 'call_request', 2, 'active', NULL, 1, 1, '2022-09-29 10:23:58', '2022-09-29 10:24:07'),
-(74, 51, 'Quản lý Tour du lịch', NULL, 'cms_products', 3, 'active', NULL, 1, 1, '2022-10-04 03:16:01', '2023-05-19 03:27:23');
+(74, 51, 'Quản lý Tour du lịch', NULL, 'cms_products', 3, 'active', NULL, 1, 1, '2022-10-04 03:16:01', '2023-05-19 03:27:23'),
+(75, 72, 'Quản lý đặt tour', NULL, 'bookings', NULL, 'active', NULL, 1, 1, '2023-05-20 19:19:35', '2023-05-20 19:20:45');
 
 -- --------------------------------------------------------
 
@@ -279,7 +280,7 @@ CREATE TABLE `tb_blocks` (
 
 INSERT INTO `tb_blocks` (`id`, `name`, `description`, `block_code`, `json_params`, `is_config`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
 (1, 'Khối hình ảnh quảng cáo', 'Block used for displaying banner advertising images, with or without additional content', 'banner', '{\r\n	\"template\":[\r\n		\"home.primary\",\r\n		\"page.default\"\r\n	],\r\n	\"layout\":[\r\n		\"slide\",\r\n		\"logo_partner\"\r\n	],\r\n	\"style\":[\r\n		\"d-block\",\r\n		\"d-none\"\r\n	]\r\n}', 1, 2, 'active', 1, 1, '2021-10-07 04:49:19', '2022-11-24 01:48:58'),
-(11, 'Khối nội dung tùy chọn', 'Blocks are used for optional content and styled accordingly', 'custom', '{\r\n	\"template\":[\r\n		\"home.primary\"\r\n	],\r\n	\"layout\":[\r\n		\"form\",\r\n                \"about_us\",\r\n		\"why_choose\"\r\n	]\r\n}', 1, 3, 'active', 1, 1, '2021-10-11 16:44:15', '2023-05-19 02:41:01'),
+(11, 'Khối nội dung tùy chọn', 'Blocks are used for optional content and styled accordingly', 'custom', '{\r\n	\"template\":[\r\n		\"home.primary\"\r\n	],\r\n	\"layout\":[\r\n		\"form\",\r\n                \"tour\",\r\n                \"about_us\",\r\n		\"why_choose\"\r\n	]\r\n}', 1, 3, 'active', 1, 1, '2021-10-11 16:44:15', '2023-05-20 16:21:32'),
 (20, 'Khối nội dung đầu trang', NULL, 'header', '{\r\n	\"template\":[\r\n		\"home.primary\",\r\n		\"post.detail\",\r\n		\"post.default\",\r\n		\"product.detail\",\r\n		\"product.default\",\r\n		\"service.detail\",\r\n		\"service.default\",\r\n		\"department.default\",\r\n		\"doctor.default\",\r\n		\"doctor.detail\",\r\n		\"resource.detail\",\r\n		\"resource.default\",\r\n		\"contact.default\",\r\n		\"cart.default\",\r\n		\"user.default\",\r\n		\"tags.default\",\r\n		\"search.default\",\r\n		\"page.about\"\r\n	],\r\n	\"layout\":[\r\n		\"default\"\r\n	]\r\n}', 1, 1, 'deactive', 1, 1, '2022-05-30 03:05:17', '2022-10-04 08:41:23'),
 (21, 'Khối nội dung chân trang', NULL, 'footer', '{\r\n	\"template\":[\r\n		\"home.primary\",\r\n		\"post.detail\",\r\n		\"post.default\",\r\n		\"product.detail\",\r\n		\"product.default\",\r\n		\"service.detail\",\r\n		\"service.default\",\r\n		\"department.default\",\r\n		\"doctor.default\",\r\n		\"doctor.detail\",\r\n		\"resource.detail\",\r\n		\"resource.default\",\r\n		\"contact.default\",\r\n		\"cart.default\",\r\n		\"user.default\",\r\n		\"tags.default\",\r\n		\"search.default\",\r\n		\"page.ads\",\r\n		\"page.mkt\",\r\n		\"page.website\",\r\n		\"page.content\",\r\n		\"page.seo\",\r\n		\"page.media\",\r\n		\"page.about\"\r\n	]\r\n}', 1, 99, 'deactive', 1, 1, '2022-05-30 03:06:28', '2022-10-04 08:41:28'),
 (22, 'Khối danh sách dịch vụ nổi bật', NULL, 'cms_service', '{\r\n	\"template\":[\r\n		\"home.primary\",\r\n		\"page.default\"\r\n	]\r\n}', 1, 5, 'active', 1, 1, '2022-05-31 07:25:43', '2022-10-04 04:19:15'),
@@ -397,7 +398,8 @@ INSERT INTO `tb_block_contents` (`id`, `parent_id`, `title`, `brief`, `content`,
 (264, 263, '#3', NULL, NULL, 'banner', '{\"layout\":null,\"style\":null}', '/data/cms-image/partner/doi-tac-4.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'active', 1, 1, '2022-11-24 01:50:45', '2022-11-24 01:50:45'),
 (265, 263, '#2', NULL, NULL, 'banner', '{\"layout\":null,\"style\":null}', '/data/cms-image/partner/doi-tac-2.png', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'active', 1, 1, '2022-11-24 01:50:45', '2022-11-24 01:50:45'),
 (266, 263, '#1', NULL, NULL, 'banner', '{\"layout\":null,\"style\":null}', '/data/cms-image/partner/doi-tac-1.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'active', 1, 1, '2022-11-24 01:50:46', '2022-11-24 01:50:46'),
-(267, NULL, 'Về chúng tôi', NULL, NULL, 'custom', '{\"layout\":\"about_us\",\"style\":null}', '/data/cms-image/about_us/aboutus.png', '/data/cms-image/about_us/aboutus.png', NULL, NULL, NULL, NULL, NULL, NULL, 'active', 1, 1, '2023-05-19 02:44:36', '2023-05-19 02:46:02');
+(267, NULL, 'Về chúng tôi', NULL, NULL, 'custom', '{\"layout\":\"about_us\",\"style\":null}', '/data/cms-image/about_us/aboutus.png', '/data/cms-image/about_us/aboutus.png', NULL, NULL, NULL, NULL, NULL, NULL, 'active', 1, 1, '2023-05-19 02:44:36', '2023-05-19 02:46:02'),
+(268, NULL, 'Tour du lịch', NULL, NULL, 'custom', '{\"layout\":\"tour\",\"style\":null}', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'active', 1, 1, '2023-05-20 16:22:41', '2023-05-20 16:52:10');
 
 -- --------------------------------------------------------
 
@@ -413,7 +415,7 @@ CREATE TABLE `tb_bookings` (
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `customer_note` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `department_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `tour_id` bigint(20) UNSIGNED DEFAULT NULL,
   `doctor_id` bigint(20) UNSIGNED DEFAULT NULL,
   `booking_date` date DEFAULT NULL,
   `booking_time` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -423,19 +425,20 @@ CREATE TABLE `tb_bookings` (
   `admin_created_id` bigint(20) UNSIGNED DEFAULT NULL,
   `admin_updated_id` bigint(20) UNSIGNED DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `soluong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
 -- Dumping data for table `tb_bookings`
 --
 
-INSERT INTO `tb_bookings` (`id`, `customer_id`, `name`, `email`, `phone`, `address`, `customer_note`, `department_id`, `doctor_id`, `booking_date`, `booking_time`, `admin_note`, `json_params`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
-(1, NULL, 'Thắng Nguyễn EDU', NULL, '0912 568 999', NULL, NULL, 10, 28, '2022-06-08', '04:00 PM', 'Thử comment', NULL, 'processed', NULL, 1, '2022-06-02 05:26:04', '2022-06-08 09:03:14'),
-(2, NULL, 'Thắng Nguyễn EDU', NULL, '0912 568 999', NULL, NULL, 10, 28, '2022-06-02', NULL, NULL, NULL, 'new', NULL, NULL, '2022-06-02 05:26:31', '2022-06-02 05:26:31'),
-(3, NULL, 'Thắng Nguyễn EDU', NULL, '0912 568 999', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit reprehenderit voluptates.', 10, 28, '2022-06-02', NULL, NULL, NULL, 'new', NULL, NULL, '2022-06-02 05:29:25', '2022-06-02 05:29:25'),
-(4, NULL, 'Thắng Nguyễn EDU', NULL, '0912 568 999', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit reprehenderit voluptates.', 10, 28, '2022-06-02', '06:00 PM', NULL, NULL, 'new', NULL, 1, '2022-06-02 05:34:29', '2022-06-08 09:04:26'),
-(6, NULL, 'Nguyễn Hữu Thắng', NULL, '098 226 9600', NULL, 'Thử chức năng booking bác sĩ chi tiết', 10, 28, '2022-06-30', '9:30 AM', NULL, NULL, 'new', NULL, NULL, '2022-06-21 08:48:51', '2022-06-21 08:48:51');
+INSERT INTO `tb_bookings` (`id`, `customer_id`, `name`, `email`, `phone`, `address`, `customer_note`, `tour_id`, `doctor_id`, `booking_date`, `booking_time`, `admin_note`, `json_params`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`, `soluong`) VALUES
+(1, NULL, 'Thắng Nguyễn EDU', NULL, '0912 568 999', NULL, NULL, 10, 28, '2022-06-08', '04:00 PM', 'Thử comment', NULL, 'processed', NULL, 1, '2022-06-02 05:26:04', '2022-06-08 09:03:14', 0),
+(2, NULL, 'Thắng Nguyễn EDU', NULL, '0912 568 999', NULL, NULL, 10, 28, '2022-06-02', NULL, NULL, NULL, 'new', NULL, NULL, '2022-06-02 05:26:31', '2022-06-02 05:26:31', 0),
+(3, NULL, 'Thắng Nguyễn EDU', NULL, '0912 568 999', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit reprehenderit voluptates.', 10, 28, '2022-06-02', NULL, NULL, NULL, 'new', NULL, NULL, '2022-06-02 05:29:25', '2022-06-02 05:29:25', 0),
+(4, NULL, 'Thắng Nguyễn EDU', NULL, '0912 568 999', NULL, 'Lorem ipsum dolor sit amet, consectetur adipisicing elit reprehenderit voluptates.', 10, 28, '2022-06-02', '06:00 PM', NULL, NULL, 'new', NULL, 1, '2022-06-02 05:34:29', '2022-06-08 09:04:26', 0),
+(6, NULL, 'Nguyễn Hữu Thắng', NULL, '098 226 9600', NULL, 'Thử chức năng booking bác sĩ chi tiết', 10, 28, '2022-06-30', '9:30 AM', NULL, NULL, 'new', NULL, NULL, '2022-06-21 08:48:51', '2022-06-21 08:48:51', 0);
 
 -- --------------------------------------------------------
 
@@ -710,8 +713,8 @@ CREATE TABLE `tb_menus` (
 
 INSERT INTO `tb_menus` (`id`, `parent_id`, `name`, `description`, `url_link`, `menu_type`, `system_code`, `json_params`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
 (24, NULL, 'Menu đầu trang', 'Menu link for main navbar', NULL, 'header', NULL, NULL, 1, 'active', 1, 1, '2022-05-10 10:29:01', '2022-08-10 06:52:06'),
-(30, 24, 'Về chúng tôi', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 2, 'active', 1, 1, '2022-05-18 16:49:38', '2022-10-13 03:43:56'),
-(31, 24, 'Liên hệ', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 7, 'active', 1, 2, '2022-05-18 16:52:41', '2022-10-13 03:43:56'),
+(30, 24, 'Về chúng tôi', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 1, 'active', 1, 1, '2022-05-18 16:49:38', '2023-05-20 16:08:36'),
+(31, 24, 'Liên hệ', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 5, 'active', 1, 2, '2022-05-18 16:52:41', '2023-05-20 16:08:36'),
 (33, NULL, 'LIÊN KẾT NHANH', 'Hiển thị liên kết cuối chân trang', NULL, 'footer', NULL, NULL, 2, 'active', 1, 1, '2022-05-18 18:47:23', '2022-09-13 10:06:49'),
 (34, 33, 'Chính sách vận chuyển', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 1, 'active', 1, 1, '2022-05-18 18:49:06', '2022-09-29 02:41:49'),
 (35, 33, 'Quy định đổi trả', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 2, 'active', 1, 1, '2022-05-18 18:49:24', '2022-09-29 02:41:57'),
@@ -719,15 +722,12 @@ INSERT INTO `tb_menus` (`id`, `parent_id`, `name`, `description`, `url_link`, `m
 (37, 36, 'Chính sách bảo mật thông tin', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 1, 'active', 1, 1, '2022-06-02 07:25:33', '2022-06-02 07:25:33'),
 (38, 36, 'Hướng dẫn tra cứu', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 2, 'active', 1, 1, '2022-06-02 07:25:44', '2022-06-02 07:25:44'),
 (46, 33, 'Hình thức thanh toán', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 3, 'active', 1, 1, '2022-08-05 10:15:12', '2022-09-29 02:42:05'),
-(58, 24, 'Trang chủ', NULL, 'http://deluxhome.test', NULL, NULL, '{\"target\":\"_self\"}', 1, 'active', 1, 1, '2022-08-17 09:34:50', '2022-10-13 03:43:56'),
-(59, 24, 'Sản phẩm', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 4, 'active', 1, 1, '2022-08-22 10:46:36', '2022-10-13 03:44:17'),
-(60, 24, 'Tin tức', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 6, 'active', 1, 1, '2022-09-12 07:50:46', '2022-10-13 03:43:56'),
+(60, 24, 'Cẩm nang du lịch', NULL, '/', NULL, NULL, '{\"target\":\"_self\"}', 4, 'active', 1, 1, '2022-09-12 07:50:46', '2023-05-20 16:08:36'),
 (62, 33, 'Xử lý khiếu nại', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 4, 'active', 1, 1, '2022-09-29 02:42:14', '2022-09-29 02:42:14'),
 (63, 33, 'Bảo mật thông tin', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 5, 'active', 1, 1, '2022-09-29 02:42:21', '2022-09-29 02:42:21'),
 (64, 33, 'Câu hỏi thường gặp', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 6, 'active', 1, 1, '2022-09-29 02:42:28', '2022-09-29 02:42:28'),
-(65, 59, 'Máy lọc nước', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 1, 'active', 1, 1, '2022-09-29 02:57:29', '2022-10-13 03:44:23'),
-(66, 59, 'Lõi lọc nước', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 2, 'active', 1, 1, '2022-09-29 02:57:39', '2022-10-13 03:44:29'),
-(67, 24, 'Dịch vụ bảo dưỡng & sửa chữa', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 3, 'active', 1, 1, '2022-10-13 03:43:51', '2022-10-13 03:43:56');
+(68, 24, 'Tour du lịch', NULL, '/', NULL, NULL, '{\"target\":\"_self\"}', 3, 'active', 1, 1, '2023-05-20 16:07:30', '2023-05-20 16:08:36'),
+(69, 24, 'Hoạt động', NULL, '#', NULL, NULL, '{\"target\":\"_self\"}', 2, 'active', 1, 1, '2023-05-20 16:08:22', '2023-05-20 16:08:36');
 
 -- --------------------------------------------------------
 
@@ -770,7 +770,8 @@ INSERT INTO `tb_modules` (`id`, `module_code`, `name`, `description`, `iorder`, 
 (21, 'web_source', 'Quản lý mã nhúng CSS - JS', NULL, 93, 'active', 1, 1, '2022-08-08 06:46:02', '2022-08-08 06:49:16'),
 (22, 'order_products', 'Quản lý đặt hàng', NULL, NULL, 'active', 1, 1, '2022-08-08 06:50:09', '2022-10-05 10:37:21'),
 (23, 'call_request', 'Quản lý đăng ký tư vấn', NULL, NULL, 'active', 1, 1, '2022-10-03 02:04:56', '2022-10-03 02:04:56'),
-(24, 'cms_products', 'Quản lý sản phẩm', NULL, NULL, 'active', 1, 1, '2022-10-06 08:31:20', '2022-10-06 08:31:20');
+(24, 'cms_products', 'Quản lý sản phẩm', NULL, NULL, 'active', 1, 1, '2022-10-06 08:31:20', '2022-10-06 08:31:20'),
+(25, 'bookings', 'Quản lý đặt tour', NULL, NULL, 'active', 1, 1, '2023-05-20 19:18:40', '2023-05-20 19:20:32');
 
 -- --------------------------------------------------------
 
@@ -1013,7 +1014,7 @@ CREATE TABLE `tb_pages` (
 --
 
 INSERT INTO `tb_pages` (`id`, `name`, `title`, `keyword`, `description`, `content`, `route_name`, `alias`, `json_params`, `iorder`, `status`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
-(1, 'Trang chủ', NULL, NULL, NULL, NULL, 'frontend.home', 'trang-chu', '{\"og_image\":null,\"template\":\"home.primary\",\"block_content\":[\"74\",\"267\",\"80\",\"263\",\"19\",\"261\"]}', 1, 'active', 1, 1, '2022-03-23 09:35:33', '2023-05-19 11:36:37'),
+(1, 'Trang chủ', NULL, NULL, NULL, NULL, 'frontend.home', 'trang-chu', '{\"og_image\":null,\"template\":\"home.primary\",\"block_content\":[\"74\",\"267\",\"80\",\"268\",\"19\"]}', 1, 'active', 1, 1, '2022-03-23 09:35:33', '2023-05-20 16:23:14'),
 (3, 'Bài viết', 'Bài viết mới', NULL, NULL, NULL, 'frontend.cms.post', 'bai-viet', '{\"og_image\":null,\"template\":\"post.default\",\"block_content\":[\"112\",\"94\",\"93\"]}', 2, 'active', 1, 1, '2022-06-02 11:20:50', '2022-09-24 08:59:08'),
 (4, 'Chi tiết bài viết', NULL, NULL, NULL, NULL, 'frontend.cms.post.detail', 'chi-tiet-bai-viet', '{\"og_image\":null,\"template\":\"post.detail\",\"block_content\":[\"112\",\"94\",\"93\"]}', 3, 'active', 1, 1, '2022-06-03 02:52:10', '2022-09-23 03:48:03'),
 (5, 'Dịch vụ', 'Dịch vụ', NULL, NULL, NULL, 'frontend.cms.service', 'dich-vu', '{\"og_image\":null,\"template\":\"service.default\",\"block_content\":[\"94\"]}', 4, 'active', 1, 1, '2022-06-03 03:48:58', '2022-10-05 07:03:54'),
@@ -1114,6 +1115,17 @@ CREATE TABLE `tb_tour` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `tb_tour`
+--
+
+INSERT INTO `tb_tour` (`id`, `title`, `brief`, `content`, `gia_ve`, `lich_trinh`, `hanh_trinh`, `image`, `gia_xe`, `gia_hdvien`, `gia_baogom`, `gia_chuaco`, `json_params`, `status`, `iorder`, `admin_created_id`, `admin_updated_id`, `created_at`, `updated_at`) VALUES
+(1, 'Du lịch pansipan', 'aaaaaaaaaaaaaaaaa', 'aaaa', 100000, 2, 'Lào cai-ăn uống-leo núi-vê Hà Nôik', '/data/cms-image/tourdulich/dulich1.png', 200000, 500000, 'tham quan', 'hướng dẫn viên', '{\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 'active', 1, 1, 1, '2023-05-20 10:49:58', '2023-05-20 17:01:50'),
+(2, 'Du lịch rừng', NULL, NULL, 100000, 1, NULL, '/data/cms-image/tourdulich/dulich4.png', 150000, 300000, NULL, NULL, '{\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 'active', 2, 1, 1, '2023-05-20 17:02:36', '2023-05-20 17:02:40'),
+(3, 'Du lịch Nam Kang Ho Tao', NULL, NULL, 50000, 1, NULL, '/data/cms-image/tourdulich/dulich3.png', 300000, 200000, NULL, NULL, '{\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 'active', NULL, 1, 1, '2023-05-20 17:03:54', '2023-05-20 17:03:54'),
+(4, 'Du lịch Canyoning', NULL, NULL, 400000, 1, NULL, '/data/cms-image/tourdulich/dulich2.png', 100000, 150000, NULL, NULL, '{\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 'active', NULL, 1, 1, '2023-05-20 17:04:41', '2023-05-20 17:04:41'),
+(5, 'Du lịch 2', 'Du lịch cảnh thiên nhiên hùng vĩ', NULL, 100000, 1, NULL, '/data/cms-image/tourdulich/dulich2.png', 100000, 100000, NULL, NULL, '{\"seo_title\":null,\"seo_keyword\":null,\"seo_description\":null}', 'active', NULL, 1, 1, '2023-05-20 17:19:34', '2023-05-20 18:29:33');
+
 -- --------------------------------------------------------
 
 --
@@ -1153,7 +1165,9 @@ INSERT INTO `tb_trackers` (`id`, `ip`, `visit_date`, `visit_time`, `hits`, `uri`
 (15, '127.0.0.1', '2023-05-10', '11:09:36', 3, NULL, NULL, NULL),
 (16, '127.0.0.1', '2023-05-11', '14:16:06', 1, NULL, NULL, NULL),
 (17, '127.0.0.1', '2023-05-18', '09:37:36', 3, NULL, NULL, NULL),
-(18, '127.0.0.1', '2023-05-19', '18:33:27', 32, NULL, NULL, NULL);
+(18, '127.0.0.1', '2023-05-19', '18:33:27', 32, NULL, NULL, NULL),
+(19, '127.0.0.1', '2023-05-20', '23:59:55', 11, NULL, NULL, NULL),
+(20, '127.0.0.1', '2023-05-21', '02:52:07', 69, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -1533,7 +1547,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `tb_admin_menus`
 --
 ALTER TABLE `tb_admin_menus`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=76;
 
 --
 -- AUTO_INCREMENT for table `tb_affiliate_historys`
@@ -1557,7 +1571,7 @@ ALTER TABLE `tb_blocks`
 -- AUTO_INCREMENT for table `tb_block_contents`
 --
 ALTER TABLE `tb_block_contents`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=268;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=269;
 
 --
 -- AUTO_INCREMENT for table `tb_bookings`
@@ -1605,13 +1619,13 @@ ALTER TABLE `tb_logs`
 -- AUTO_INCREMENT for table `tb_menus`
 --
 ALTER TABLE `tb_menus`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=70;
 
 --
 -- AUTO_INCREMENT for table `tb_modules`
 --
 ALTER TABLE `tb_modules`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `tb_module_functions`
@@ -1659,13 +1673,13 @@ ALTER TABLE `tb_roles`
 -- AUTO_INCREMENT for table `tb_tour`
 --
 ALTER TABLE `tb_tour`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `tb_trackers`
 --
 ALTER TABLE `tb_trackers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `tb_widgets`
