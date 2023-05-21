@@ -1,6 +1,6 @@
-@extends('frontend.layouts.default')
 
-@php
+
+<?php
 $title = $detail->json_params->title->{$locale} ?? $detail->title;
 $brief = $detail->json_params->brief->{$locale} ?? null;
 $content = $detail->json_params->content->{$locale} ?? null;
@@ -20,12 +20,12 @@ $seo_keyword = $detail->json_params->seo_keyword ?? null;
 $seo_description = $detail->json_params->seo_description ?? $brief;
 $seo_image = $image ?? ($image_thumb ?? null);
 
-@endphp
+?>
 
 
 
-@section('content')
-{{-- Print all content by [module - route - page] without blocks content at here --}}
+<?php $__env->startSection('content'); ?>
+
 <div class="row row-large row-divided " style="
     padding-top: 20px;
 ">
@@ -39,19 +39,19 @@ $seo_image = $image ?? ($image_thumb ?? null);
         <header class="entry-header">
           <div class="entry-header-text entry-header-text-top text-center">
             <h6 class="entry-category is-xsmall">
-              <a href="{{ $alias_category }}" rel="category tag">{{ $taxonomy_title ?? '' }}</a>
+              <a href="<?php echo e($alias_category); ?>" rel="category tag"><?php echo e($taxonomy_title ?? ''); ?></a>
             </h6>
 
-            <h1 class="entry-title">{{ $title }}</h1>
+            <h1 class="entry-title"><?php echo e($title); ?></h1>
             <div class="entry-divider is-divider small"></div>
 
             <div class="entry-meta uppercase is-xsmall">
-              <span class="posted-on">Posted on <a href="#" rel="bookmark"><time class="entry-date published" datetime="2023-04-26T07:56:46+00:00">{{ $date }}</time><time class="updated" datetime="2023-04-26T08:00:21+00:00">{{ $date }}</time></a></span><span class="byline"></span>
+              <span class="posted-on">Posted on <a href="#" rel="bookmark"><time class="entry-date published" datetime="2023-04-26T07:56:46+00:00"><?php echo e($date); ?></time><time class="updated" datetime="2023-04-26T08:00:21+00:00"><?php echo e($date); ?></time></a></span><span class="byline"></span>
             </div>
           </div>
           <div class="entry-image relative">
             <a href="https://hoanglienpark.com/luu-tru/1662">
-              <img src="{!! $image ?? '' !!}" class="attachment-large size-large wp-post-image" alt="" decoding="async" /></a>
+              <img src="<?php echo $image ?? ''; ?>" class="attachment-large size-large wp-post-image" alt="" decoding="async" /></a>
             <div class="badge absolute top post-date badge-outline">
               <!-- <div class="badge-inner">
                 <span class="post-date-day">26</span><br>
@@ -63,7 +63,8 @@ $seo_image = $image ?? ($image_thumb ?? null);
         <div class="entry-content single-page">
 
 
-          {!! $content ?? '' !!}
+          <?php echo $content ?? ''; ?>
+
         </div>
 
 
@@ -129,12 +130,12 @@ $seo_image = $image ?? ($image_thumb ?? null);
         <div class="is-divider small"></div>
         <div class="textwidget">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt.</div>
       </aside> -->
-      @if (isset($relatedPosts) && count($relatedPosts) > 0)
+      <?php if(isset($relatedPosts) && count($relatedPosts) > 0): ?>
       <aside id="flatsome_recent_posts-17" class="widget flatsome_recent_posts"> <span class="widget-title "><span>Latest Posts</span></span>
         <div class="is-divider small"></div>
         <ul>
-          @foreach ($relatedPosts as $item)
-          @php
+          <?php $__currentLoopData = $relatedPosts; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+          <?php
           $title = $item->json_params->title->{$locale} ?? $item->title;
           $brief = $item->json_params->brief->{$locale} ?? $item->brief;
           $image = $item->image_thumb != '' ? $item->image_thumb : ($item->image != '' ? $item->image : null);
@@ -142,7 +143,7 @@ $seo_image = $image ?? ($image_thumb ?? null);
           // Viet ham xu ly lay slug
           $alias_category = App\Helpers::generateRoute(App\Consts::TAXONOMY['post'], $item->taxonomy_title, $item->taxonomy_id);
           $alias = App\Helpers::generateRoute(App\Consts::TAXONOMY['post'], $title, $item->id, 'detail');
-          @endphp
+          ?>
           <li class="recent-blog-posts-li">
             <div class="flex-row recent-blog-posts align-top pt-half pb-half">
               <div class="flex-col mr-half">
@@ -150,23 +151,23 @@ $seo_image = $image ?? ($image_thumb ?? null);
                   <div class="badge-inner bg-fill">
                     <!-- <span class="post-date-day">26</span><br>
                     <span class="post-date-month is-xsmall">Th4</span> -->
-                    <a href="{{ $alias }}"><img src="{{ $image }}" ></a>
+                    <a href="<?php echo e($alias); ?>"><img src="<?php echo e($image); ?>" ></a>
                   </div>
                 </div>
               </div>
               <div class="flex-col flex-grow">
-                <a href="{{ $alias }}" title="{{ Str::limit($title, 70) }}">{{ Str::limit($title, 70) }}</a>
-                <span class="post_comments op-7 block is-xsmall"><a href="{{ $alias }}"></a></span>
+                <a href="<?php echo e($alias); ?>" title="<?php echo e(Str::limit($title, 70)); ?>"><?php echo e(Str::limit($title, 70)); ?></a>
+                <span class="post_comments op-7 block is-xsmall"><a href="<?php echo e($alias); ?>"></a></span>
               </div>
             </div>
           </li>
-          @endforeach
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
 
 
         </ul>
       </aside>
-      @endif
+      <?php endif; ?>
 
       <!-- <aside id="recent-comments-5" class="widget widget_recent_comments"><span class="widget-title "><span>Recent Comments</span></span>
         <div class="is-divider small"></div>
@@ -195,5 +196,6 @@ $seo_image = $image ?? ($image_thumb ?? null);
 </div>
 
 
-{{-- End content --}}
-@endsection
+
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('frontend.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\dulich\resources\views/frontend/pages/post/detail.blade.php ENDPATH**/ ?>
