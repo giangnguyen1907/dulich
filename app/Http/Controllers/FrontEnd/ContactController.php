@@ -8,6 +8,7 @@ use App\Models\Contact;
 use App\Models\Feedback;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
@@ -96,13 +97,32 @@ class ContactController extends Controller
                 'name' => 'required',
                 'phone' => 'required',
                 'tour_id' => 'required',
-                
             ]);
-            
+
+            $targetDir = "images/feedback/";
+            //$allowTypes = array('jpg','png','jpeg','gif');
+            if (!file_exists($targetDir)) {
+                if (mkdir($targetDir)) {
+                    //echo "Tạo thư mục thành công.";
+                }
+            }
+
+            if ($_FILES['image']['name']) {
+                $request->validate([
+                    'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+                ]);
+
+                $imageName = time() . '.' . $request->image->extension();
+
+                $request->image->move(public_path($targetDir), $imageName);
+
+                $path_image = $targetDir . $imageName;
+            }
+
             $params = $request->all();
             $params['status'] = 'new';
 
-           
+
 
             $feedback = Feedback::create($params);
 
@@ -123,5 +143,4 @@ class ContactController extends Controller
             abort(422, __($ex->getMessage()));
         }
     }
-
 }

@@ -46,6 +46,10 @@ Route::namespace('FrontEnd')->group(function () {
   //vechungtoi 
   Route::get('about-us', 'CmsController@about')->name('frontend.custom');
   // Tags
+
+  //danh gia 
+
+  Route::post('feedback', 'ContactController@feedback')->name('frontend.feedback');
   // Route::get('tags/{alias?}', 'CmsController@tags')->name('frontend.cms.tags');
  
   // Contact

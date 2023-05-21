@@ -51,8 +51,9 @@ $k=0;
 
 
         @if ($rows)
-        @foreach ($rows as $item)
+        @foreach ($rows as $key=> $item)
         @php
+        $key++;
         $title = $item->json_params->title->{$locale} ?? $item->title;
         $brief = $item->json_params->brief->{$locale} ?? $item->brief;
         $image = $item->image_thumb != '' ? $item->image_thumb : ($item->image != '' ? $item->image : null);
@@ -62,41 +63,25 @@ $k=0;
         @endphp
 
         <div class="row row-full-width align-middle" id="row-1398400038">
-
-
-          <div id="col-1482593696" class="col medium-1 small-12 large-1">
+          <div id="col-28666092" class="col medium-1 small-12 large-1">
             <div class="col-inner">
-
-
-
-              <div id="text-1989939176" class="text">
-
-
-                <h1>{{ $k }}</h1>
-
-                <style>
-                  #text-1989939176 {
+              <div id="text-2426876569" class="text">
+                  <h1>{{ $key < 10  ? '0'.$key : $key }}</h1>
+                  <style>
+                  #text-2426876569 {
                     color: rgb(2, 145, 63);
                   }
-
-                  #text-1989939176>* {
+                  #text-2426876569 > * {
                     color: rgb(2, 145, 63);
                   }
-                </style>
+                  </style>
               </div>
-
               <div class="is-divider divider clearfix" style="margin-top:0.3em;margin-bottom:0.3em;background-color:rgb(160, 201, 229);"></div>
-
-
             </div>
           </div>
-
+          
           <div id="col-1972579741" class="col medium-5 small-12 large-5">
             <div class="col-inner">
-
-
-
-
 
               <div class="img has-hover x md-x lg-x y md-y lg-y" id="image_241075376">
                 <div class="img-inner dark">

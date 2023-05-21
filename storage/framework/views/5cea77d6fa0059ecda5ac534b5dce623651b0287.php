@@ -120,7 +120,7 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 																		<span class="frm_required" aria-hidden="true"></span>
 																	</label>
 																	<input type="text" id="field_29yf4d" name="tour" value="<?php echo e($title); ?>" disabled />
-																	<input type="hidden" id="field_29yf4d" name="tour_id" value="<?php echo e($item->id); ?>" />
+																	<input type="hidden" id="field_29yf4d" name="tour_id" value="<?php echo e($item->id); ?>"/>
 																</div>
 																<div id="frm_field_14_container" class="frm_form_field form-field  frm_top_container frm3">
 																	<label for="field_8ho5o" id="field_8ho5o_label" class="frm_primary_label">Date
@@ -145,12 +145,12 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 																	<input type="number" id="field_1pbe7" name="soluong" value="" placeholder="số vé" min="0" max="9999999" step="any" />
 																</div>
 
-																<div id="frm_field_18_container" class="frm_form_field form-field  frm_top_container frm6">
-																	<label for="field_escis" id="field_escis_label" class="frm_primary_label">Trẻ em
-																		<span class="frm_required" aria-hidden="true"></span>
-																	</label>
-																	<input type="number" id="field_escis" name="item_meta[18]" value="" data-invmsg="Number is invalid" aria-invalid="false" min="0" max="9999999" step="any" />
-																</div>
+															 	<div id="frm_field_18_container" class="frm_form_field form-field  frm_top_container frm6">
+				                          <label for="field_escis" id="field_escis_label" class="frm_primary_label">Trẻ em
+				                            <span class="frm_required" aria-hidden="true"></span>
+				                          </label>
+				                          <input type="number" id="field_escis" name="item_meta[18]" value="" data-invmsg="Number is invalid" aria-invalid="false" min="0" max="9999999" step="any" />
+		                        		</div> 
 
 																<div id="frm_field_20_container" class="frm_form_field form-field  frm_top_container">
 																	<label for="field_bg3xc" id="field_bg3xc_label" class="frm_primary_label">Ghi chú
@@ -254,39 +254,14 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 							</div>
 							<div class="panel entry-content" id="tab_Đánh-giá-của-khách-du-lịch">
 								<div class="row">
-
+										
 									<div id="col-111111" class="col litexxts medium-6 small-12 large-6">
 										<div class="col-inner">
 											<h3><?php echo e($title); ?></h3>
 											<p class="content-tour"><?php echo e($brief); ?></p>
 											<div class="line-tour"></div>
 
-											<?php
-											$params2['status'] = 'active';
-											$rows2 = App\Http\Services\ContentService::getFeedback($params2)->get();
-							
-											?>
-											<?php $__currentLoopData = $rows2; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fb): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 											<div class="danhgia-tour">
-
-												<div class="nguoidungdanhgia">
-
-													<div class="avatar-rating">
-														<img src="">
-													</div>
-													<div class="thongtin-tacgia">
-														<h4><?php echo e($fb->name); ?></h4>
-
-														<span class="<?php echo e($fb->rate >=1 ? 'saodanhgia' : ''); ?>">✭</span><span class="<?php echo e($fb->rate >=2 ? 'saodanhgia' : ''); ?>">✭</span><span class="<?php echo e($fb->rate >=3 ? 'saodanhgia' : ''); ?>">✭</span><span class="<?php echo e($fb->rate >=4 ? 'saodanhgia' : ''); ?>">✭</span><span class="<?php echo e($fb->rate >=5 ? 'saodanhgia' : ''); ?>">✭</span>
-													</div>
-												</div>
-
-												<div class="noidungdanhgia"><?php echo e($fb->content); ?></div>
-
-											</div>
-											<?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
-											<!-- <div class="danhgia-tour">
 
 												<div class="nguoidungdanhgia">
 													
@@ -301,7 +276,24 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 
 												<div class="noidungdanhgia">Lorem ipsum dolor sit amet consectetur. Mauris ut mauris fermentum vitae dictum. Rutrum donec non eget nam dolor augue turpis. Cras ut suscipit velit volutpat feugiat aliquam donec a aliquet. Facilisi nunc quam commodo at volutpat. At egestas et ut lorem. Lorem ipsum dolor sit amet consectetur. Mauris ut mauris fermentum vitae dictum. Rutrum donec non eget nam dolor augue turpis. Cras ut suscipit velit volutpat feugiat aliquam donec a aliquet. </div>
 
-											</div> -->
+											</div>
+
+											<div class="danhgia-tour">
+
+												<div class="nguoidungdanhgia">
+													
+													<div class="avatar-rating">
+															<img src="">
+													</div>
+													<div class="thongtin-tacgia">
+														<h4>MS.Hương Anh</h4>
+														<span class="saodanhgia">✭</span><span class="saodanhgia">✭</span><span class="saodanhgia">✭</span><span class="saodanhgia">✭</span><span class="saodanhgia">✭</span>
+													</div>
+												</div>
+
+												<div class="noidungdanhgia">Lorem ipsum dolor sit amet consectetur. Mauris ut mauris fermentum vitae dictum. Rutrum donec non eget nam dolor augue turpis. Cras ut suscipit velit volutpat feugiat aliquam donec a aliquet. Facilisi nunc quam commodo at volutpat. At egestas et ut lorem. Lorem ipsum dolor sit amet consectetur. Mauris ut mauris fermentum vitae dictum. Rutrum donec non eget nam dolor augue turpis. Cras ut suscipit velit volutpat feugiat aliquam donec a aliquet. </div>
+
+											</div>
 
 										</div>
 									</div>
@@ -321,13 +313,13 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 
 											<div style="clear: both;"></div>
 											<div class="frm_forms  with_frm_style frm_style_formidable-style" id="frm_form_1_container">
-												<form enctype="multipart/form-data" action="<?php echo e(route('frontend.feedback')); ?>" method="post" class="frm-show-form " id="form_contact-form">
+												<form enctype="multipart/form-data" action="<?php echo e(route('frontend.booking.store')); ?>" method="post" class="frm-show-form " id="form_contact-form">
 													<?php echo csrf_field(); ?>
 													<input type="hidden" name="tour_id" value="<?php echo e($tour_id); ?>">
-													<input type="hidden" id="sosao_<?php echo e($tour_id); ?>" name="rate" value="5">
+													<input type="hidden" id="sosao_<?php echo e($tour_id); ?>" name="sosao" value="5">
 													<div class="frm_form_fields ">
 														<fieldset>
-
+															
 															<div class="frm_fields_container">
 
 																<div id="frm_field_1_container" class="frm_form_field form-field  frm_top_container frm12 frm_first">
@@ -353,14 +345,14 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 																		<span class="frm_required" aria-hidden="true"></span>
 																	</label>
 																	<input type="text" id="field_29yf4d" name="tour" value="<?php echo e($title); ?>" disabled />
-																	<input type="hidden" id="field_29yf4d" name="tour_id" value="<?php echo e($item->id); ?>" />
+																	<input type="hidden" id="field_29yf4d" name="tour_id" value="<?php echo e($item->id); ?>"/>
 																</div>
-
+																
 																<div id="frm_field_20_container" class="frm_form_field form-field  frm_top_container">
 																	<label for="field_bg3xc" id="field_bg3xc_label" class="frm_primary_label">
 																		<span class="frm_required" aria-hidden="true"></span>
 																	</label>
-																	<textarea name="content" placeholder="Nhập bình luận" rows="6" cols="30"></textarea>
+																	<textarea name="customer_note" placeholder="Nhập bình luận" rows="6" cols="30"></textarea>
 																</div>
 
 																<div id="frm_field_3_container" class="frm_form_field form-field  frm_top_container frm12">
@@ -393,122 +385,83 @@ $rows = App\Http\Services\ContentService::getCmsTour($params)->get();
 	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 	<script type="text/javascript">
-		function chonDanhGia(tour, sao) {
+		function chonDanhGia(tour,sao){
 
-			$("#sosao_" + tour).val(sao);
-
-			if (sao == 5) {
-				$('#danhgia' + tour + '-1').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-2').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-3').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-4').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-5').attr('style', 'color: #EC3237;');
-			} else if (sao == 4) {
-				$('#danhgia' + tour + '-1').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-2').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-3').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-4').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-5').attr('style', '');
-			} else if (sao == 3) {
-				$('#danhgia' + tour + '-1').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-2').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-3').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-4').attr('style', '');
-				$('#danhgia' + tour + '-5').attr('style', '');
-			} else if (sao == 2) {
-				$('#danhgia' + tour + '-1').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-2').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-3').attr('style', '');
-				$('#danhgia' + tour + '-4').attr('style', '');
-				$('#danhgia' + tour + '-5').attr('style', '');
-			} else if (sao == 2) {
-				$('#danhgia' + tour + '-1').attr('style', 'color: #EC3237;');
-				$('#danhgia' + tour + '-2').attr('style', '');
-				$('#danhgia' + tour + '-3').attr('style', '');
-				$('#danhgia' + tour + '-4').attr('style', '');
-				$('#danhgia' + tour + '-5').attr('style', '');
+			$("#sosao_"+tour).val(sao);
+			
+			if(sao == 5){
+				$('#danhgia'+tour+'-1').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-2').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-3').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-4').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-5').attr('style','color: #EC3237;');
+			}else if(sao==4){
+				$('#danhgia'+tour+'-1').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-2').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-3').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-4').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-5').attr('style','');
+			}else if(sao==3){
+				$('#danhgia'+tour+'-1').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-2').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-3').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-4').attr('style','');
+				$('#danhgia'+tour+'-5').attr('style','');
+			}else if(sao==2){
+				$('#danhgia'+tour+'-1').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-2').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-3').attr('style','');
+				$('#danhgia'+tour+'-4').attr('style','');
+				$('#danhgia'+tour+'-5').attr('style','');
+			}else if(sao==2){
+				$('#danhgia'+tour+'-1').attr('style','color: #EC3237;');
+				$('#danhgia'+tour+'-2').attr('style','');
+				$('#danhgia'+tour+'-3').attr('style','');
+				$('#danhgia'+tour+'-4').attr('style','');
+				$('#danhgia'+tour+'-5').attr('style','');
 			}
 		}
+
 	</script>
 	<div class="loading-spin dark large centered"></div>
 
-	<style type="text/css">
-		h3 {
-			font-family: 'San Francisco Display';
-			font-style: normal;
-			font-weight: 700;
-			font-size: 32px;
-			line-height: 40px;
-			leading-trim: both;
-			text-edge: cap;
-			color: #02913F;
-		}
+<style type="text/css">
+	h3{
+		font-family: 'San Francisco Display';
+		font-style: normal;
+		font-weight: 700;
+		font-size: 32px;
+		line-height: 40px;
+		leading-trim: both;
+		text-edge: cap;
+		color: #02913F;}
+	p.content-tour{color: #6C6C6C;}
+	.line-tour{height: 8px;background: #A0C9E5;}
+	.tab-panels{background: #F6FAFC;padding: 25px;}
+	
+	.nguoidungdanhgia{
+		display: flex;
+		align-items: flex-start;
+		flex: none;
+		order: 0;
+		flex-grow: 0;
+	}
+	.danhgia-tour{gap: 10px;border-radius: 4px;padding: 30px;background: #F0F0F0;margin-bottom: 10px}
 
-		p.content-tour {
-			color: #6C6C6C;
-		}
-
-		.line-tour {
-			height: 8px;
-			background: #A0C9E5;
-		}
-
-		.tab-panels {
-			background: #F6FAFC;
-			padding: 25px;
-		}
-
-		.nguoidungdanhgia {
-			display: flex;
-			align-items: flex-start;
-			flex: none;
-			order: 0;
-			flex-grow: 0;
-		}
-
-		.danhgia-tour {
-			gap: 10px;
-			border-radius: 4px;
-			padding: 30px;
-			background: #F0F0F0;
-			margin-bottom: 10px
-		}
-
-		.avatar-rating {
-			margin-right: 15px;
-			width: 75px;
-			height: 75px;
-			background: url(.jpg), #D9D9D9;
-			border-radius: 4px;
-		}
-
-		.thongtin-tacgia h4 {
-			color: #02913F;
-		}
-
-		.saodanhgia {
-			color: #EC3237;
-		}
-
-		.danhgiacuaban {
-			font-weight: 700;
-			font-size: 24px;
-			line-height: 38px;
-			color: #6C6C6C;
-			float: left;
-		}
-
-		.nhapsosao {
-			font-size: 24px;
-			line-height: 38px;
-			float: right;
-		}
-
-		.danhgiasao {
-			margin-right: 5px
-		}
-	</style>
+.avatar-rating{
+	margin-right: 15px;
+	width: 75px;
+	height: 75px;
+	background: url(.jpg), #D9D9D9;
+	border-radius: 4px;
+}
+.thongtin-tacgia h4{color: #02913F;}
+.saodanhgia{color: #EC3237;}
+.danhgiacuaban{font-weight: 700;font-size: 24px;line-height: 38px;color: #6C6C6C;float: left;}
+.nhapsosao{font-size: 24px;line-height: 38px;float: right;}
+.danhgiasao{margin-right: 5px}
+</style>
 
 </div>
 <?php $__env->stopSection(); ?>
-<?php echo $__env->make('frontend.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\xampp\htdocs\dulich\resources\views/frontend/pages/tour/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('frontend.layouts.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH E:\xampp74\htdocs\dulich\resources\views/frontend/pages/tour/index.blade.php ENDPATH**/ ?>
