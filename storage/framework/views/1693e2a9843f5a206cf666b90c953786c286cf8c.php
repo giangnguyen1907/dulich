@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ $locale ?? 'vi' }}">
+<html lang="<?php echo e($locale ?? 'vi'); ?>">
 
 <head>
 
@@ -14,39 +14,40 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>
-    {{ $seo_title ?? ($page->title ?? ($web_information->information->seo_title ?? '')) }}
+    <?php echo e($seo_title ?? ($page->title ?? ($web_information->information->seo_title ?? ''))); ?>
+
   </title>
-  <link rel="icon" href="{{ $web_information->image->favicon ?? '' }}" type="image/x-icon">
-  {{-- Print SEO --}}
-  @php
+  <link rel="icon" href="<?php echo e($web_information->image->favicon ?? ''); ?>" type="image/x-icon">
+  
+  <?php
   $seo_title = $seo_title ?? ($page->title ?? ($web_information->information->seo_title ?? ''));
   $seo_keyword = $seo_keyword ?? ($page->keyword ?? ($web_information->information->seo_keyword ?? ''));
   $seo_description = $seo_description ?? ($page->description ?? ($web_information->information->seo_description ?? ''));
   $seo_image = $seo_image ?? ($page->json_params->og_image ?? ($web_information->image->seo_og_image ?? ''));
-  @endphp
-  <meta name="description" content="{{ $seo_description }}" />
-  <meta name="keywords" content="{{ $seo_keyword }}" />
-  <meta name="news_keywords" content="{{ $seo_keyword }}" />
-  <meta property="og:image" content="{{ $seo_image }}" />
-  <meta property="og:title" content="{{ $seo_title }}" />
-  <meta property="og:description" content="{{ $seo_description }}" />
-  <meta property="og:url" content="{{ Request::fullUrl() }}" />
-  {{-- End Print SEO --}}
-  {{-- Include style for app --}}
-  @include('frontend.panels.styles')
-  {{-- Styles custom each page --}}
-  @stack('style')
+  ?>
+  <meta name="description" content="<?php echo e($seo_description); ?>" />
+  <meta name="keywords" content="<?php echo e($seo_keyword); ?>" />
+  <meta name="news_keywords" content="<?php echo e($seo_keyword); ?>" />
+  <meta property="og:image" content="<?php echo e($seo_image); ?>" />
+  <meta property="og:title" content="<?php echo e($seo_title); ?>" />
+  <meta property="og:description" content="<?php echo e($seo_description); ?>" />
+  <meta property="og:url" content="<?php echo e(Request::fullUrl()); ?>" />
+  
+  
+  <?php echo $__env->make('frontend.panels.styles', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+  
+  <?php echo $__env->yieldPushContent('style'); ?>
 </head>
-{{-- bcrypt(123456) --}}
+
 <body class="home page-template page-template-page-transparent-header-light page-template-page-transparent-header-light-php page page-id-35 lightbox nav-dropdown-has-arrow nav-dropdown-has-shadow nav-dropdown-has-border">
 
-  {{-- Include svg for app --}}
-  @include('frontend.panels.svg')
+  
+  <?php echo $__env->make('frontend.panels.svg', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
   <div id="wrapper">
 
 
-    @include('frontend.blocks.header.styles.default')
+    <?php echo $__env->make('frontend.blocks.header.styles.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
     <main id="main" class="">
 
@@ -54,16 +55,17 @@
       <div id="content" role="main">
 
         
-        {{-- Foreach and print block content by current page --}}
-        @if (isset($blocks_selected))
-        @foreach ($blocks_selected as $block)
-        @if (\View::exists('frontend.blocks.' . $block->block_code . '.index'))
-        @include('frontend.blocks.' . $block->block_code . '.index')
-        @else
-        {{ 'View: frontend.blocks.' . $block->block_code . '.index do not exists!' }}
-        @endif
-        @endforeach
-        @endif
+        
+        <?php if(isset($blocks_selected)): ?>
+        <?php $__currentLoopData = $blocks_selected; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $block): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <?php if(\View::exists('frontend.blocks.' . $block->block_code . '.index')): ?>
+        <?php echo $__env->make('frontend.blocks.' . $block->block_code . '.index', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+        <?php else: ?>
+        <?php echo e('View: frontend.blocks.' . $block->block_code . '.index do not exists!'); ?>
+
+        <?php endif; ?>
+        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+        <?php endif; ?>
 
 
         <section class="section" id="section_1655152950">
@@ -876,14 +878,14 @@
 
     </main>
 
-    @include('frontend.blocks.footer.styles.default')
+    <?php echo $__env->make('frontend.blocks.footer.styles.default', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
   </div>
 
 
-  {{-- Include scripts --}}
-  @include('frontend.panels.scripts')
+  
+  <?php echo $__env->make('frontend.panels.scripts', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
 </body>
 
-</html>
+</html><?php /**PATH D:\xampp\htdocs\dulich\resources\views/frontend/layouts/default.blade.php ENDPATH**/ ?>
