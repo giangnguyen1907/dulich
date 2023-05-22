@@ -118,9 +118,10 @@ class ContactController extends Controller
 
                 $path_image = $targetDir . $imageName;
             }
-
+             
             $params = $request->all();
             $params['status'] = 'new';
+            $params['image'] = $path_image;
 
 
 

@@ -1,5 +1,5 @@
-@if ($block)
-@php
+<?php if($block): ?>
+<?php
 $title = $block->json_params->title->{$locale} ?? $block->title;
 $brief = $block->json_params->brief->{$locale} ?? $block->brief;
 $content = $block->json_params->content->{$locale} ?? $block->content;
@@ -13,7 +13,7 @@ $style = isset($block->json_params->style) && $block->json_params->style == 'sli
 $block_childs = $blocks->filter(function ($item, $key) use ($block) {
 return $item->parent_id == $block->id;
 });
-@endphp
+?>
 <section class="section" id="section_87972038">
   <div class="bg section-bg fill bg-fill  bg-loaded">
 
@@ -106,17 +106,17 @@ return $item->parent_id == $block->id;
        
         <div class="row row-full-width baoton_row" id="row-1523001912">
 
-        @php
+        <?php
         $params2['status'] = 'active';
         $rows2 = App\Http\Services\ContentService::getFeedback($params2)->limit(2)->get();
     
-        @endphp
-        @foreach($rows2 as $fb)
+        ?>
+        <?php $__currentLoopData = $rows2; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fb): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
 
-        @php 
+        <?php 
         $params3['id'] = $fb->tour_id;
         $tour = App\Http\Services\ContentService::getCmsTour($params3)->first();
-        @endphp
+        ?>
           <div id="col-867900854" class="col medium-6 small-12 large-6 tip-top" title="colbaoton_row">
             <div class="col-inner" style="background-color:rgb(240, 240, 240);">
 
@@ -162,8 +162,8 @@ return $item->parent_id == $block->id;
 
 
 
-                          <p><span style="color: #00a859;"><strong>{{ $fb->name }}</strong></span></p>
-                          <p>{{ $tour->title }}</p>
+                          <p><span style="color: #00a859;"><strong><?php echo e($fb->name); ?></strong></span></p>
+                          <p><?php echo e($tour->title); ?></p>
                           <p><img decoding="async" class="alignnone size-full wp-image-232" src="https://hoanglienpark.com/wp-content/uploads/2023/04/Group.png" alt="" width="16" height="16"><img decoding="async" class="alignnone size-full wp-image-232" src="https://hoanglienpark.com/wp-content/uploads/2023/04/Group.png" alt="" width="16" height="16"><img decoding="async" class="alignnone size-full wp-image-232" src="https://hoanglienpark.com/wp-content/uploads/2023/04/Group.png" alt="" width="16" height="16"><img decoding="async" class="alignnone size-full wp-image-232" src="https://hoanglienpark.com/wp-content/uploads/2023/04/Group.png" alt="" width="16" height="16"><img decoding="async" class="alignnone size-full wp-image-232" src="https://hoanglienpark.com/wp-content/uploads/2023/04/Group.png" alt="" width="16" height="16"></p>
 
                         </div>
@@ -195,7 +195,7 @@ return $item->parent_id == $block->id;
 
 
 
-                    <p>{{ $fb->content }}</p>
+                    <p><?php echo e($fb->content); ?></p>
 
                   </div>
                 </div>
@@ -213,7 +213,7 @@ return $item->parent_id == $block->id;
             </style>
           </div>
 
-          @endforeach 
+          <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?> 
 
 
 
@@ -260,4 +260,4 @@ return $item->parent_id == $block->id;
     }
   </style>
 </section>
-@endif
+<?php endif; ?><?php /**PATH D:\xampp\htdocs\dulich\resources\views/frontend/blocks/custom/styles/comment.blade.php ENDPATH**/ ?>

@@ -59,6 +59,7 @@
                   <div class="header-search-form-wrapper">
                     <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
                       <form method="get" class="searchform" action="{{ route('frontend.search.index') }}" role="search">
+                        @csrf
                         <div class="flex-row relative">
                           <div class="flex-col flex-grow">
                             <input type="search" class="search-field mb-0" name="keyword" value="{{ $params['keyword'] ?? '' }}" id="s" placeholder="Tìm kiếm" />

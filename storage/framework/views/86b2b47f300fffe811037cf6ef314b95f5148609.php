@@ -59,6 +59,7 @@
                   <div class="header-search-form-wrapper">
                     <div class="searchform-wrapper ux-search-box relative form-flat is-normal">
                       <form method="get" class="searchform" action="<?php echo e(route('frontend.search.index')); ?>" role="search">
+                        <?php echo csrf_field(); ?>
                         <div class="flex-row relative">
                           <div class="flex-col flex-grow">
                             <input type="search" class="search-field mb-0" name="keyword" value="<?php echo e($params['keyword'] ?? ''); ?>" id="s" placeholder="Tìm kiếm" />
